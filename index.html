@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WanderChina | Student Travel in China</title>
+  <meta
+    name="description"
+    content="为在华留学生打造的中国旅行网站，支持五大旅游城市地图、城市景点联动、本地景点图片画廊与多语言界面。"
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Sora:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  >
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <div class="page-glow glow-a"></div>
+    <div class="page-glow glow-b"></div>
+    <div class="page-glow glow-c"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top">
+        <span class="brand-mark">WC</span>
+        <span class="brand-copy">
+          <strong>WanderChina</strong>
+          <small data-ui="brandTagline">Travel maps for international students in China</small>
+        </span>
+      </a>
+
+      <div class="header-tools">
+        <div class="language-switcher" aria-label="Language switcher">
+          <button class="lang-btn is-active" type="button" data-lang="en">EN</button>
+          <button class="lang-btn" type="button" data-lang="zh">中文</button>
+          <button class="lang-btn" type="button" data-lang="ja">JA</button>
+          <button class="lang-btn" type="button" data-lang="ko">KO</button>
+          <button class="lang-btn" type="button" data-lang="es">ES</button>
+          <button class="lang-btn" type="button" data-lang="fr">FR</button>
+          <button class="lang-btn" type="button" data-lang="ar">AR</button>
+        </div>
+        <a class="ghost-button" href="#city-workspace" data-ui="openGuide">Open Guide</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-ui="heroEyebrow">Five city journeys, one travel hub</p>
+          <h1 data-ui="heroTitle">Explore China with a map-first guide designed for international students.</h1>
+          <p class="hero-text" data-ui="heroText">
+            Click a city on the China map, jump straight into its city map, and browse every included attraction with local images, quick facts, and multilingual interface support.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#city-switchboard" data-ui="startExploring">Start Exploring</a>
+            <button class="secondary-button" id="jump-random-city" type="button" data-ui="randomCity">Random City</button>
+          </div>
+          <div class="stat-grid">
+            <article class="stat-card">
+              <strong id="stat-city-count">0</strong>
+              <span data-ui="statCities">featured cities</span>
+            </article>
+            <article class="stat-card">
+              <strong id="stat-spot-count">0</strong>
+              <span data-ui="statSpots">included attractions</span>
+            </article>
+            <article class="stat-card">
+              <strong id="stat-language-count">0</strong>
+              <span data-ui="statLanguages">UI languages</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <article class="hero-card">
+            <div class="hero-card-row">
+              <span class="hero-pill hero-pill-primary" data-ui="heroPill">Map + gallery</span>
+              <span class="hero-pill" id="hero-city-name">Beijing</span>
+            </div>
+            <h2 id="hero-card-title">Beijing</h2>
+            <p id="hero-card-summary"></p>
+            <div class="hero-highlight-grid" id="hero-highlight-grid"></div>
+          </article>
+          <article class="hero-stack hero-stack-a"></article>
+          <article class="hero-stack hero-stack-b"></article>
+        </div>
+      </section>
+
+      <section class="city-switchboard" id="city-switchboard">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-ui="switchboardEyebrow">China overview</p>
+            <h2 data-ui="switchboardTitle">Select a city on the national map and jump into its attraction guide.</h2>
+          </div>
+          <p class="section-copy" data-ui="switchboardText">
+            The national map controls the whole page: city map, quick links, selected attraction gallery, and the full attraction list all update together.
+          </p>
+        </div>
+
+        <div class="switchboard-grid">
+          <aside class="city-panel">
+            <div class="panel-block">
+              <div class="panel-headline">
+                <div>
+                  <p class="panel-kicker" data-ui="citySelectorKicker">City selector</p>
+                  <h3 data-ui="citySelectorTitle">Five featured cities</h3>
+                </div>
+                <span class="mini-pill" id="city-panel-count">0</span>
+              </div>
+              <div class="city-chip-grid" id="city-chip-grid"></div>
+            </div>
+
+            <div class="panel-block active-city-card">
+              <div class="panel-headline">
+                <div>
+                  <p class="panel-kicker" data-ui="activeCityKicker">Active city</p>
+                  <h3 id="active-city-title">Beijing</h3>
+                </div>
+                <button class="tiny-button" type="button" id="jump-to-city-guide" data-ui="jumpToGuide">Open city guide</button>
+              </div>
+              <p class="active-city-summary" id="active-city-summary"></p>
+              <div class="city-facts" id="active-city-facts"></div>
+            </div>
+          </aside>
+
+          <article class="map-card map-card-china">
+            <div class="map-card-head">
+              <div>
+                <p class="panel-kicker" data-ui="chinaMapKicker">China map</p>
+                <h3 data-ui="chinaMapTitle">Tourist city entry points</h3>
+              </div>
+              <span class="map-hint" data-ui="chinaMapHint">Click any city marker to update the city map and attraction list.</span>
+            </div>
+            <div id="china-map" class="map-canvas" aria-label="China city map"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="city-workspace" id="city-workspace">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-ui="workspaceEyebrow">City workspace</p>
+            <h2 id="workspace-city-title">Beijing</h2>
+          </div>
+          <p class="section-copy" id="workspace-city-copy"></p>
+        </div>
+
+        <div class="workspace-grid">
+          <article class="map-card map-card-city">
+            <div class="map-card-head">
+              <div>
+                <p class="panel-kicker" data-ui="cityMapKicker">City map</p>
+                <h3 id="city-map-title">Beijing attractions</h3>
+              </div>
+              <span class="map-hint" data-ui="cityMapHint">Markers on this map are linked to the attraction cards below.</span>
+            </div>
+            <div id="city-map" class="map-canvas" aria-label="Selected city map"></div>
+          </article>
+
+          <article class="focus-card">
+            <div class="panel-headline">
+              <div>
+                <p class="panel-kicker" data-ui="focusKicker">Selected attraction</p>
+                <h3 id="focus-spot-name">Forbidden City</h3>
+              </div>
+              <button class="tiny-button" type="button" id="jump-to-spot-card" data-ui="jumpToCard">Locate card</button>
+            </div>
+            <p class="focus-summary" id="focus-spot-summary"></p>
+            <div class="focus-meta" id="focus-spot-meta"></div>
+
+            <div class="focus-gallery">
+              <div class="focus-image-wrap">
+                <img id="focus-main-image" alt="">
+              </div>
+              <div class="thumbnail-grid" id="focus-thumbnail-grid"></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="quick-link-row" id="spot-quick-links"></div>
+
+        <article class="route-card">
+          <div class="panel-headline">
+            <div>
+              <p class="panel-kicker" data-ui="routeKicker">Suggested route</p>
+              <h3 data-ui="routeTitle">Student-friendly city rhythm</h3>
+            </div>
+          </div>
+          <div class="route-switcher" id="route-switcher"></div>
+          <div class="route-display" id="route-display"></div>
+        </article>
+      </section>
+
+      <section class="spot-section" id="spot-list-section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-ui="spotSectionEyebrow">Attraction list</p>
+            <h2 data-ui="spotSectionTitle">Every attraction included in the local image folders is listed here.</h2>
+          </div>
+          <p class="section-copy" id="spot-section-copy"></p>
+        </div>
+
+        <div class="spot-grid" id="spot-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script src="./app.js"></script>
+</body>
+</html>
