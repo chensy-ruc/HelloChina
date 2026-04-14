@@ -7,7 +7,7 @@ const uiContent = {
     navFood: "Food",
     navAI: "AI Assistant",
     heroEyebrow: "Five cities, one map-first travel hub",
-    heroTitle: "Explore China with a map-first guide designed for international friends.",
+    heroTitle: "Hello China: a map-style travel gateway designed for international friends.",
     heroText:
       "Pick a city on the national map, switch to the city map instantly, and explore every included attraction with local images, practical tips, and multilingual support.",
     startExploring: "Start Exploring",
@@ -1912,9 +1912,13 @@ const spotFolderAlias = {
   }
 };
 
+const introSupportedLanguages = ["zh", "en", "ja", "ko", "es", "fr", "ar"];
+
 const externalContent = {
   cityIntro: {},
+  cityIntroByLanguage: {},
   spotIntro: {},
+  spotIntroByLanguage: {},
   spotTicket: {}
 };
 
@@ -2189,31 +2193,51 @@ async function fetchTextFile(path) {
   }
 }
 
+function introPathWithLanguage(basePath, language) {
+  if (language === "zh") return basePath;
+  return basePath.replace(/\.txt$/i, `.${language}.txt`);
+}
+
 async function loadExternalContent() {
   const jobs = [];
   cities.forEach((city) => {
     const cityFolder = cityFolderMap[city.id];
     if (!cityFolder) return;
+    externalContent.cityIntroByLanguage[city.id] = {};
 
-    jobs.push(
-      fetchTextFile(`景点/${cityFolder}/城市介绍/城市介绍.txt`).then((text) => {
-        externalContent.cityIntro[city.id] = text;
-      })
-    );
+    const cityIntroBasePath = `景点/${cityFolder}/城市介绍/城市介绍.txt`;
+    introSupportedLanguages.forEach((language) => {
+      jobs.push(
+        fetchTextFile(introPathWithLanguage(cityIntroBasePath, language)).then((text) => {
+          if (!text) return;
+          externalContent.cityIntroByLanguage[city.id][language] = text;
+          if (language === "zh") {
+            externalContent.cityIntro[city.id] = text;
+          }
+        })
+      );
+    });
 
     city.spots.forEach((spot) => {
       const spotZh = spot.names.zh;
       const folder = spotFolderName(city.id, spotZh);
-      const introPath = `景点/${cityFolder}/${folder}/介绍.txt`;
+      const introBasePath = `景点/${cityFolder}/${folder}/介绍.txt`;
       const ticketPathA = `景点/${cityFolder}/${folder}/网址.txt`;
       const ticketPathB = `景点/${cityFolder}/${folder}/网站.txt`;
       const spotKey = `${city.id}:${spotZh}`;
+      externalContent.spotIntroByLanguage[spotKey] = {};
 
-      jobs.push(
-        fetchTextFile(introPath).then((text) => {
-          externalContent.spotIntro[spotKey] = text;
-        })
-      );
+      introSupportedLanguages.forEach((language) => {
+        jobs.push(
+          fetchTextFile(introPathWithLanguage(introBasePath, language)).then((text) => {
+            if (!text) return;
+            externalContent.spotIntroByLanguage[spotKey][language] = text;
+            if (language === "zh") {
+              externalContent.spotIntro[spotKey] = text;
+            }
+          })
+        );
+      });
       jobs.push(
         fetchTextFile(ticketPathA).then(async (text) => {
           if (text) {
@@ -2236,7 +2260,10 @@ function spotContentKey(city, spot) {
 
 function spotNarrative(spot, city) {
   const key = spotContentKey(city, spot);
-  const zhIntro = externalContent.spotIntro[key];
+  const localizedIntro = externalContent.spotIntroByLanguage[key]?.[state.language];
+  if (localizedIntro) return localizedIntro;
+
+  const zhIntro = externalContent.spotIntro[key] || externalContent.spotIntroByLanguage[key]?.zh;
   if (state.language === "zh" && zhIntro) {
     return zhIntro;
   }
@@ -2250,7 +2277,10 @@ function spotNarrative(spot, city) {
 }
 
 function cityNarrative(city) {
-  const zhIntro = externalContent.cityIntro[city.id];
+  const localizedIntro = externalContent.cityIntroByLanguage[city.id]?.[state.language];
+  if (localizedIntro) return localizedIntro;
+
+  const zhIntro = externalContent.cityIntro[city.id] || externalContent.cityIntroByLanguage[city.id]?.zh;
   if (state.language === "zh" && zhIntro) {
     return zhIntro;
   }
@@ -2284,13 +2314,15 @@ function cityWorkspaceNarrative(city) {
 function prefetchActiveCityTranslations() {
   if (state.language === "zh" || !isAiConfigured()) return;
   const city = activeCity();
+
   const cityIntro = externalContent.cityIntro[city.id];
-  if (cityIntro) {
+  if (cityIntro && !externalContent.cityIntroByLanguage[city.id]?.[state.language]) {
     requestTranslation("city", city.id, cityIntro);
   }
 
   city.spots.forEach((spot) => {
     const key = spotContentKey(city, spot);
+    if (externalContent.spotIntroByLanguage[key]?.[state.language]) return;
     const intro = externalContent.spotIntro[key];
     if (intro) {
       requestTranslation("spot", key, intro);
