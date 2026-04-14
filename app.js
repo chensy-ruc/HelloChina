@@ -1,11 +1,15 @@
 const uiContent = {
   en: {
-    brandTagline: "Travel maps for international students in China",
+    brandTagline: "Travel maps for international friends in China",
     openGuide: "Open Guide",
-    heroEyebrow: "Five city journeys, one travel hub",
-    heroTitle: "Explore China with a map-first guide designed for international students.",
+    navMap: "Map",
+    navGuide: "Local Guide",
+    navFood: "Food",
+    navAI: "AI Assistant",
+    heroEyebrow: "Five cities, one map-first travel hub",
+    heroTitle: "Explore China with a map-first guide designed for international friends.",
     heroText:
-      "Click a city on the China map, jump straight into its city map, and browse every included attraction with local images, quick facts, and multilingual interface support.",
+      "Pick a city on the national map, switch to the city map instantly, and explore every included attraction with local images, practical tips, and multilingual support.",
     startExploring: "Start Exploring",
     randomCity: "Random City",
     statCities: "featured cities",
@@ -29,7 +33,7 @@ const uiContent = {
     focusKicker: "Selected attraction",
     jumpToCard: "Locate card",
     routeKicker: "Suggested route",
-    routeTitle: "Student-friendly city rhythm",
+    routeTitle: "Friend-friendly city rhythm",
     spotSectionEyebrow: "Attraction list",
     spotSectionTitle: "A curated attraction board for the selected city.",
     cityMapLabel: "Attractions map",
@@ -42,17 +46,40 @@ const uiContent = {
     spotSectionSummary: "Now showing {city} · {spots} attractions",
     activeCitySummary: "Now exploring {city}",
     mapPopupHint: "Open the city guide",
-    cardButton: "Focus this spot",
+    cardButton: "Ask AI about this spot",
+    ticketLink: "Ticket / Booking",
+    askAI: "Ask AI",
+    foodEyebrow: "Food Guide",
+    foodTitle: "Taste each city through local specialties and friendly neighborhoods.",
+    foodText: "This module follows the active city and highlights practical picks for breakfast, dinner, and local snacks.",
+    foodCard1: "Morning Pick",
+    foodCard2: "Dinner Pick",
+    foodCard3: "Snack Street",
+    aiEyebrow: "AI Concierge",
+    aiTitle: "Ask detailed questions about the selected attraction.",
+    aiText: "Set your API key once, then ask routes, opening details, crowd timing, and visit strategy.",
+    saveAIConfig: "Save API Config",
+    aiInputPlaceholder: "Ask anything about this attraction...",
+    sendAI: "Send",
+    aiContextPrefix: "Current attraction",
+    aiConfigSaved: "API settings saved locally.",
+    aiConfigMissing: "Please fill API endpoint, model, and key first.",
+    aiThinking: "AI is thinking...",
+    aiError: "Request failed. Check endpoint/key/model and try again.",
     routeDynamicTitle: "Route around {spot}",
     routeDynamicDesc: "Built around the selected attraction and nearby stops for a smoother visit."
   },
   zh: {
-    brandTagline: "为在华留学生准备的旅行地图",
+    brandTagline: "为在华国际友人准备的旅行地图",
     openGuide: "打开导览",
-    heroEyebrow: "五座城市，一站式旅行入口",
-    heroTitle: "一纸经纬藏锦绣，万里来宾入画屏。",
+    navMap: "地图",
+    navGuide: "地陪",
+    navFood: "美食",
+    navAI: "AI问答",
+    heroEyebrow: "五座城市，一站式地图导览",
+    heroTitle: "你好中国：为国际友人设计的地图式旅行入口。",
     heroText:
-      "点击中国地图上的城市后，页面会直接切换到对应城市地图，并展示该城市的全部景点、本地图片、快速信息和多语言界面。",
+      "点击中国地图上的城市后，页面会直接切换到对应城市地图，并展示该城市全部景点、本地图片、购票信息与多语言内容。",
     startExploring: "开始探索",
     randomCity: "随机城市",
     statCities: "精选城市",
@@ -76,7 +103,7 @@ const uiContent = {
     focusKicker: "当前景点",
     jumpToCard: "定位卡片",
     routeKicker: "推荐路线",
-    routeTitle: "适合学生的城市游览节奏",
+    routeTitle: "适合国际友人的城市游览节奏",
     spotSectionEyebrow: "景点列表",
     spotSectionTitle: "这里展示当前城市值得重点呈现的景点看板。",
     cityMapLabel: "景点地图",
@@ -89,12 +116,31 @@ const uiContent = {
     spotSectionSummary: "当前显示 {city} · {spots} 个景点",
     activeCitySummary: "当前正在浏览 {city}",
     mapPopupHint: "打开城市导览",
-    cardButton: "聚焦景点",
+    cardButton: "向AI咨询这个景点",
+    ticketLink: "购票 / 预约",
+    askAI: "问问AI",
+    foodEyebrow: "美食导览",
+    foodTitle: "跟着城市节奏，快速找到本地代表性吃喝去处。",
+    foodText: "美食模块会跟随当前城市变化，提供早午晚与街区小吃的实用建议。",
+    foodCard1: "早餐推荐",
+    foodCard2: "晚餐推荐",
+    foodCard3: "小吃街区",
+    aiEyebrow: "AI 地陪",
+    aiTitle: "围绕当前景点发问，获取更具体的旅行建议。",
+    aiText: "填写 API Key 后，可继续追问路线、开放信息、避峰时间和游览策略。",
+    saveAIConfig: "保存 API 配置",
+    aiInputPlaceholder: "输入你想问的问题，比如如何安排半天行程...",
+    sendAI: "发送",
+    aiContextPrefix: "当前景点",
+    aiConfigSaved: "API 配置已保存到本地浏览器。",
+    aiConfigMissing: "请先填写 API Endpoint、Model 和 API Key。",
+    aiThinking: "AI 正在思考...",
+    aiError: "请求失败，请检查 Endpoint、Key 或 Model 后重试。",
     routeDynamicTitle: "围绕{spot}展开",
     routeDynamicDesc: "以当前点击景点为核心，并串联周边更顺路的游览点。"
   },
   ja: {
-    brandTagline: "中国の留学生向け旅行マップ",
+    brandTagline: "中国を旅する国際友人向けマップ",
     openGuide: "ガイドを開く",
     heroEyebrow: "5都市を1つのハブで",
     heroTitle: "地図から始まる旅行ガイドで、中国旅行をもっとわかりやすく。",
@@ -123,7 +169,7 @@ const uiContent = {
     focusKicker: "選択中スポット",
     jumpToCard: "カードへ移動",
     routeKicker: "おすすめルート",
-    routeTitle: "学生向けの観光リズム",
+    routeTitle: "国際友人向けの観光リズム",
     spotSectionEyebrow: "スポット一覧",
     spotSectionTitle: "ローカル画像フォルダに含まれる全スポットをここに表示しています。",
     cityMapLabel: "観光マップ",
@@ -143,7 +189,7 @@ const uiContent = {
     routeDynamicDesc: "選択中のスポットを核にしながら、近くの立ち寄り先をつないだルートです。"
   },
   ko: {
-    brandTagline: "중국 유학생을 위한 여행 지도",
+    brandTagline: "중국을 여행하는 국제 친구를 위한 지도",
     openGuide: "가이드 열기",
     heroEyebrow: "다섯 도시, 하나의 허브",
     heroTitle: "지도 중심 여행 가이드로 중국 여행을 더 쉽게 탐색하세요.",
@@ -172,7 +218,7 @@ const uiContent = {
     focusKicker: "선택한 명소",
     jumpToCard: "카드로 이동",
     routeKicker: "추천 루트",
-    routeTitle: "학생 친화형 도시 동선",
+    routeTitle: "국제 친구 친화형 도시 동선",
     spotSectionEyebrow: "명소 목록",
     spotSectionTitle: "로컬 이미지 폴더에 포함된 모든 명소를 여기서 확인할 수 있습니다.",
     cityMapLabel: "명소 지도",
@@ -192,7 +238,7 @@ const uiContent = {
     routeDynamicDesc: "현재 선택한 명소를 포함하도록 주변 동선을 함께 묶은 추천 루트입니다."
   },
   es: {
-    brandTagline: "Mapas de viaje para estudiantes internacionales en China",
+    brandTagline: "Mapas de viaje por China para amigos internacionales",
     openGuide: "Abrir guía",
     heroEyebrow: "Cinco ciudades, un solo centro",
     heroTitle: "Explora China con una guía de viaje diseñada a partir del mapa.",
@@ -221,7 +267,7 @@ const uiContent = {
     focusKicker: "Atracción seleccionada",
     jumpToCard: "Ir a la tarjeta",
     routeKicker: "Ruta sugerida",
-    routeTitle: "Ritmo de visita para estudiantes",
+    routeTitle: "Ritmo de visita para amigos internacionales",
     spotSectionEyebrow: "Lista de atracciones",
     spotSectionTitle: "Aquí aparece cada lugar incluido en las carpetas locales de imágenes.",
     cityMapLabel: "Mapa de atracciones",
@@ -241,7 +287,7 @@ const uiContent = {
     routeDynamicDesc: "Incluye la atracción seleccionada y añade paradas cercanas para una visita más fluida."
   },
   fr: {
-    brandTagline: "Cartes de voyage pour étudiants internationaux en Chine",
+    brandTagline: "Cartes de voyage en Chine pour amis internationaux",
     openGuide: "Ouvrir le guide",
     heroEyebrow: "Cinq villes, un seul hub",
     heroTitle: "Explorez la Chine avec un guide de voyage pensé d'abord autour de la carte.",
@@ -270,7 +316,7 @@ const uiContent = {
     focusKicker: "Attraction sélectionnée",
     jumpToCard: "Voir la carte",
     routeKicker: "Itinéraire conseillé",
-    routeTitle: "Rythme de visite pour étudiants",
+    routeTitle: "Rythme de visite pour amis internationaux",
     spotSectionEyebrow: "Liste des attractions",
     spotSectionTitle: "Tous les sites présents dans les dossiers d'images locales sont listés ici.",
     cityMapLabel: "Carte des sites",
@@ -290,7 +336,7 @@ const uiContent = {
     routeDynamicDesc: "Inclut le lieu sélectionné et relie quelques arrêts proches pour un trajet plus fluide."
   },
   ar: {
-    brandTagline: "خرائط سفر للطلاب الدوليين في الصين",
+    brandTagline: "خرائط سفر في الصين للأصدقاء الدوليين",
     openGuide: "افتح الدليل",
     heroEyebrow: "خمس مدن، منصة واحدة",
     heroTitle: "استكشف الصين عبر دليل سفر يبدأ من الخريطة أولاً.",
@@ -319,7 +365,7 @@ const uiContent = {
     focusKicker: "المعلم المحدد",
     jumpToCard: "انتقل إلى البطاقة",
     routeKicker: "مسار مقترح",
-    routeTitle: "إيقاع مناسب للطلاب",
+    routeTitle: "إيقاع مناسب للأصدقاء الدوليين",
     spotSectionEyebrow: "قائمة المعالم",
     spotSectionTitle: "كل المعالم الموجودة في مجلدات الصور المحلية تظهر هنا.",
     cityMapLabel: "خريطة المعالم",
@@ -654,7 +700,7 @@ const cityMeta = [
       en: "Imperial heritage, hutongs, grand parks, and the Great Wall shape Beijing's travel rhythm."
     },
     summary: {
-      zh: "北京适合第一次系统游览中国的留学生，历史地标密度高，地铁覆盖成熟，既能看经典建筑，也能体验街区生活。",
+      zh: "北京适合第一次系统游览中国的国际友人，历史地标密度高，地铁覆盖成熟，既能看经典建筑，也能体验街区生活。",
       en: "Beijing works well for first-time student travelers who want major historical landmarks, strong metro access, and a balance between iconic monuments and neighborhood life."
     },
     highlights: {
@@ -721,8 +767,8 @@ const cityMeta = [
       en: "Shanghai blends skyline views, leafy streets, historic lanes, and water-town escapes in one trip."
     },
     summary: {
-      zh: "上海适合喜欢大都市节奏的留学生，地标集中、夜景资源强，也能穿插梧桐街区、寺院和古镇形成更丰富的城市体验。",
-      en: "Shanghai suits international students who want a fast urban rhythm, strong night views, and enough heritage streets, temples, and water towns to balance the skyline."
+      zh: "上海适合喜欢大都市节奏的国际友人，地标集中、夜景资源强，也能穿插梧桐街区、寺院和古镇形成更丰富的城市体验。",
+      en: "Shanghai suits international friends who want a fast urban rhythm, strong night views, and enough heritage streets, temples, and water towns to balance the skyline."
     },
     highlights: {
       zh: ["摩登夜景", "老街古镇", "街区漫步"],
@@ -853,8 +899,8 @@ const cityMeta = [
       en: "Chengdu mixes pandas, shrines, teahouse streets, creative districts, and mountain-water escapes in a relaxed city rhythm."
     },
     summary: {
-      zh: "成都适合希望在慢节奏里把城市生活和周边景区一起打包的留学生，市区可步行串联，远郊还能延展到都江堰和青城山。",
-      en: "Chengdu is a strong choice for students who want softer city pacing while still covering major icons, food streets, and outlying scenic routes like Dujiangyan and Mount Qingcheng."
+      zh: "成都适合希望在慢节奏里把城市生活和周边景区一起打包的国际友人，市区可步行串联，远郊还能延展到都江堰和青城山。",
+      en: "Chengdu is a strong choice for international friends who want softer city pacing while still covering major icons, food streets, and outlying scenic routes like Dujiangyan and Mount Qingcheng."
     },
     highlights: {
       zh: ["熊猫城市", "川味街区", "山水外延"],
@@ -1310,7 +1356,7 @@ const localizedCityContent = {
       ar: "تجمع بكين بين التراث الإمبراطوري وسور الصين والحدائق والحياة في أزقة الهوتونغ ضمن رحلة واحدة."
     },
     summary: {
-      ja: "北京は、中国を初めてしっかり回る留学生に向いた都市です。主要名所の密度が高く、地下鉄も使いやすく、定番建築と街の暮らしを同時に体験できます。",
+      ja: "北京は、中国を初めてしっかり回る国際友人に向いた都市です。主要名所の密度が高く、地下鉄も使いやすく、定番建築と街の暮らしを同時に体験できます。",
       ko: "베이징은 중국을 처음 본격적으로 둘러보는 유학생에게 잘 맞는 도시입니다. 대표 명소 밀도가 높고 지하철이 편리해 상징적인 건축과 일상적인 거리 풍경을 함께 볼 수 있습니다.",
       es: "Pekín funciona muy bien para estudiantes internacionales que quieren una primera visión completa de China. Hay muchos iconos históricos, una red de metro madura y un buen equilibrio entre monumentos y vida urbana.",
       fr: "Pékin convient très bien à une première découverte structurée de la Chine. Les grands repères historiques sont denses, le métro est efficace et l'on alterne facilement monuments et vie de quartier.",
@@ -1382,7 +1428,7 @@ const localizedCityContent = {
       ar: "تجمع شنغهاي بين أفق البوند وأحياء الأشجار والبلدات المائية القديمة في رحلة حضرية واحدة."
     },
     summary: {
-      ja: "上海は大都市のリズムを楽しみたい留学生に向いています。夜景が強く、街歩きや寺院、古鎮まで組み合わせると旅の幅が広がります。",
+      ja: "上海は大都市のリズムを楽しみたい国際友人に向いています。夜景が強く、街歩きや寺院、古鎮まで組み合わせると旅の幅が広がります。",
       ko: "상하이는 대도시의 속도감을 좋아하는 유학생에게 잘 맞습니다. 야경이 강하고, 거리 산책과 사찰, 고진까지 조합하면 도시 경험이 훨씬 풍부해집니다.",
       es: "Shanghái es ideal para estudiantes que disfrutan de una gran metrópoli. Tiene noches muy fuertes y también permite combinar barrios, templos y pueblos de agua.",
       fr: "Shanghai convient bien à ceux qui aiment l'énergie d'une grande métropole. Les vues nocturnes sont fortes, mais on peut aussi y glisser temples, vieux quartiers et bourgs d'eau.",
@@ -1524,7 +1570,7 @@ const localizedCityContent = {
       ar: "تجمع تشنغدو بين الباندا والآثار والأزقة والطبيعة القريبة ضمن إيقاع سفر مريح لكنه غني."
     },
     summary: {
-      ja: "成都は、ゆったりしたテンポの中で街の暮らしと周辺観光をまとめて楽しみたい留学生に向いています。市内は歩いてつなぎやすく、郊外では都江堰や青城山まで広げられます。",
+      ja: "成都は、ゆったりしたテンポの中で街の暮らしと周辺観光をまとめて楽しみたい国際友人に向いています。市内は歩いてつなぎやすく、郊外では都江堰や青城山まで広げられます。",
       ko: "청두는 느긋한 리듬 속에서 도시 생활과 주변 명소를 함께 보고 싶은 유학생에게 잘 맞습니다. 시내는 도보로 이어 보기 좋고, 외곽으로는 두장옌과 청청산까지 확장할 수 있습니다.",
       es: "Chengdú es una buena opción para estudiantes que quieren un ritmo más suave sin renunciar a ver tanto la ciudad como sus alrededores. El centro se enlaza bien y fuera de él se puede ampliar hacia Dujiangyan y Qingcheng.",
       fr: "Chengdu est un bon choix pour les étudiants qui veulent un rythme plus doux tout en couvrant à la fois la ville et ses extensions naturelles. Le centre s'enchaîne bien et les alentours ouvrent vers Dujiangyan et Qingcheng.",
@@ -1663,7 +1709,10 @@ const state = {
   activeCityId: "beijing",
   activeSpotId: null,
   activeImageIndex: 0,
-  activeRouteId: "dynamic"
+  activeRouteId: "dynamic",
+  activeAskSpotId: null,
+  aiMessages: [],
+  aiBusy: false
 };
 
 const elements = {
@@ -1674,6 +1723,7 @@ const elements = {
   heroCityName: document.querySelector("#hero-city-name"),
   heroCardTitle: document.querySelector("#hero-card-title"),
   heroCardSummary: document.querySelector("#hero-card-summary"),
+  heroCardIntro: document.querySelector("#hero-card-intro"),
   heroHighlightGrid: document.querySelector("#hero-highlight-grid"),
   cityChipGrid: document.querySelector("#city-chip-grid"),
   cityPanelCount: document.querySelector("#city-panel-count"),
@@ -1686,31 +1736,159 @@ const elements = {
   focusSpotName: document.querySelector("#focus-spot-name"),
   focusSpotSummary: document.querySelector("#focus-spot-summary"),
   focusSpotMeta: document.querySelector("#focus-spot-meta"),
+  focusTicketLink: document.querySelector("#focus-ticket-link"),
   focusMainImage: document.querySelector("#focus-main-image"),
   focusThumbnailGrid: document.querySelector("#focus-thumbnail-grid"),
   spotQuickLinks: document.querySelector("#spot-quick-links"),
   routeSwitcher: document.querySelector("#route-switcher"),
   routeDisplay: document.querySelector("#route-display"),
   spotGrid: document.querySelector("#spot-grid"),
-  spotSectionCopy: document.querySelector("#spot-section-copy")
+  spotSectionCopy: document.querySelector("#spot-section-copy"),
+  foodGrid: document.querySelector("#food-grid"),
+  aiContextLine: document.querySelector("#ai-context-line"),
+  aiMessages: document.querySelector("#ai-messages"),
+  aiInput: document.querySelector("#ai-input"),
+  aiEndpoint: document.querySelector("#ai-endpoint"),
+  aiModel: document.querySelector("#ai-model"),
+  aiApiKey: document.querySelector("#ai-api-key"),
+  saveAiConfig: document.querySelector("#save-ai-config"),
+  sendAiMessage: document.querySelector("#send-ai-message"),
+  openAiAssistant: document.querySelector("#open-ai-assistant")
 };
 
 const cityMap = L.map("city-map", { zoomControl: false }).setView([39.9305, 116.3568], 10.6);
 const chinaMap = L.map("china-map", { zoomControl: false }).setView([35.6, 104.4], 4.2);
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 19,
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(cityMap);
+const tileConfigs = {
+  zh: {
+    key: "zh",
+    url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    options: {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }
+  },
+  intl: {
+    key: "intl",
+    url: "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
+    options: {
+      subdomains: "abcd",
+      maxZoom: 20,
+      attribution:
+        '&copy; OpenStreetMap contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+    }
+  }
+};
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 19,
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(chinaMap);
+let cityBaseLayer = null;
+let chinaBaseLayer = null;
+let activeTileKey = null;
 
 const chinaMarkers = new Map();
 let citySpotMarkers = [];
 let activeRouteLine = null;
+const aiRuntime = {
+  settings: {
+    endpoint: "",
+    model: "",
+    apiKey: ""
+  },
+  translationCache: {},
+  translationPending: {}
+};
+
+const cityFolderMap = {
+  beijing: "北京",
+  shanghai: "上海",
+  xian: "西安",
+  chengdu: "成都",
+  hangzhou: "杭州"
+};
+
+const spotFolderAlias = {
+  beijing: {
+    "故宫博物院": "故宫"
+  }
+};
+
+const externalContent = {
+  cityIntro: {},
+  spotIntro: {},
+  spotTicket: {}
+};
+
+const cityFoodPicks = {
+  beijing: {
+    breakfast: {
+      zh: "豆汁与焦圈、包子店、胡同早餐铺",
+      en: "Soy milk snacks, stuffed buns, and hutong breakfast stalls"
+    },
+    dinner: {
+      zh: "北京烤鸭、铜锅涮肉、京味家常菜",
+      en: "Peking duck, hotpot, and classic Beijing home-style dishes"
+    },
+    snack: {
+      zh: "南锣鼓巷与什刹海周边小吃街",
+      en: "Snack lanes around Nanluoguxiang and Shichahai"
+    }
+  },
+  shanghai: {
+    breakfast: {
+      zh: "生煎、小笼、葱油拌面",
+      en: "Pan-fried buns, soup dumplings, and scallion oil noodles"
+    },
+    dinner: {
+      zh: "本帮菜、黄鱼面、海派融合餐厅",
+      en: "Shanghai cuisine, yellow croaker noodles, and fusion dining"
+    },
+    snack: {
+      zh: "城隍庙与南京东路周边小吃点",
+      en: "Street snacks near City God Temple and East Nanjing Road"
+    }
+  },
+  xian: {
+    breakfast: {
+      zh: "肉夹馍、胡辣汤、甑糕",
+      en: "Roujiamo, spicy soup, and traditional zeng cake"
+    },
+    dinner: {
+      zh: "泡馍、葫芦鸡、关中风味馆",
+      en: "Pita bread soup, hulu chicken, and Guanzhong-style restaurants"
+    },
+    snack: {
+      zh: "回民街夜间小吃体验",
+      en: "Night snack walk through the Muslim Quarter"
+    }
+  },
+  chengdu: {
+    breakfast: {
+      zh: "担担面、甜水面、钟水饺",
+      en: "Dandan noodles, sweet water noodles, and spicy dumplings"
+    },
+    dinner: {
+      zh: "川式火锅、串串、川菜馆",
+      en: "Sichuan hotpot, skewers, and local Sichuan restaurants"
+    },
+    snack: {
+      zh: "锦里、春熙路和玉林附近街头小吃",
+      en: "Street snacks around Jinli, Chunxi Road, and Yulin"
+    }
+  },
+  hangzhou: {
+    breakfast: {
+      zh: "片儿川、葱包桧、西湖藕粉",
+      en: "Pian’erchuan noodles, scallion wraps, and lotus root starch drinks"
+    },
+    dinner: {
+      zh: "杭帮菜、龙井虾仁、东坡肉",
+      en: "Hangzhou cuisine, Longjing shrimp, and Dongpo pork"
+    },
+    snack: {
+      zh: "河坊街与南宋御街轻松夜逛",
+      en: "Casual evening snack walk in Hefang Street and Southern Song Imperial Street"
+    }
+  }
+};
 
 function currentUi() {
   return uiContent[state.language];
@@ -1732,6 +1910,376 @@ function localizeForLanguage(record, language) {
 
 function localizeBestTime(bestTime) {
   return bestTimeText[state.language]?.[bestTime] || bestTime;
+}
+
+function uiText(key) {
+  return currentUi()[key] || uiContent.en[key] || "";
+}
+
+function mapTileMode() {
+  return state.language === "zh" ? tileConfigs.zh : tileConfigs.intl;
+}
+
+function applyMapTileLanguage() {
+  const config = mapTileMode();
+  if (activeTileKey === config.key) return;
+
+  if (cityBaseLayer) cityMap.removeLayer(cityBaseLayer);
+  if (chinaBaseLayer) chinaMap.removeLayer(chinaBaseLayer);
+
+  cityBaseLayer = L.tileLayer(config.url, config.options).addTo(cityMap);
+  chinaBaseLayer = L.tileLayer(config.url, config.options).addTo(chinaMap);
+  activeTileKey = config.key;
+}
+
+function storageKey(name) {
+  return `hellochina.${name}`;
+}
+
+function loadAiConfig() {
+  aiRuntime.settings.endpoint =
+    localStorage.getItem(storageKey("ai.endpoint")) || "https://api.openai.com/v1/chat/completions";
+  aiRuntime.settings.model = localStorage.getItem(storageKey("ai.model")) || "gpt-4.1-mini";
+  aiRuntime.settings.apiKey = localStorage.getItem(storageKey("ai.key")) || "";
+
+  elements.aiEndpoint.value = aiRuntime.settings.endpoint;
+  elements.aiModel.value = aiRuntime.settings.model;
+  elements.aiApiKey.value = aiRuntime.settings.apiKey;
+}
+
+function saveAiConfig() {
+  aiRuntime.settings.endpoint = elements.aiEndpoint.value.trim();
+  aiRuntime.settings.model = elements.aiModel.value.trim();
+  aiRuntime.settings.apiKey = elements.aiApiKey.value.trim();
+
+  localStorage.setItem(storageKey("ai.endpoint"), aiRuntime.settings.endpoint);
+  localStorage.setItem(storageKey("ai.model"), aiRuntime.settings.model);
+  localStorage.setItem(storageKey("ai.key"), aiRuntime.settings.apiKey);
+  aiRuntime.translationCache = {};
+  aiRuntime.translationPending = {};
+}
+
+async function translateToCurrentLanguage(zhText) {
+  if (!aiRuntime.settings.endpoint || !aiRuntime.settings.model || !aiRuntime.settings.apiKey) {
+    return "";
+  }
+  if (!zhText) return "";
+
+  const langNameMap = {
+    en: "English",
+    ja: "Japanese",
+    ko: "Korean",
+    es: "Spanish",
+    fr: "French",
+    ar: "Arabic"
+  };
+  const target = langNameMap[state.language];
+  if (!target) return "";
+
+  try {
+    const response = await fetch(aiRuntime.settings.endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${aiRuntime.settings.apiKey}`
+      },
+      body: JSON.stringify({
+        model: aiRuntime.settings.model,
+        temperature: 0.3,
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are a professional travel copy translator. Translate Chinese travel text into concise, native, natural wording. Keep facts unchanged."
+          },
+          {
+            role: "user",
+            content: `Translate into ${target}:\n\n${zhText}`
+          }
+        ]
+      })
+    });
+    if (!response.ok) return "";
+    const payload = await response.json();
+    return (payload?.choices?.[0]?.message?.content || "").trim();
+  } catch (error) {
+    return "";
+  }
+}
+
+function translationCacheKey(scope, rawKey) {
+  return `${scope}:${rawKey}:${state.language}`;
+}
+
+function getTranslationFromCache(cacheKey) {
+  const cached = aiRuntime.translationCache[cacheKey];
+  if (!cached || cached === "__FAILED__") return "";
+  return cached;
+}
+
+function requestTranslation(cacheKey, zhText) {
+  if (state.language === "zh" || !zhText) return;
+  if (!aiRuntime.settings.apiKey || !aiRuntime.settings.endpoint || !aiRuntime.settings.model) return;
+  if (cacheKey in aiRuntime.translationCache || aiRuntime.translationPending[cacheKey]) return;
+
+  aiRuntime.translationPending[cacheKey] = true;
+  translateToCurrentLanguage(zhText)
+    .then((translated) => {
+      if (translated) {
+        aiRuntime.translationCache[cacheKey] = translated;
+      } else {
+        aiRuntime.translationCache[cacheKey] = "__FAILED__";
+      }
+    })
+    .finally(() => {
+      delete aiRuntime.translationPending[cacheKey];
+      renderAll();
+    });
+}
+
+function spotFolderName(cityId, spotZh) {
+  return spotFolderAlias[cityId]?.[spotZh] || spotZh;
+}
+
+async function fetchTextFile(path) {
+  try {
+    const response = await fetch(encodeAssetPath(path));
+    if (!response.ok) return "";
+    return (await response.text()).trim();
+  } catch (error) {
+    return "";
+  }
+}
+
+async function loadExternalContent() {
+  const jobs = [];
+  cities.forEach((city) => {
+    const cityFolder = cityFolderMap[city.id];
+    if (!cityFolder) return;
+
+    jobs.push(
+      fetchTextFile(`景点/${cityFolder}/城市介绍/城市介绍.txt`).then((text) => {
+        externalContent.cityIntro[city.id] = text;
+      })
+    );
+
+    city.spots.forEach((spot) => {
+      const spotZh = spot.names.zh;
+      const folder = spotFolderName(city.id, spotZh);
+      const introPath = `景点/${cityFolder}/${folder}/介绍.txt`;
+      const ticketPathA = `景点/${cityFolder}/${folder}/网址.txt`;
+      const ticketPathB = `景点/${cityFolder}/${folder}/网站.txt`;
+      const spotKey = `${city.id}:${spotZh}`;
+
+      jobs.push(
+        fetchTextFile(introPath).then((text) => {
+          externalContent.spotIntro[spotKey] = text;
+        })
+      );
+      jobs.push(
+        fetchTextFile(ticketPathA).then(async (text) => {
+          if (text) {
+            externalContent.spotTicket[spotKey] = text;
+            return;
+          }
+          const backup = await fetchTextFile(ticketPathB);
+          externalContent.spotTicket[spotKey] = backup;
+        })
+      );
+    });
+  });
+
+  await Promise.all(jobs);
+}
+
+function spotContentKey(city, spot) {
+  return `${city.id}:${spot.names.zh}`;
+}
+
+function spotNarrative(spot, city) {
+  const key = spotContentKey(city, spot);
+  const zhIntro = externalContent.spotIntro[key];
+  if (state.language === "zh" && zhIntro) {
+    return zhIntro;
+  }
+  if (zhIntro && state.language !== "zh") {
+    const cacheKey = translationCacheKey("spot", key);
+    const translated = getTranslationFromCache(cacheKey);
+    if (translated) return translated;
+    requestTranslation(cacheKey, zhIntro);
+  }
+  return buildSpotSummary(spot, city);
+}
+
+function cityNarrative(city) {
+  const zhIntro = externalContent.cityIntro[city.id];
+  if (state.language === "zh" && zhIntro) {
+    return zhIntro;
+  }
+  if (zhIntro && state.language !== "zh") {
+    const cacheKey = translationCacheKey("city", city.id);
+    const translated = getTranslationFromCache(cacheKey);
+    if (translated) return translated;
+    requestTranslation(cacheKey, zhIntro);
+  }
+  return localize(city.summary);
+}
+
+function ticketInfoForSpot(spot, city) {
+  const raw = (externalContent.spotTicket[spotContentKey(city, spot)] || "").trim();
+  if (!raw) return { type: "none", value: "" };
+  if (/^https?:\/\//i.test(raw)) return { type: "url", value: raw };
+  return { type: "note", value: raw };
+}
+
+function ticketSnippet(spot, city) {
+  const info = ticketInfoForSpot(spot, city);
+  if (info.type === "url") {
+    return `<a class="fact-pill" href="${info.value}" target="_blank" rel="noopener noreferrer">${uiText("ticketLink")}</a>`;
+  }
+  if (info.type === "note") {
+    return `<span class="fact-pill">${info.value}</span>`;
+  }
+  return "";
+}
+
+function setTicketLink(spot, city) {
+  const ticket = ticketInfoForSpot(spot, city);
+  const node = elements.focusTicketLink;
+  if (ticket.type === "url") {
+    node.href = ticket.value;
+    node.textContent = uiText("ticketLink");
+    node.classList.remove("is-note");
+    node.removeAttribute("aria-disabled");
+  } else if (ticket.type === "note") {
+    node.href = "#";
+    node.textContent = ticket.value;
+    node.classList.add("is-note");
+    node.setAttribute("aria-disabled", "true");
+  } else {
+    node.href = "#";
+    node.textContent = uiText("ticketLink");
+    node.classList.add("is-note");
+    node.setAttribute("aria-disabled", "true");
+  }
+}
+
+function ensureAiSeedMessage() {
+  if (state.aiMessages.length > 0) return;
+  state.aiMessages.push({
+    role: "assistant",
+    content:
+      state.language === "zh"
+        ? "你好，我是你的景点地陪助手。选中景点后，你可以问我交通、时段、路线与注意事项。"
+        : "Hi, I am your attraction guide assistant. Ask me about transport, timing, route planning, and practical details."
+  });
+}
+
+function aiContextSpot() {
+  const city = activeCity();
+  const spot =
+    city.spots.find((item) => item.id === state.activeAskSpotId) ||
+    city.spots.find((item) => item.id === state.activeSpotId) ||
+    city.spots[0];
+  return { city, spot };
+}
+
+function renderAiMessages() {
+  elements.aiMessages.innerHTML = state.aiMessages
+    .map((message) => {
+      const klass = message.role === "user" ? "ai-msg ai-msg-user" : "ai-msg ai-msg-assistant";
+      return `<article class="${klass}">${message.content}</article>`;
+    })
+    .join("");
+  elements.aiMessages.scrollTop = elements.aiMessages.scrollHeight;
+}
+
+function renderAiContext() {
+  const { city, spot } = aiContextSpot();
+  elements.aiContextLine.textContent = `${uiText("aiContextPrefix")}: ${localize(city.names)} · ${localize(spot.names)}`;
+}
+
+function openAiAssistantForSpot(spotId) {
+  state.activeAskSpotId = spotId;
+  ensureAiSeedMessage();
+  renderAiContext();
+  renderAiMessages();
+  document.querySelector("#ai-assistant").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+async function sendAiMessage() {
+  if (state.aiBusy) return;
+  const question = elements.aiInput.value.trim();
+  if (!question) return;
+
+  if (!aiRuntime.settings.endpoint || !aiRuntime.settings.model || !aiRuntime.settings.apiKey) {
+    state.aiMessages.push({ role: "assistant", content: uiText("aiConfigMissing") });
+    renderAiMessages();
+    return;
+  }
+
+  const { city, spot } = aiContextSpot();
+  const ticket = ticketInfoForSpot(spot, city);
+  const contextText = [
+    `Attraction: ${spot.names.zh} in ${city.names.zh}`,
+    `Localized city name: ${localize(city.names)}`,
+    `Localized spot name: ${localize(spot.names)}`,
+    `Spot intro: ${externalContent.spotIntro[spotContentKey(city, spot)] || ""}`,
+    `City intro: ${externalContent.cityIntro[city.id] || ""}`,
+    `Ticket info: ${ticket.value || "N/A"}`
+  ].join("\n");
+
+  state.aiMessages.push({ role: "user", content: question });
+  state.aiMessages.push({ role: "assistant", content: uiText("aiThinking") });
+  elements.aiInput.value = "";
+  state.aiBusy = true;
+  renderAiMessages();
+
+  try {
+    const response = await fetch(aiRuntime.settings.endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${aiRuntime.settings.apiKey}`
+      },
+      body: JSON.stringify({
+        model: aiRuntime.settings.model,
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are a practical China travel guide. Use concise, concrete tips. If information is uncertain, say so clearly."
+          },
+          {
+            role: "system",
+            content: `Current attraction context:\n${contextText}`
+          },
+          ...state.aiMessages
+            .filter((msg) => msg.content !== uiText("aiThinking"))
+            .map((msg) => ({ role: msg.role, content: msg.content }))
+        ],
+        temperature: 0.6
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const payload = await response.json();
+    const answer =
+      payload?.choices?.[0]?.message?.content ||
+      payload?.output_text ||
+      uiText("aiError");
+    state.aiMessages.pop();
+    state.aiMessages.push({ role: "assistant", content: answer.trim() });
+  } catch (error) {
+    state.aiMessages.pop();
+    state.aiMessages.push({ role: "assistant", content: uiText("aiError") });
+  } finally {
+    state.aiBusy = false;
+    renderAiMessages();
+  }
 }
 
 function encodeAssetPath(path) {
@@ -1825,6 +2373,7 @@ function buildCityData() {
 
 const cities = buildCityData();
 state.activeSpotId = cities[0].spots[0].id;
+state.activeAskSpotId = cities[0].spots[0].id;
 
 function activeCity() {
   return cities.find((city) => city.id === state.activeCityId) || cities[0];
@@ -1938,14 +2487,22 @@ function hexToRgba(hex, alpha) {
 }
 
 function refreshUiText() {
-  const ui = currentUi();
   document.documentElement.lang = state.language === "zh" ? "zh-CN" : state.language;
   elements.body.classList.toggle("lang-ar", state.language === "ar");
 
   document.querySelectorAll("[data-ui]").forEach((node) => {
     const key = node.dataset.ui;
-    if (ui[key]) {
-      node.textContent = ui[key];
+    const text = uiText(key);
+    if (text) {
+      node.textContent = text;
+    }
+  });
+
+  document.querySelectorAll("[data-ui-placeholder]").forEach((node) => {
+    const key = node.dataset.uiPlaceholder;
+    const text = uiText(key);
+    if (text) {
+      node.setAttribute("placeholder", text);
     }
   });
 
@@ -1962,6 +2519,7 @@ function renderHero() {
   elements.heroCityName.textContent = localize(city.names);
   elements.heroCardTitle.textContent = localize(city.names);
   elements.heroCardSummary.textContent = localize(city.subtitle);
+  elements.heroCardIntro.textContent = cityNarrative(city);
   elements.heroHighlightGrid.innerHTML = localize(city.highlights)
     .map((item) => `<span class="hero-pill">${item}</span>`)
     .join("");
@@ -1992,7 +2550,7 @@ function renderCitySelector() {
 function renderActiveCityPanel() {
   const city = activeCity();
   elements.activeCityTitle.textContent = localize(city.names);
-  elements.activeCitySummary.textContent = localize(city.summary);
+  elements.activeCitySummary.textContent = cityNarrative(city);
   elements.activeCityFacts.innerHTML = localize(city.highlights)
     .map((text, index) => {
       const colors = [city.soft, "var(--yellow-soft)", "var(--green-soft)"];
@@ -2005,7 +2563,7 @@ function renderActiveCityPanel() {
 function renderWorkspace() {
   const city = activeCity();
   elements.workspaceCityTitle.textContent = localize(city.names);
-  elements.workspaceCityCopy.textContent = localize(city.summary);
+  elements.workspaceCityCopy.textContent = cityNarrative(city);
   elements.cityMapTitle.textContent = `${localize(city.names)} · ${currentUi().cityMapLabel}`;
   elements.spotSectionCopy.textContent = formatSpotSectionSummary(city);
 }
@@ -2036,7 +2594,7 @@ function renderSpotFocus() {
   state.activeImageIndex = safeIndex;
 
   elements.focusSpotName.textContent = localize(spot.names);
-  elements.focusSpotSummary.textContent = buildSpotSummary(spot, city);
+  elements.focusSpotSummary.textContent = spotNarrative(spot, city);
   elements.focusSpotMeta.innerHTML = [
     `${currentUi().theme}: ${currentThemeText(spot.theme)}`,
     `${currentUi().bestTime}: ${localizeBestTime(spot.bestTime)}`
@@ -2047,6 +2605,7 @@ function renderSpotFocus() {
       return `<span class="fact-pill" style="background:${tone};color:${ink};">${item}</span>`;
     })
     .join("");
+  setTicketLink(spot, city);
 
   elements.focusMainImage.src = encodeAssetPath(spot.images[safeIndex]);
   elements.focusMainImage.alt = `${localize(spot.names)} - ${imageLabel(spot.images[safeIndex])}`;
@@ -2092,15 +2651,44 @@ function renderSpotCards() {
               </div>
               <span class="spot-badge" style="background:${city.soft};color:${city.accent};">${spot.order}</span>
             </div>
-            <p class="spot-description">${buildSpotSummary(spot, city)}</p>
+            <p class="spot-description">${spotNarrative(spot, city)}</p>
             <div class="fact-grid">
               <span class="fact-pill">${currentUi().bestTime}: ${localizeBestTime(spot.bestTime)}</span>
               <span class="fact-pill">${currentUi().theme}: ${currentThemeText(spot.theme)}</span>
+              ${ticketSnippet(spot, city)}
             </div>
-            <button class="tiny-button" type="button" data-spot="${spot.id}" style="background:${city.soft};color:${city.accent};">
+            <button class="tiny-button" type="button" data-ask-spot="${spot.id}" style="background:${city.soft};color:${city.accent};">
               ${currentUi().cardButton}
             </button>
           </div>
+        </article>
+      `;
+    })
+    .join("");
+}
+
+function renderFoodSection() {
+  const city = activeCity();
+  const picks = cityFoodPicks[city.id];
+  if (!picks) {
+    elements.foodGrid.innerHTML = "";
+    return;
+  }
+
+  const rows = [
+    { key: "foodCard1", value: picks.breakfast },
+    { key: "foodCard2", value: picks.dinner },
+    { key: "foodCard3", value: picks.snack }
+  ];
+
+  elements.foodGrid.innerHTML = rows
+    .map((item) => {
+      const text = localize(item.value);
+      return `
+        <article class="food-card">
+          <span class="fact-pill food-pill">${uiText(item.key)}</span>
+          <h3>${localize(city.names)}</h3>
+          <p>${text}</p>
         </article>
       `;
     })
@@ -2147,6 +2735,13 @@ function refreshChinaMap() {
       marker.bindPopup(
         popupHtml(localize(city.names), `${localize(city.subtitle)} ${currentUi().mapPopupHint}`)
       );
+      marker.bindTooltip(localize(city.names), {
+        direction: "top",
+        offset: [0, -10],
+        className: "spot-tooltip",
+        opacity: 0.95,
+        permanent: true
+      });
     }
   });
 }
@@ -2196,6 +2791,7 @@ function renderCityMap() {
 
 function focusSpot(spotId, options = {}) {
   state.activeSpotId = spotId;
+  state.activeAskSpotId = spotId;
   state.activeImageIndex = 0;
   state.activeRouteId = "dynamic";
   renderAll();
@@ -2212,6 +2808,7 @@ function focusCity(cityId, options = {}) {
   state.activeCityId = cityId;
   const city = activeCity();
   state.activeSpotId = city.spots[0].id;
+  state.activeAskSpotId = city.spots[0].id;
   state.activeImageIndex = 0;
   state.activeRouteId = "dynamic";
   renderAll();
@@ -2222,6 +2819,7 @@ function focusCity(cityId, options = {}) {
 }
 
 function renderAll() {
+  applyMapTileLanguage();
   refreshUiText();
   renderHero();
   renderCitySelector();
@@ -2231,6 +2829,9 @@ function renderAll() {
   renderSpotFocus();
   renderRoutes();
   renderSpotCards();
+  renderFoodSection();
+  renderAiContext();
+  renderAiMessages();
   refreshChinaMap();
   renderCityMap();
   requestAnimationFrame(() => {
@@ -2241,7 +2842,7 @@ function renderAll() {
 }
 
 function bindFloatEffects() {
-  const selector = ".hero-card, .map-card, .focus-card, .route-card, .spot-card, .panel-block, .city-chip";
+  const selector = ".hero-card, .map-card, .focus-card, .route-card, .spot-card, .panel-block, .city-chip, .food-card, .ai-card";
   document.querySelectorAll(selector).forEach((element) => {
     if (element.dataset.floatBound === "true") return;
     element.dataset.floatBound = "true";
@@ -2268,6 +2869,13 @@ function setupChinaMap() {
     const marker = L.marker(city.marker, { icon: cityMarkerIcon(city, city.id === state.activeCityId) })
       .addTo(chinaMap)
       .bindPopup(popupHtml(localize(city.names), localize(city.subtitle)))
+      .bindTooltip(localize(city.names), {
+        direction: "top",
+        offset: [0, -10],
+        className: "spot-tooltip",
+        opacity: 0.95,
+        permanent: true
+      })
       .on("click", () => focusCity(city.id, { scroll: true }));
     chinaMarkers.set(city.id, marker);
   });
@@ -2277,6 +2885,7 @@ document.addEventListener("click", (event) => {
   const langButton = event.target.closest("[data-lang]");
   const cityButton = event.target.closest("[data-city]");
   const spotButton = event.target.closest("[data-spot]");
+  const askSpotButton = event.target.closest("[data-ask-spot]");
   const spotCard = event.target.closest("[data-spot-card]");
   const thumbButton = event.target.closest("[data-image-index]");
   const routeButton = event.target.closest("[data-route]");
@@ -2294,6 +2903,13 @@ document.addEventListener("click", (event) => {
 
   if (spotButton) {
     focusSpot(spotButton.dataset.spot, { scrollCard: true });
+    return;
+  }
+
+  if (askSpotButton) {
+    const spotId = askSpotButton.dataset.askSpot;
+    focusSpot(spotId);
+    openAiAssistantForSpot(spotId);
     return;
   }
 
@@ -2331,5 +2947,40 @@ document.querySelector("#jump-to-spot-card").addEventListener("click", () => {
   }
 });
 
-setupChinaMap();
-renderAll();
+elements.openAiAssistant.addEventListener("click", () => {
+  openAiAssistantForSpot(state.activeSpotId);
+});
+
+elements.saveAiConfig.addEventListener("click", () => {
+  saveAiConfig();
+  state.aiMessages.push({ role: "assistant", content: uiText("aiConfigSaved") });
+  renderAiMessages();
+});
+
+elements.sendAiMessage.addEventListener("click", () => {
+  sendAiMessage();
+});
+
+elements.aiInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" && !event.shiftKey) {
+    event.preventDefault();
+    sendAiMessage();
+  }
+});
+
+elements.focusTicketLink.addEventListener("click", (event) => {
+  if (elements.focusTicketLink.classList.contains("is-note")) {
+    event.preventDefault();
+  }
+});
+
+async function bootstrap() {
+  loadAiConfig();
+  ensureAiSeedMessage();
+  setupChinaMap();
+  renderAll();
+  await loadExternalContent();
+  renderAll();
+}
+
+bootstrap();

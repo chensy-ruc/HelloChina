@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WanderChina | Student Travel in China</title>
+  <title>HelloChina | Travel Guide for International Friends</title>
   <meta
     name="description"
-    content="为在华留学生打造的中国旅行网站，支持五大旅游城市地图、城市景点联动、本地景点图片画廊与多语言界面。"
+    content="为国际友人打造的中国旅行网站，支持五大旅游城市地图、景点联动、本地图片、多语言与AI问答。"
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,10 +30,13 @@
 
     <header class="site-header">
       <a class="brand" href="#top">
-        <span class="brand-mark">WC</span>
+        <span class="brand-mark">
+          <span class="brand-mark-h">H</span>
+          <span class="brand-mark-c">C</span>
+        </span>
         <span class="brand-copy">
-          <strong>WanderChina</strong>
-          <small data-ui="brandTagline">Travel maps for international students in China</small>
+          <strong>HelloChina</strong>
+          <small data-ui="brandTagline">Travel maps for international friends in China</small>
         </span>
       </a>
 
@@ -51,11 +54,18 @@
       </div>
     </header>
 
+    <nav class="feature-nav" aria-label="Primary guide navigation">
+      <a class="feature-nav-link" href="#city-switchboard" data-ui="navMap">Map</a>
+      <a class="feature-nav-link" href="#city-workspace" data-ui="navGuide">Local Guide</a>
+      <a class="feature-nav-link" href="#food-section" data-ui="navFood">Food</a>
+      <a class="feature-nav-link" href="#ai-assistant" data-ui="navAI">AI Assistant</a>
+    </nav>
+
     <main id="top">
       <section class="hero">
         <div class="hero-copy">
           <p class="eyebrow" data-ui="heroEyebrow">Five city journeys, one travel hub</p>
-          <h1 data-ui="heroTitle">Explore China with a map-first guide designed for international students.</h1>
+          <h1 data-ui="heroTitle">Explore China with a map-first guide designed for international friends.</h1>
           <p class="hero-text" data-ui="heroText">
             Click a city on the China map, jump straight into its city map, and browse every included attraction with local images, quick facts, and multilingual interface support.
           </p>
@@ -87,6 +97,7 @@
             </div>
             <h2 id="hero-card-title">Beijing</h2>
             <p id="hero-card-summary"></p>
+            <p class="hero-card-intro" id="hero-card-intro"></p>
             <div class="hero-highlight-grid" id="hero-highlight-grid"></div>
           </article>
           <article class="hero-stack hero-stack-a"></article>
@@ -175,6 +186,14 @@
             </div>
             <p class="focus-summary" id="focus-spot-summary"></p>
             <div class="focus-meta" id="focus-spot-meta"></div>
+            <div class="focus-actions">
+              <a class="tiny-button ticket-link" id="focus-ticket-link" href="#" target="_blank" rel="noopener noreferrer" data-ui="ticketLink">
+                Ticket / Booking
+              </a>
+              <button class="tiny-button" type="button" id="open-ai-assistant" data-ui="askAI">
+                Ask AI
+              </button>
+            </div>
 
             <div class="focus-gallery">
               <div class="focus-image-wrap">
@@ -191,7 +210,7 @@
           <div class="panel-headline">
             <div>
               <p class="panel-kicker" data-ui="routeKicker">Suggested route</p>
-              <h3 data-ui="routeTitle">Student-friendly city rhythm</h3>
+              <h3 data-ui="routeTitle">Friend-friendly city rhythm</h3>
             </div>
           </div>
           <div class="route-switcher" id="route-switcher"></div>
@@ -209,6 +228,45 @@
         </div>
 
         <div class="spot-grid" id="spot-grid"></div>
+      </section>
+
+      <section class="food-section" id="food-section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-ui="foodEyebrow">Food Guide</p>
+            <h2 data-ui="foodTitle">Taste each city through local specialties and friendly neighborhoods.</h2>
+          </div>
+          <p class="section-copy" data-ui="foodText">
+            The food module follows the active city and gives quick options for breakfast, dinner, and casual local picks.
+          </p>
+        </div>
+        <div class="food-grid" id="food-grid"></div>
+      </section>
+
+      <section class="ai-section" id="ai-assistant">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-ui="aiEyebrow">AI Concierge</p>
+            <h2 data-ui="aiTitle">Ask detailed questions about the selected attraction.</h2>
+          </div>
+          <p class="section-copy" data-ui="aiText">
+            Fill in your API key once, then ask route tips, opening times, transport details, and visit strategy.
+          </p>
+        </div>
+        <article class="ai-card">
+          <div class="ai-config">
+            <input id="ai-endpoint" type="text" placeholder="API Endpoint (OpenAI-compatible)">
+            <input id="ai-model" type="text" placeholder="Model (e.g. gpt-4.1-mini)">
+            <input id="ai-api-key" type="password" placeholder="API Key">
+            <button id="save-ai-config" type="button" class="tiny-button" data-ui="saveAIConfig">Save API Config</button>
+          </div>
+          <div class="ai-context" id="ai-context-line"></div>
+          <div class="ai-messages" id="ai-messages"></div>
+          <div class="ai-composer">
+            <textarea id="ai-input" rows="2" data-ui-placeholder="aiInputPlaceholder" placeholder="Ask anything about this attraction..."></textarea>
+            <button id="send-ai-message" type="button" class="primary-button" data-ui="sendAI">Send</button>
+          </div>
+        </article>
       </section>
     </main>
   </div>
