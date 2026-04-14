@@ -2116,7 +2116,7 @@ async function translateFromZh(zhText, language) {
           {
             role: "system",
             content:
-              "You are a senior travel translator. Translate Simplified Chinese to the target language accurately and naturally. Keep all facts, named entities, and tone aligned with the source text. Return translation only."
+              "You are a senior travel translator. Translate Simplified Chinese into the target language accurately and naturally. Keep all facts, named entities, sentence boundaries, and paragraph structure aligned with the source text. Do not summarize or omit details. Return translation only."
           },
           {
             role: "user",
@@ -2244,7 +2244,7 @@ function spotNarrative(spot, city) {
     const translated = getIntroTranslation("spot", key);
     if (translated) return translated;
     requestTranslation("spot", key, zhIntro);
-    return buildSpotSummary(spot, city);
+    return zhIntro;
   }
   return buildSpotSummary(spot, city);
 }
@@ -2258,9 +2258,27 @@ function cityNarrative(city) {
     const translated = getIntroTranslation("city", city.id);
     if (translated) return translated;
     requestTranslation("city", city.id, zhIntro);
-    return localize(city.summary);
+    return zhIntro;
   }
   return localize(city.summary);
+}
+
+function conciseText(text, maxLength) {
+  const normalized = (text || "").replace(/\s+/g, " ").trim();
+  if (!normalized) return "";
+  if (normalized.length <= maxLength) return normalized;
+
+  const sentenceMatch = normalized.match(/^(.+?[。！？.!?])/);
+  if (sentenceMatch && sentenceMatch[1].length <= maxLength) {
+    return sentenceMatch[1];
+  }
+  return `${normalized.slice(0, maxLength).trimEnd()}…`;
+}
+
+function cityWorkspaceNarrative(city) {
+  const preferred = localize(city.summary) || cityNarrative(city);
+  const maxLength = state.language === "zh" ? 54 : 120;
+  return conciseText(preferred, maxLength);
 }
 
 function prefetchActiveCityTranslations() {
@@ -2724,7 +2742,7 @@ function renderActiveCityPanel() {
 function renderWorkspace() {
   const city = activeCity();
   elements.workspaceCityTitle.textContent = localize(city.names);
-  elements.workspaceCityCopy.textContent = cityNarrative(city);
+  elements.workspaceCityCopy.textContent = cityWorkspaceNarrative(city);
   elements.cityMapTitle.textContent = `${localize(city.names)} · ${currentUi().cityMapLabel}`;
   elements.spotSectionCopy.textContent = formatSpotSectionSummary(city);
 }
@@ -2894,7 +2912,7 @@ function refreshChinaMap() {
     if (marker) {
       marker.setIcon(cityMarkerIcon(city, city.id === state.activeCityId));
       marker.bindPopup(
-        popupHtml(localize(city.names), `${localize(city.subtitle)} ${currentUi().mapPopupHint}`)
+        popupHtml(localize(city.names), `${cityNarrative(city)} ${currentUi().mapPopupHint}`)
       );
       marker.bindTooltip(localize(city.names), {
         direction: "top",
@@ -2921,7 +2939,7 @@ function renderCityMap() {
     const isActive = spot.id === state.activeSpotId;
     const marker = L.marker(spot.coords, { icon: spotMarkerIcon(city, spot, isActive) })
       .addTo(cityMap)
-      .bindPopup(popupHtml(localize(spot.names), buildSpotSummary(spot, city)))
+      .bindPopup(popupHtml(localize(spot.names), spotNarrative(spot, city)))
       .bindTooltip(`${spot.order}. ${localize(spot.names)}`, {
         direction: "top",
         offset: [0, -18],
@@ -3030,7 +3048,7 @@ function setupChinaMap() {
   cities.forEach((city) => {
     const marker = L.marker(city.marker, { icon: cityMarkerIcon(city, city.id === state.activeCityId) })
       .addTo(chinaMap)
-      .bindPopup(popupHtml(localize(city.names), localize(city.subtitle)))
+      .bindPopup(popupHtml(localize(city.names), `${cityNarrative(city)} ${currentUi().mapPopupHint}`))
       .bindTooltip(localize(city.names), {
         direction: "top",
         offset: [0, -10],
