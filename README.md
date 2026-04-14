@@ -28,8 +28,8 @@
 
 - AI 对话助手
   - 点击“向AI咨询这个景点”可跳转到 AI 对话区
-  - 支持外接 OpenAI 兼容接口（Endpoint / Model / API Key）
-  - API 配置保存在浏览器本地（localStorage）
+  - 页面仅保留对话界面，不再提供页面内 API 配置输入框
+  - API Endpoint / Model / API Key 在 `app.js` 脚本中手工配置
 
 - 多语种界面
   - 支持 `EN / 中文 / JA / KO / ES / FR / AR`
@@ -70,14 +70,19 @@ http://localhost:8000
 
 ## AI 接口配置说明
 
-进入页面底部 `AI Concierge` 模块后填写：
+在 [app.js](/Users/chen/Desktop/JD%20Cup/app.js) 中找到：
 
-- API Endpoint（例如 OpenAI 兼容接口地址）
-- Model（例如 `gpt-4.1-mini`）
-- API Key
+```js
+const SCRIPT_AI_CONFIG = Object.freeze({
+  endpoint: "https://api.openai.com/v1/chat/completions",
+  model: "gpt-4.1-mini",
+  apiKey: ""
+});
+```
 
-点击“保存 API 配置”后，本地浏览器会缓存配置。  
-随后可围绕当前景点继续追问路线、时段、交通、购票与避峰建议。
+将 `apiKey`（以及需要的话 `endpoint`、`model`）改成你自己的配置后，刷新页面即可。  
+页面底部 `AI Concierge` 只负责聊天展示与提问，不再显示接口配置表单。
+同一套配置也会用于“城市介绍 / 景点介绍”的多语种精确翻译映射；未配置时会回退到内置摘要文案。
 
 ## 已完成的改进任务
 
@@ -90,5 +95,7 @@ http://localhost:8000
 - 地图在语种切换时同步更新语言显示策略
 - 页面新增导览导航（地图 / 地陪 / 美食 / AI）
 - 网站品牌从 `WanderChina` 升级为 `HelloChina`，并更新左上角简洁徽标
-
-
+- 城市介绍与景点介绍新增“中文源文 -> 多语种”翻译映射缓存（localStorage 持久化），非中文界面与中文文本内容对齐度提升
+- “五座城市，一站式地图导览”右侧城市介绍支持滚动浏览，长文本不再被遮挡
+- 非中文界面的地图底图改为带地名标注的详细底图（CARTO Voyager），不再只显示轮廓
+- AI 区块改为纯聊天界面，API 参数改为在脚本中手动配置

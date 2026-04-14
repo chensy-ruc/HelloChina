@@ -445,11 +445,21 @@ a {
 
 .hero-card-intro {
   margin: -6px 0 2px;
+  padding-right: 6px;
   line-height: 1.68;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  max-height: 9.5rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(66, 133, 244, 0.4) transparent;
+}
+
+.hero-card-intro::-webkit-scrollbar {
+  width: 6px;
+}
+
+.hero-card-intro::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(66, 133, 244, 0.38);
 }
 
 .hero-highlight-grid,
@@ -560,6 +570,10 @@ a {
   padding: 20px;
 }
 
+.map-card-china {
+  height: 100%;
+}
+
 .map-canvas {
   margin-top: 16px;
   flex: 1;
@@ -571,7 +585,7 @@ a {
 }
 
 .map-card-china .map-canvas {
-  height: 520px;
+  height: auto;
   min-height: 520px;
 }
 
@@ -821,21 +835,8 @@ a {
   box-shadow: var(--shadow);
 }
 
-.ai-config {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr 1.2fr auto;
-  gap: 10px;
-}
-
-.ai-config input {
-  padding: 12px 14px;
-  border-radius: 14px;
-  border: 1px solid rgba(66, 133, 244, 0.14);
-  background: rgba(255, 255, 255, 0.9);
-}
-
 .ai-context {
-  margin-top: 12px;
+  margin-top: 2px;
   color: var(--muted);
   font-size: 0.95rem;
 }
@@ -1082,7 +1083,6 @@ a {
   .language-switcher,
   .header-tools,
   .hero-actions,
-  .ai-config,
   .ai-composer {
     width: 100%;
   }
@@ -1099,13 +1099,16 @@ a {
     text-align: center;
   }
 
-  .ai-config,
   .ai-composer {
     grid-template-columns: 1fr;
   }
 
   .map-canvas {
     height: 320px;
+    min-height: 320px;
+  }
+
+  .map-card-china .map-canvas {
     min-height: 320px;
   }
 

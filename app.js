@@ -57,13 +57,11 @@ const uiContent = {
     foodCard3: "Snack Street",
     aiEyebrow: "AI Concierge",
     aiTitle: "Ask detailed questions about the selected attraction.",
-    aiText: "Set your API key once, then ask routes, opening details, crowd timing, and visit strategy.",
-    saveAIConfig: "Save API Config",
+    aiText: "Ask route design, opening windows, transport details, and anti-crowd strategy for the current attraction.",
     aiInputPlaceholder: "Ask anything about this attraction...",
     sendAI: "Send",
     aiContextPrefix: "Current attraction",
-    aiConfigSaved: "API settings saved locally.",
-    aiConfigMissing: "Please fill API endpoint, model, and key first.",
+    aiConfigMissing: "AI settings are not ready. Set endpoint/model/API key in app.js first.",
     aiThinking: "AI is thinking...",
     aiError: "Request failed. Check endpoint/key/model and try again.",
     routeDynamicTitle: "Route around {spot}",
@@ -127,13 +125,11 @@ const uiContent = {
     foodCard3: "小吃街区",
     aiEyebrow: "AI 地陪",
     aiTitle: "围绕当前景点发问，获取更具体的旅行建议。",
-    aiText: "填写 API Key 后，可继续追问路线、开放信息、避峰时间和游览策略。",
-    saveAIConfig: "保存 API 配置",
+    aiText: "你可以围绕当前景点继续追问路线设计、开放时间、交通方式与避峰策略。",
     aiInputPlaceholder: "输入你想问的问题，比如如何安排半天行程...",
     sendAI: "发送",
     aiContextPrefix: "当前景点",
-    aiConfigSaved: "API 配置已保存到本地浏览器。",
-    aiConfigMissing: "请先填写 API Endpoint、Model 和 API Key。",
+    aiConfigMissing: "AI 配置尚未完成，请先在 app.js 中设置 endpoint、model 与 API key。",
     aiThinking: "AI 正在思考...",
     aiError: "请求失败，请检查 Endpoint、Key 或 Model 后重试。",
     routeDynamicTitle: "围绕{spot}展开",
@@ -142,6 +138,10 @@ const uiContent = {
   ja: {
     brandTagline: "中国を旅する国際友人向けマップ",
     openGuide: "ガイドを開く",
+    navMap: "地図",
+    navGuide: "現地ガイド",
+    navFood: "グルメ",
+    navAI: "AIアシスタント",
     heroEyebrow: "5都市を1つのハブで",
     heroTitle: "地図から始まる旅行ガイドで、中国旅行をもっとわかりやすく。",
     heroText:
@@ -185,12 +185,33 @@ const uiContent = {
     activeCitySummary: "現在は {city} を表示中",
     mapPopupHint: "都市ガイドを開く",
     cardButton: "このスポットに切替",
+    ticketLink: "チケット / 予約",
+    askAI: "AIに相談",
+    foodEyebrow: "グルメガイド",
+    foodTitle: "都市ごとのローカルフードを、朝・夜・軽食で手早く把握できます。",
+    foodText: "このモジュールは選択中の都市に連動し、実用的な食の選択肢を提示します。",
+    foodCard1: "朝のおすすめ",
+    foodCard2: "夕食のおすすめ",
+    foodCard3: "軽食ストリート",
+    aiEyebrow: "AI コンシェルジュ",
+    aiTitle: "選択中スポットについて、より具体的な質問ができます。",
+    aiText: "ルート、営業時間、交通、混雑回避のコツをその場で質問できます。",
+    aiInputPlaceholder: "このスポットについて質問してください...",
+    sendAI: "送信",
+    aiContextPrefix: "現在のスポット",
+    aiConfigMissing: "AI設定が未完了です。app.js で endpoint / model / API key を設定してください。",
+    aiThinking: "AI が回答を準備中です...",
+    aiError: "リクエストに失敗しました。app.js の API 設定を確認してください。",
     routeDynamicTitle: "{spot}を中心に回るルート",
     routeDynamicDesc: "選択中のスポットを核にしながら、近くの立ち寄り先をつないだルートです。"
   },
   ko: {
     brandTagline: "중국을 여행하는 국제 친구를 위한 지도",
     openGuide: "가이드 열기",
+    navMap: "지도",
+    navGuide: "현지 가이드",
+    navFood: "음식",
+    navAI: "AI 어시스턴트",
     heroEyebrow: "다섯 도시, 하나의 허브",
     heroTitle: "지도 중심 여행 가이드로 중국 여행을 더 쉽게 탐색하세요.",
     heroText:
@@ -234,12 +255,33 @@ const uiContent = {
     activeCitySummary: "현재 {city} 탐색 중",
     mapPopupHint: "도시 가이드 열기",
     cardButton: "이 명소 보기",
+    ticketLink: "티켓 / 예약",
+    askAI: "AI에게 질문",
+    foodEyebrow: "음식 가이드",
+    foodTitle: "도시별 대표 음식을 아침·저녁·간식 기준으로 빠르게 확인하세요.",
+    foodText: "이 모듈은 현재 도시와 연동되어 실용적인 식사 선택지를 제공합니다.",
+    foodCard1: "아침 추천",
+    foodCard2: "저녁 추천",
+    foodCard3: "간식 거리",
+    aiEyebrow: "AI 컨시어지",
+    aiTitle: "선택한 명소에 대해 더 구체적인 질문을 해보세요.",
+    aiText: "동선, 운영 시간, 교통, 혼잡 회피 전략을 바로 물어볼 수 있습니다.",
+    aiInputPlaceholder: "이 명소에 대해 무엇이든 물어보세요...",
+    sendAI: "보내기",
+    aiContextPrefix: "현재 명소",
+    aiConfigMissing: "AI 설정이 비어 있습니다. app.js에서 endpoint/model/API key를 먼저 설정하세요.",
+    aiThinking: "AI가 답변을 준비 중입니다...",
+    aiError: "요청에 실패했습니다. app.js의 API 설정을 확인해 주세요.",
     routeDynamicTitle: "{spot} 중심 루트",
     routeDynamicDesc: "현재 선택한 명소를 포함하도록 주변 동선을 함께 묶은 추천 루트입니다."
   },
   es: {
     brandTagline: "Mapas de viaje por China para amigos internacionales",
     openGuide: "Abrir guía",
+    navMap: "Mapa",
+    navGuide: "Guía local",
+    navFood: "Comida",
+    navAI: "Asistente AI",
     heroEyebrow: "Cinco ciudades, un solo centro",
     heroTitle: "Explora China con una guía de viaje diseñada a partir del mapa.",
     heroText:
@@ -283,12 +325,33 @@ const uiContent = {
     activeCitySummary: "Explorando ahora {city}",
     mapPopupHint: "Abrir guía urbana",
     cardButton: "Ver este lugar",
+    ticketLink: "Entradas / Reserva",
+    askAI: "Preguntar a la IA",
+    foodEyebrow: "Guía de comida",
+    foodTitle: "Descubre cada ciudad a través de especialidades locales y barrios para comer.",
+    foodText: "Este módulo sigue la ciudad activa y sugiere opciones prácticas para mañana, tarde y noche.",
+    foodCard1: "Mañana",
+    foodCard2: "Cena",
+    foodCard3: "Zona de snacks",
+    aiEyebrow: "Conserje AI",
+    aiTitle: "Haz preguntas detalladas sobre la atracción seleccionada.",
+    aiText: "Pregunta por rutas, horarios, transporte y estrategias para evitar picos de gente.",
+    aiInputPlaceholder: "Pregunta lo que quieras sobre esta atracción...",
+    sendAI: "Enviar",
+    aiContextPrefix: "Atracción actual",
+    aiConfigMissing: "La configuración de AI no está lista. Define endpoint/model/API key en app.js.",
+    aiThinking: "La IA está pensando...",
+    aiError: "La solicitud falló. Revisa la configuración API en app.js.",
     routeDynamicTitle: "Ruta alrededor de {spot}",
     routeDynamicDesc: "Incluye la atracción seleccionada y añade paradas cercanas para una visita más fluida."
   },
   fr: {
     brandTagline: "Cartes de voyage en Chine pour amis internationaux",
     openGuide: "Ouvrir le guide",
+    navMap: "Carte",
+    navGuide: "Guide local",
+    navFood: "Cuisine",
+    navAI: "Assistant IA",
     heroEyebrow: "Cinq villes, un seul hub",
     heroTitle: "Explorez la Chine avec un guide de voyage pensé d'abord autour de la carte.",
     heroText:
@@ -332,12 +395,33 @@ const uiContent = {
     activeCitySummary: "Exploration en cours: {city}",
     mapPopupHint: "Ouvrir le guide",
     cardButton: "Afficher ce site",
+    ticketLink: "Billet / Réservation",
+    askAI: "Demander à l'IA",
+    foodEyebrow: "Guide culinaire",
+    foodTitle: "Découvrez chaque ville via ses spécialités locales et ses quartiers accueillants.",
+    foodText: "Ce module suit la ville active et propose des options pratiques pour la journée.",
+    foodCard1: "Matin",
+    foodCard2: "Dîner",
+    foodCard3: "Rue gourmande",
+    aiEyebrow: "Concierge IA",
+    aiTitle: "Posez des questions précises sur l'attraction sélectionnée.",
+    aiText: "Demandez des conseils d'itinéraire, d'horaires, de transport et d'affluence.",
+    aiInputPlaceholder: "Posez votre question sur cette attraction...",
+    sendAI: "Envoyer",
+    aiContextPrefix: "Attraction actuelle",
+    aiConfigMissing: "La configuration IA n'est pas prête. Définissez endpoint/model/API key dans app.js.",
+    aiThinking: "L'IA réfléchit...",
+    aiError: "Échec de la requête. Vérifiez la configuration API dans app.js.",
     routeDynamicTitle: "Parcours autour de {spot}",
     routeDynamicDesc: "Inclut le lieu sélectionné et relie quelques arrêts proches pour un trajet plus fluide."
   },
   ar: {
     brandTagline: "خرائط سفر في الصين للأصدقاء الدوليين",
     openGuide: "افتح الدليل",
+    navMap: "الخريطة",
+    navGuide: "الدليل المحلي",
+    navFood: "الطعام",
+    navAI: "مساعد الذكاء الاصطناعي",
     heroEyebrow: "خمس مدن، منصة واحدة",
     heroTitle: "استكشف الصين عبر دليل سفر يبدأ من الخريطة أولاً.",
     heroText:
@@ -381,6 +465,23 @@ const uiContent = {
     activeCitySummary: "أنت الآن تستكشف {city}",
     mapPopupHint: "افتح دليل المدينة",
     cardButton: "عرض هذا المعلم",
+    ticketLink: "تذاكر / حجز",
+    askAI: "اسأل الذكاء الاصطناعي",
+    foodEyebrow: "دليل الطعام",
+    foodTitle: "اكتشف كل مدينة عبر أطباقها المحلية وأحيائها المناسبة للزيارة.",
+    foodText: "هذا القسم يتبع المدينة الحالية ويعرض خيارات عملية للوجبات على مدار اليوم.",
+    foodCard1: "ترشيح الصباح",
+    foodCard2: "ترشيح العشاء",
+    foodCard3: "شارع الوجبات الخفيفة",
+    aiEyebrow: "مساعد AI",
+    aiTitle: "اطرح أسئلة تفصيلية حول المعلم الذي اخترته.",
+    aiText: "يمكنك السؤال عن المسار وأوقات الزيارة والمواصلات وتجنب الزحام.",
+    aiInputPlaceholder: "اسأل أي شيء عن هذا المعلم...",
+    sendAI: "إرسال",
+    aiContextPrefix: "المعلم الحالي",
+    aiConfigMissing: "إعدادات AI غير جاهزة. حدّد endpoint وmodel وAPI key داخل app.js.",
+    aiThinking: "الذكاء الاصطناعي يفكر...",
+    aiError: "فشل الطلب. راجع إعدادات API في app.js.",
     routeDynamicTitle: "مسار حول {spot}",
     routeDynamicDesc: "يشمل المعلم المحدد ويضيف محطات قريبة لتكوين خط زيارة أكثر سلاسة."
   }
@@ -1715,6 +1816,13 @@ const state = {
   aiBusy: false
 };
 
+const SCRIPT_AI_CONFIG = Object.freeze({
+  // Set these values manually before running deployment/demo.
+  endpoint: "https://api.openai.com/v1/chat/completions",
+  model: "gpt-4.1-mini",
+  apiKey: ""
+});
+
 const elements = {
   body: document.body,
   statCityCount: document.querySelector("#stat-city-count"),
@@ -1748,10 +1856,6 @@ const elements = {
   aiContextLine: document.querySelector("#ai-context-line"),
   aiMessages: document.querySelector("#ai-messages"),
   aiInput: document.querySelector("#ai-input"),
-  aiEndpoint: document.querySelector("#ai-endpoint"),
-  aiModel: document.querySelector("#ai-model"),
-  aiApiKey: document.querySelector("#ai-api-key"),
-  saveAiConfig: document.querySelector("#save-ai-config"),
   sendAiMessage: document.querySelector("#send-ai-message"),
   openAiAssistant: document.querySelector("#open-ai-assistant")
 };
@@ -1770,7 +1874,7 @@ const tileConfigs = {
   },
   intl: {
     key: "intl",
-    url: "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
+    url: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
     options: {
       subdomains: "abcd",
       maxZoom: 20,
@@ -1788,13 +1892,10 @@ const chinaMarkers = new Map();
 let citySpotMarkers = [];
 let activeRouteLine = null;
 const aiRuntime = {
-  settings: {
-    endpoint: "",
-    model: "",
-    apiKey: ""
-  },
-  translationCache: {},
-  translationPending: {}
+  settings: { ...SCRIPT_AI_CONFIG },
+  introTranslations: createEmptyIntroTranslationMap(),
+  translationPending: {},
+  translationFailed: {}
 };
 
 const cityFolderMap = {
@@ -1936,35 +2037,54 @@ function storageKey(name) {
   return `hellochina.${name}`;
 }
 
-function loadAiConfig() {
-  aiRuntime.settings.endpoint =
-    localStorage.getItem(storageKey("ai.endpoint")) || "https://api.openai.com/v1/chat/completions";
-  aiRuntime.settings.model = localStorage.getItem(storageKey("ai.model")) || "gpt-4.1-mini";
-  aiRuntime.settings.apiKey = localStorage.getItem(storageKey("ai.key")) || "";
-
-  elements.aiEndpoint.value = aiRuntime.settings.endpoint;
-  elements.aiModel.value = aiRuntime.settings.model;
-  elements.aiApiKey.value = aiRuntime.settings.apiKey;
+function createEmptyIntroTranslationMap() {
+  return Object.fromEntries(
+    Object.keys(uiContent)
+      .filter((language) => language !== "zh")
+      .map((language) => [language, { city: {}, spot: {} }])
+  );
 }
 
-function saveAiConfig() {
-  aiRuntime.settings.endpoint = elements.aiEndpoint.value.trim();
-  aiRuntime.settings.model = elements.aiModel.value.trim();
-  aiRuntime.settings.apiKey = elements.aiApiKey.value.trim();
+function normalizeIntroTranslationMap(rawValue) {
+  const normalized = createEmptyIntroTranslationMap();
+  if (!rawValue || typeof rawValue !== "object") return normalized;
 
-  localStorage.setItem(storageKey("ai.endpoint"), aiRuntime.settings.endpoint);
-  localStorage.setItem(storageKey("ai.model"), aiRuntime.settings.model);
-  localStorage.setItem(storageKey("ai.key"), aiRuntime.settings.apiKey);
-  aiRuntime.translationCache = {};
-  aiRuntime.translationPending = {};
+  Object.keys(normalized).forEach((language) => {
+    const langEntry = rawValue[language];
+    if (!langEntry || typeof langEntry !== "object") return;
+    normalized[language].city = { ...(langEntry.city || {}) };
+    normalized[language].spot = { ...(langEntry.spot || {}) };
+  });
+  return normalized;
 }
 
-async function translateToCurrentLanguage(zhText) {
-  if (!aiRuntime.settings.endpoint || !aiRuntime.settings.model || !aiRuntime.settings.apiKey) {
-    return "";
+function loadIntroTranslationsFromStorage() {
+  try {
+    const raw = localStorage.getItem(storageKey("introTranslations.v1"));
+    if (!raw) return;
+    aiRuntime.introTranslations = normalizeIntroTranslationMap(JSON.parse(raw));
+  } catch (error) {
+    aiRuntime.introTranslations = createEmptyIntroTranslationMap();
   }
-  if (!zhText) return "";
+}
 
+function persistIntroTranslations() {
+  try {
+    localStorage.setItem(storageKey("introTranslations.v1"), JSON.stringify(aiRuntime.introTranslations));
+  } catch (error) {
+    // Ignore quota/storage failures and keep runtime cache in memory.
+  }
+}
+
+function isAiConfigured() {
+  return Boolean(
+    aiRuntime.settings.endpoint?.trim() &&
+      aiRuntime.settings.model?.trim() &&
+      aiRuntime.settings.apiKey?.trim()
+  );
+}
+
+function translationLanguageName(language) {
   const langNameMap = {
     en: "English",
     ja: "Japanese",
@@ -1973,7 +2093,13 @@ async function translateToCurrentLanguage(zhText) {
     fr: "French",
     ar: "Arabic"
   };
-  const target = langNameMap[state.language];
+  return langNameMap[language] || "";
+}
+
+async function translateFromZh(zhText, language) {
+  if (!isAiConfigured() || !zhText) return "";
+
+  const target = translationLanguageName(language);
   if (!target) return "";
 
   try {
@@ -1985,16 +2111,16 @@ async function translateToCurrentLanguage(zhText) {
       },
       body: JSON.stringify({
         model: aiRuntime.settings.model,
-        temperature: 0.3,
+        temperature: 0.2,
         messages: [
           {
             role: "system",
             content:
-              "You are a professional travel copy translator. Translate Chinese travel text into concise, native, natural wording. Keep facts unchanged."
+              "You are a senior travel translator. Translate Simplified Chinese to the target language accurately and naturally. Keep all facts, named entities, and tone aligned with the source text. Return translation only."
           },
           {
             role: "user",
-            content: `Translate into ${target}:\n\n${zhText}`
+            content: `Target language: ${target}\n\nSource text:\n${zhText}`
           }
         ]
       })
@@ -2007,32 +2133,44 @@ async function translateToCurrentLanguage(zhText) {
   }
 }
 
-function translationCacheKey(scope, rawKey) {
-  return `${scope}:${rawKey}:${state.language}`;
+function translationPendingKey(scope, rawKey, language) {
+  return `${language}:${scope}:${rawKey}`;
 }
 
-function getTranslationFromCache(cacheKey) {
-  const cached = aiRuntime.translationCache[cacheKey];
-  if (!cached || cached === "__FAILED__") return "";
-  return cached;
+function getIntroTranslation(scope, rawKey, language = state.language) {
+  if (language === "zh") return "";
+  return aiRuntime.introTranslations?.[language]?.[scope]?.[rawKey] || "";
 }
 
-function requestTranslation(cacheKey, zhText) {
-  if (state.language === "zh" || !zhText) return;
-  if (!aiRuntime.settings.apiKey || !aiRuntime.settings.endpoint || !aiRuntime.settings.model) return;
-  if (cacheKey in aiRuntime.translationCache || aiRuntime.translationPending[cacheKey]) return;
+function setIntroTranslation(scope, rawKey, text, language = state.language) {
+  if (language === "zh" || !text) return;
+  if (!aiRuntime.introTranslations[language]) {
+    aiRuntime.introTranslations[language] = { city: {}, spot: {} };
+  }
+  aiRuntime.introTranslations[language][scope][rawKey] = text;
+  persistIntroTranslations();
+}
 
-  aiRuntime.translationPending[cacheKey] = true;
-  translateToCurrentLanguage(zhText)
+function requestTranslation(scope, rawKey, zhText) {
+  if (state.language === "zh" || !zhText || !isAiConfigured()) return;
+  const targetLanguage = state.language;
+  if (getIntroTranslation(scope, rawKey, targetLanguage)) return;
+
+  const pendingKey = translationPendingKey(scope, rawKey, targetLanguage);
+  if (aiRuntime.translationFailed[pendingKey]) return;
+  if (aiRuntime.translationPending[pendingKey]) return;
+
+  aiRuntime.translationPending[pendingKey] = true;
+  translateFromZh(zhText, targetLanguage)
     .then((translated) => {
       if (translated) {
-        aiRuntime.translationCache[cacheKey] = translated;
+        setIntroTranslation(scope, rawKey, translated, targetLanguage);
       } else {
-        aiRuntime.translationCache[cacheKey] = "__FAILED__";
+        aiRuntime.translationFailed[pendingKey] = true;
       }
     })
     .finally(() => {
-      delete aiRuntime.translationPending[cacheKey];
+      delete aiRuntime.translationPending[pendingKey];
       renderAll();
     });
 }
@@ -2103,10 +2241,10 @@ function spotNarrative(spot, city) {
     return zhIntro;
   }
   if (zhIntro && state.language !== "zh") {
-    const cacheKey = translationCacheKey("spot", key);
-    const translated = getTranslationFromCache(cacheKey);
+    const translated = getIntroTranslation("spot", key);
     if (translated) return translated;
-    requestTranslation(cacheKey, zhIntro);
+    requestTranslation("spot", key, zhIntro);
+    return buildSpotSummary(spot, city);
   }
   return buildSpotSummary(spot, city);
 }
@@ -2117,12 +2255,29 @@ function cityNarrative(city) {
     return zhIntro;
   }
   if (zhIntro && state.language !== "zh") {
-    const cacheKey = translationCacheKey("city", city.id);
-    const translated = getTranslationFromCache(cacheKey);
+    const translated = getIntroTranslation("city", city.id);
     if (translated) return translated;
-    requestTranslation(cacheKey, zhIntro);
+    requestTranslation("city", city.id, zhIntro);
+    return localize(city.summary);
   }
   return localize(city.summary);
+}
+
+function prefetchActiveCityTranslations() {
+  if (state.language === "zh" || !isAiConfigured()) return;
+  const city = activeCity();
+  const cityIntro = externalContent.cityIntro[city.id];
+  if (cityIntro) {
+    requestTranslation("city", city.id, cityIntro);
+  }
+
+  city.spots.forEach((spot) => {
+    const key = spotContentKey(city, spot);
+    const intro = externalContent.spotIntro[key];
+    if (intro) {
+      requestTranslation("spot", key, intro);
+    }
+  });
 }
 
 function ticketInfoForSpot(spot, city) {
@@ -2166,12 +2321,18 @@ function setTicketLink(spot, city) {
 
 function ensureAiSeedMessage() {
   if (state.aiMessages.length > 0) return;
+  const seedMessage = {
+    zh: "你好，我是你的景点地陪助手。选中景点后，你可以问我交通、时段、路线与注意事项。",
+    en: "Hi, I am your attraction guide assistant. Ask me about transport, timing, route planning, and practical details.",
+    ja: "こんにちは、観光地ガイドAIです。移動手段、時間配分、回り方、注意点を気軽に聞いてください。",
+    ko: "안녕하세요, 명소 가이드 AI입니다. 교통, 시간대, 동선, 유의사항을 물어보세요.",
+    es: "Hola, soy tu asistente de guía turística. Pregunta por transporte, horarios, rutas y consejos prácticos.",
+    fr: "Bonjour, je suis votre assistant guide. Posez vos questions sur transport, horaires, itinéraires et conseils pratiques.",
+    ar: "مرحبًا، أنا مساعدك السياحي. اسألني عن المواصلات والتوقيت وخطط المسار والنصائح العملية."
+  };
   state.aiMessages.push({
     role: "assistant",
-    content:
-      state.language === "zh"
-        ? "你好，我是你的景点地陪助手。选中景点后，你可以问我交通、时段、路线与注意事项。"
-        : "Hi, I am your attraction guide assistant. Ask me about transport, timing, route planning, and practical details."
+    content: seedMessage[state.language] || seedMessage.en
   });
 }
 
@@ -2212,7 +2373,7 @@ async function sendAiMessage() {
   const question = elements.aiInput.value.trim();
   if (!question) return;
 
-  if (!aiRuntime.settings.endpoint || !aiRuntime.settings.model || !aiRuntime.settings.apiKey) {
+  if (!isAiConfigured()) {
     state.aiMessages.push({ role: "assistant", content: uiText("aiConfigMissing") });
     renderAiMessages();
     return;
@@ -2830,6 +2991,7 @@ function renderAll() {
   renderRoutes();
   renderSpotCards();
   renderFoodSection();
+  prefetchActiveCityTranslations();
   renderAiContext();
   renderAiMessages();
   refreshChinaMap();
@@ -2951,12 +3113,6 @@ elements.openAiAssistant.addEventListener("click", () => {
   openAiAssistantForSpot(state.activeSpotId);
 });
 
-elements.saveAiConfig.addEventListener("click", () => {
-  saveAiConfig();
-  state.aiMessages.push({ role: "assistant", content: uiText("aiConfigSaved") });
-  renderAiMessages();
-});
-
 elements.sendAiMessage.addEventListener("click", () => {
   sendAiMessage();
 });
@@ -2975,7 +3131,7 @@ elements.focusTicketLink.addEventListener("click", (event) => {
 });
 
 async function bootstrap() {
-  loadAiConfig();
+  loadIntroTranslationsFromStorage();
   ensureAiSeedMessage();
   setupChinaMap();
   renderAll();
