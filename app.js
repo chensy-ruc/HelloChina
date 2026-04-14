@@ -48,6 +48,7 @@ const uiContent = {
     mapPopupHint: "Open the city guide",
     cardButton: "Ask AI about this spot",
     ticketLink: "Ticket / Booking",
+    freeVisitNote: "Free entry for this attraction",
     askAI: "Ask AI",
     foodEyebrow: "Food Guide",
     foodTitle: "Taste each city through local specialties and friendly neighborhoods.",
@@ -116,6 +117,7 @@ const uiContent = {
     mapPopupHint: "打开城市导览",
     cardButton: "向AI咨询这个景点",
     ticketLink: "购票 / 预约",
+    freeVisitNote: "此景点免费参观",
     askAI: "问问AI",
     foodEyebrow: "美食导览",
     foodTitle: "跟着城市节奏，快速找到本地代表性吃喝去处。",
@@ -143,7 +145,7 @@ const uiContent = {
     navFood: "グルメ",
     navAI: "AIアシスタント",
     heroEyebrow: "5都市を1つのハブで",
-    heroTitle: "地図から始まる旅行ガイドで、中国旅行をもっとわかりやすく。",
+    heroTitle: "こんにちは中国：国際的な友人のために設計された、地図型の旅行入口。",
     heroText:
       "中国地図で都市を選ぶと、その都市の地図、全観光スポット、ローカル画像、基本情報、多言語UIがまとめて切り替わります。",
     startExploring: "探索を始める",
@@ -186,6 +188,7 @@ const uiContent = {
     mapPopupHint: "都市ガイドを開く",
     cardButton: "このスポットに切替",
     ticketLink: "チケット / 予約",
+    freeVisitNote: "この観光地は無料で見学できます",
     askAI: "AIに相談",
     foodEyebrow: "グルメガイド",
     foodTitle: "都市ごとのローカルフードを、朝・夜・軽食で手早く把握できます。",
@@ -213,7 +216,7 @@ const uiContent = {
     navFood: "음식",
     navAI: "AI 어시스턴트",
     heroEyebrow: "다섯 도시, 하나의 허브",
-    heroTitle: "지도 중심 여행 가이드로 중국 여행을 더 쉽게 탐색하세요.",
+    heroTitle: "안녕하세요 중국: 국제 친구를 위해 설계된 지도형 여행 입구입니다.",
     heroText:
       "중국 지도에서 도시를 클릭하면 해당 도시 지도, 전체 관광지, 로컬 이미지, 핵심 정보, 다국어 UI가 함께 바뀝니다.",
     startExploring: "탐색 시작",
@@ -256,6 +259,7 @@ const uiContent = {
     mapPopupHint: "도시 가이드 열기",
     cardButton: "이 명소 보기",
     ticketLink: "티켓 / 예약",
+    freeVisitNote: "이 명소는 무료로 관람할 수 있습니다",
     askAI: "AI에게 질문",
     foodEyebrow: "음식 가이드",
     foodTitle: "도시별 대표 음식을 아침·저녁·간식 기준으로 빠르게 확인하세요.",
@@ -283,7 +287,7 @@ const uiContent = {
     navFood: "Comida",
     navAI: "Asistente AI",
     heroEyebrow: "Cinco ciudades, un solo centro",
-    heroTitle: "Explora China con una guía de viaje diseñada a partir del mapa.",
+    heroTitle: "Hola China: una puerta de viaje basada en mapas, diseñada para amigos internacionales.",
     heroText:
       "Haz clic en una ciudad del mapa de China y la página cambiará al mapa urbano, la lista completa de lugares, las imágenes locales y la información clave.",
     startExploring: "Empezar",
@@ -326,6 +330,7 @@ const uiContent = {
     mapPopupHint: "Abrir guía urbana",
     cardButton: "Ver este lugar",
     ticketLink: "Entradas / Reserva",
+    freeVisitNote: "Esta atracción se visita gratis",
     askAI: "Preguntar a la IA",
     foodEyebrow: "Guía de comida",
     foodTitle: "Descubre cada ciudad a través de especialidades locales y barrios para comer.",
@@ -353,7 +358,7 @@ const uiContent = {
     navFood: "Cuisine",
     navAI: "Assistant IA",
     heroEyebrow: "Cinq villes, un seul hub",
-    heroTitle: "Explorez la Chine avec un guide de voyage pensé d'abord autour de la carte.",
+    heroTitle: "Bonjour la Chine : une porte d'entrée de voyage fondée sur la carte, conçue pour les amis internationaux.",
     heroText:
       "Cliquez sur une ville de la carte de Chine et la page basculera vers sa carte locale, sa liste complète de sites, ses images locales et ses informations clés.",
     startExploring: "Explorer",
@@ -396,6 +401,7 @@ const uiContent = {
     mapPopupHint: "Ouvrir le guide",
     cardButton: "Afficher ce site",
     ticketLink: "Billet / Réservation",
+    freeVisitNote: "Ce site se visite gratuitement",
     askAI: "Demander à l'IA",
     foodEyebrow: "Guide culinaire",
     foodTitle: "Découvrez chaque ville via ses spécialités locales et ses quartiers accueillants.",
@@ -423,7 +429,7 @@ const uiContent = {
     navFood: "الطعام",
     navAI: "مساعد الذكاء الاصطناعي",
     heroEyebrow: "خمس مدن، منصة واحدة",
-    heroTitle: "استكشف الصين عبر دليل سفر يبدأ من الخريطة أولاً.",
+    heroTitle: "مرحباً بالصين: بوابة سفر قائمة على الخريطة ومصممة للأصدقاء الدوليين.",
     heroText:
       "اضغط على مدينة في خريطة الصين لتنتقل الصفحة مباشرة إلى خريطة المدينة وقائمة المعالم الكاملة والصور المحلية والمعلومات الأساسية.",
     startExploring: "ابدأ الاستكشاف",
@@ -466,6 +472,7 @@ const uiContent = {
     mapPopupHint: "افتح دليل المدينة",
     cardButton: "عرض هذا المعلم",
     ticketLink: "تذاكر / حجز",
+    freeVisitNote: "يمكن زيارة هذا المعلم مجانًا",
     askAI: "اسأل الذكاء الاصطناعي",
     foodEyebrow: "دليل الطعام",
     foodTitle: "اكتشف كل مدينة عبر أطباقها المحلية وأحيائها المناسبة للزيارة.",
@@ -1872,14 +1879,22 @@ const tileConfigs = {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }
   },
-  intl: {
-    key: "intl",
-    url: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+  ja: {
+    key: "ja",
+    url: "https://tile.openstreetmap.jp/styles/maptiler-basic-ja/{z}/{x}/{y}.png",
     options: {
-      subdomains: "abcd",
-      maxZoom: 20,
+      maxZoom: 18,
       attribution:
-        '&copy; OpenStreetMap contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        '&copy; OpenStreetMap contributors &copy; <a href="https://tile.openstreetmap.jp/">OpenStreetMap Japan</a>'
+    }
+  },
+  intlEn: {
+    key: "intl-en",
+    url: "https://tile.openstreetmap.jp/styles/osm-bright-en/{z}/{x}/{y}.png",
+    options: {
+      maxZoom: 18,
+      attribution:
+        '&copy; OpenStreetMap contributors &copy; <a href="https://tile.openstreetmap.jp/">OpenStreetMap Japan</a>'
     }
   }
 };
@@ -1926,72 +1941,180 @@ const cityFoodPicks = {
   beijing: {
     breakfast: {
       zh: "豆汁与焦圈、包子店、胡同早餐铺",
-      en: "Soy milk snacks, stuffed buns, and hutong breakfast stalls"
+      en: "Fermented mung-bean drink, crispy jiaoqian rings, baozi shops, and hutong breakfast stands."
     },
     dinner: {
       zh: "北京烤鸭、铜锅涮肉、京味家常菜",
-      en: "Peking duck, hotpot, and classic Beijing home-style dishes"
+      en: "Peking duck, copper-pot sliced mutton, and classic Beijing home-style dishes."
     },
     snack: {
       zh: "南锣鼓巷与什刹海周边小吃街",
-      en: "Snack lanes around Nanluoguxiang and Shichahai"
+      en: "Evening snack lanes around Nanluoguxiang and Shichahai."
     }
   },
   shanghai: {
     breakfast: {
       zh: "生煎、小笼、葱油拌面",
-      en: "Pan-fried buns, soup dumplings, and scallion oil noodles"
+      en: "Shengjian buns, xiaolongbao, and scallion-oil noodles."
     },
     dinner: {
       zh: "本帮菜、黄鱼面、海派融合餐厅",
-      en: "Shanghai cuisine, yellow croaker noodles, and fusion dining"
+      en: "Benbang classics, yellow-croaker noodles, and modern Shanghainese fusion dining."
     },
     snack: {
       zh: "城隍庙与南京东路周边小吃点",
-      en: "Street snacks near City God Temple and East Nanjing Road"
+      en: "Quick local snack stops near City God Temple and East Nanjing Road."
     }
   },
   xian: {
     breakfast: {
       zh: "肉夹馍、胡辣汤、甑糕",
-      en: "Roujiamo, spicy soup, and traditional zeng cake"
+      en: "Roujiamo, hulatang pepper soup, and steamed zenggao rice cake."
     },
     dinner: {
       zh: "泡馍、葫芦鸡、关中风味馆",
-      en: "Pita bread soup, hulu chicken, and Guanzhong-style restaurants"
+      en: "Yangrou paomo, hulu chicken, and Guanzhong-style local kitchens."
     },
     snack: {
       zh: "回民街夜间小吃体验",
-      en: "Night snack walk through the Muslim Quarter"
+      en: "A night snack walk through the Muslim Quarter."
     }
   },
   chengdu: {
     breakfast: {
       zh: "担担面、甜水面、钟水饺",
-      en: "Dandan noodles, sweet water noodles, and spicy dumplings"
+      en: "Dandan noodles, sweet-water noodles, and Zhong dumplings."
     },
     dinner: {
       zh: "川式火锅、串串、川菜馆",
-      en: "Sichuan hotpot, skewers, and local Sichuan restaurants"
+      en: "Sichuan hotpot, chuanchuan skewers, and neighborhood Sichuan restaurants."
     },
     snack: {
       zh: "锦里、春熙路和玉林附近街头小吃",
-      en: "Street snacks around Jinli, Chunxi Road, and Yulin"
+      en: "Street food around Jinli, Chunxi Road, and Yulin."
     }
   },
   hangzhou: {
     breakfast: {
       zh: "片儿川、葱包桧、西湖藕粉",
-      en: "Pian’erchuan noodles, scallion wraps, and lotus root starch drinks"
+      en: "Pian’erchuan noodles, congbaohui wraps, and West Lake lotus-root starch drinks."
     },
     dinner: {
       zh: "杭帮菜、龙井虾仁、东坡肉",
-      en: "Hangzhou cuisine, Longjing shrimp, and Dongpo pork"
+      en: "Hangzhou cuisine, Longjing tea shrimp, and Dongpo braised pork."
     },
     snack: {
       zh: "河坊街与南宋御街轻松夜逛",
-      en: "Casual evening snack walk in Hefang Street and Southern Song Imperial Street"
+      en: "A relaxed evening snack walk through Hefang Street and Southern Song Imperial Street."
     }
+  }
+};
+
+const foodLineTranslations = {
+  "豆汁与焦圈、包子店、胡同早餐铺": {
+    ja: "豆汁と焦圈、包子店、胡同の朝食屋台",
+    ko: "더우즈와 자오취안, 만두집, 후퉁 아침 노점",
+    es: "Douzhi con rosquillas jiaoqian, tiendas de baozi y puestos de desayuno en los hutongs",
+    fr: "Douzhi et beignets jiaoqian, boutiques de baozi et échoppes de petit-déjeuner dans les hutongs",
+    ar: "حليب الفاصوليا المخمر مع خبز جياو تشيوان، ومتاجر الباوزي وأكشاك إفطار الأزقة التقليدية"
+  },
+  "北京烤鸭、铜锅涮肉、京味家常菜": {
+    ja: "北京ダック、銅鍋しゃぶ肉、北京家庭料理",
+    ko: "베이징 카오야, 동솥 샤브고기, 베이징 가정식",
+    es: "Pato laqueado de Pekín, cordero en olla de cobre y cocina casera pekinesa",
+    fr: "Canard laqué de Pékin, fondue en marmite de cuivre et cuisine familiale pékinoise",
+    ar: "بط بكيني مشوي، ولحم مسلوق في قدر نحاسي، وأطباق منزلية بطابع بكيني"
+  },
+  "南锣鼓巷与什刹海周边小吃街": {
+    ja: "南鑼鼓巷と什刹海周辺の屋台ストリート",
+    ko: "난뤄구샹과 스차하이 주변 길거리 음식 거리",
+    es: "Calles de comida alrededor de Nanluoguxiang y Shichahai",
+    fr: "Rues gourmandes autour de Nanluoguxiang et de Shichahai",
+    ar: "شوارع الوجبات الخفيفة حول نانلووقوشيانغ وشيچاهاي"
+  },
+  "生煎、小笼、葱油拌面": {
+    ja: "生煎包、小籠包、ネギ油和え麺",
+    ko: "생젠바오, 샤오롱바오, 파기름 비빔면",
+    es: "Shengjian, xiaolongbao y fideos con aceite de cebolleta",
+    fr: "Shengjian, xiaolongbao et nouilles à l’huile de ciboule",
+    ar: "شنغجيان، شياولونغباو، ونودلز بزيت البصل الأخضر"
+  },
+  "本帮菜、黄鱼面、海派融合餐厅": {
+    ja: "上海本帮料理、黄魚麺、海派フュージョンレストラン",
+    ko: "상하이 본방요리, 황어면, 하이파이 퓨전 레스토랑",
+    es: "Cocina benbang, fideos de corvina amarilla y restaurantes fusión de estilo shanghainés",
+    fr: "Cuisine benbang, nouilles au poisson jaune et restaurants fusion de style shanghaien",
+    ar: "أطباق بنبانغ المحلية، ونودلز السمك الأصفر، ومطاعم دمج بطابع شنغهاي"
+  },
+  "城隍庙与南京东路周边小吃点": {
+    ja: "城隍廟と南京東路周辺の軽食スポット",
+    ko: "청황먀오와 난징동루 주변 간식 명소",
+    es: "Puestos de snacks cerca del Templo del Dios de la Ciudad y Nanjing East Road",
+    fr: "Points de snacks autour du Temple du Dieu de la Ville et de Nanjing Est",
+    ar: "نقاط الوجبات الخفيفة قرب معبد إله المدينة وشارع نانجينغ الشرقي"
+  },
+  "肉夹馍、胡辣汤、甑糕": {
+    ja: "肉夾馍、胡辣湯、甑糕",
+    ko: "러우자모, 후라탕, 쩡가오",
+    es: "Roujiamo, sopa picante hulatang y zenggao",
+    fr: "Roujiamo, soupe épicée hulatang et zenggao",
+    ar: "روجيامو، وحساء هولاتانغ الحار، وزنغغاو"
+  },
+  "泡馍、葫芦鸡、关中风味馆": {
+    ja: "泡馍、ひょうたん鶏、関中料理店",
+    ko: "파오모, 후루지, 관중식 풍미 식당",
+    es: "Paomo, pollo hulu y restaurantes de sabor Guanzhong",
+    fr: "Paomo, poulet hulu et restaurants aux saveurs du Guanzhong",
+    ar: "باومو، ودجاج هولو، ومطاعم نكهات قوانتشونغ"
+  },
+  "回民街夜间小吃体验": {
+    ja: "回民街の夜食散策",
+    ko: "후이민제 야간 길거리 음식 체험",
+    es: "Experiencia nocturna de snacks en la Calle Musulmana",
+    fr: "Expérience de snacks de nuit dans le quartier musulman",
+    ar: "تجربة الوجبات الليلية في شارع المسلمين"
+  },
+  "担担面、甜水面、钟水饺": {
+    ja: "担々麺、甜水麺、鐘水餃",
+    ko: "단단면, 톈수이면, 중수이자오",
+    es: "Dan dan mian, fideos de agua dulce y dumplings Zhongshui",
+    fr: "Dan dan mian, nouilles sucrées et raviolis Zhongshui",
+    ar: "دان دان ميان، ونودلز الماء الحلو، وزلابية تشونغشوي"
+  },
+  "川式火锅、串串、川菜馆": {
+    ja: "四川火鍋、串串、四川料理店",
+    ko: "쓰촨식 훠궈, 촨촨, 쓰촨 요리집",
+    es: "Hotpot de Sichuan, brochetas chuanchuan y restaurantes sichuaneses",
+    fr: "Fondue du Sichuan, brochettes chuanchuan et restaurants du Sichuan",
+    ar: "هوت بوت سيتشوان، وأسياخ تشوانتشوان، ومطاعم المطبخ السيتشواني"
+  },
+  "锦里、春熙路和玉林附近街头小吃": {
+    ja: "錦里・春熙路・玉林周辺のストリートフード",
+    ko: "진리·춘시루·위린 인근 길거리 음식",
+    es: "Comida callejera cerca de Jinli, Chunxi Road y Yulin",
+    fr: "Street food autour de Jinli, Chunxi Road et Yulin",
+    ar: "مأكولات الشارع قرب جينلي وتشونشي رود ويولين"
+  },
+  "片儿川、葱包桧、西湖藕粉": {
+    ja: "片児川、葱包桧、西湖蓮根デンプン",
+    ko: "피안얼촨, 충바오후이, 시후 연근전분 음료",
+    es: "Pian’erchuan, congbaohui y fécula de loto de West Lake",
+    fr: "Pian’erchuan, congbaohui et boisson de fécule de lotus du lac de l’Ouest",
+    ar: "بيان إرتشوان، ولفائف كونغباوهوي، ومشروب نشا جذر اللوتس من بحيرة الغرب"
+  },
+  "杭帮菜、龙井虾仁、东坡肉": {
+    ja: "杭州料理、龍井蝦仁、東坡肉",
+    ko: "항저우 요리, 룽징 새우, 둥포러우",
+    es: "Cocina de Hangzhou, camarones al Longjing y cerdo Dongpo",
+    fr: "Cuisine de Hangzhou, crevettes au Longjing et porc Dongpo",
+    ar: "مطبخ هانغتشو، وروبيان لونغجينغ، ولحم دونغبو"
+  },
+  "河坊街与南宋御街轻松夜逛": {
+    ja: "河坊街と南宋御街の気軽な夜散歩",
+    ko: "허팡제와 남송어가의 가벼운 야간 산책",
+    es: "Paseo nocturno relajado por Hefang Street y Southern Song Imperial Street",
+    fr: "Balade nocturne détendue entre Hefang Street et la rue impériale des Song du Sud",
+    ar: "جولة ليلية خفيفة في شارع هيفانغ والشارع الإمبراطوري لأسرة سونغ الجنوبية"
   }
 };
 
@@ -2021,8 +2144,54 @@ function uiText(key) {
   return currentUi()[key] || uiContent.en[key] || "";
 }
 
+function localizeFoodLine(record) {
+  if (typeof record === "string") return record;
+  const direct = record?.[state.language];
+  if (direct) return direct;
+
+  const zh = record?.zh;
+  if (zh) {
+    const translated = foodLineTranslations[zh]?.[state.language];
+    if (translated) return translated;
+  }
+  return record?.en || zh || "";
+}
+
+function normalizeTicketNote(note) {
+  return (note || "").replace(/\s+/g, "").trim();
+}
+
+function isFreeVisitNote(note) {
+  const normalized = normalizeTicketNote(note);
+  if (!normalized) return false;
+  const keywords = [
+    "此景点免费参观",
+    "免费参观",
+    "免費參觀",
+    "freeentry",
+    "freevisit",
+    "freeadmission",
+    "entrada gratuita",
+    "visitegratuite",
+    "無料",
+    "무료",
+    "مجانًا",
+    "مجاني"
+  ];
+  const compact = normalized.toLowerCase();
+  return keywords.some((item) => compact.includes(item.toLowerCase()));
+}
+
+function localizeTicketNote(note) {
+  if (!note) return note;
+  if (isFreeVisitNote(note)) return uiText("freeVisitNote");
+  return note;
+}
+
 function mapTileMode() {
-  return state.language === "zh" ? tileConfigs.zh : tileConfigs.intl;
+  if (state.language === "zh") return tileConfigs.zh;
+  if (state.language === "ja") return tileConfigs.ja;
+  return tileConfigs.intlEn;
 }
 
 function applyMapTileLanguage() {
@@ -2343,7 +2512,7 @@ function ticketSnippet(spot, city) {
     return `<a class="fact-pill" href="${info.value}" target="_blank" rel="noopener noreferrer">${uiText("ticketLink")}</a>`;
   }
   if (info.type === "note") {
-    return `<span class="fact-pill">${info.value}</span>`;
+    return `<span class="fact-pill">${localizeTicketNote(info.value)}</span>`;
   }
   return "";
 }
@@ -2358,7 +2527,7 @@ function setTicketLink(spot, city) {
     node.removeAttribute("aria-disabled");
   } else if (ticket.type === "note") {
     node.href = "#";
-    node.textContent = ticket.value;
+    node.textContent = localizeTicketNote(ticket.value);
     node.classList.add("is-note");
     node.setAttribute("aria-disabled", "true");
   } else {
@@ -2369,21 +2538,33 @@ function setTicketLink(spot, city) {
   }
 }
 
-function ensureAiSeedMessage() {
-  if (state.aiMessages.length > 0) return;
+function aiSeedMessage(language) {
   const seedMessage = {
     zh: "你好，我是你的景点地陪助手。选中景点后，你可以问我交通、时段、路线与注意事项。",
     en: "Hi, I am your attraction guide assistant. Ask me about transport, timing, route planning, and practical details.",
-    ja: "こんにちは、観光地ガイドAIです。移動手段、時間配分、回り方、注意点を気軽に聞いてください。",
-    ko: "안녕하세요, 명소 가이드 AI입니다. 교통, 시간대, 동선, 유의사항을 물어보세요.",
-    es: "Hola, soy tu asistente de guía turística. Pregunta por transporte, horarios, rutas y consejos prácticos.",
-    fr: "Bonjour, je suis votre assistant guide. Posez vos questions sur transport, horaires, itinéraires et conseils pratiques.",
-    ar: "مرحبًا، أنا مساعدك السياحي. اسألني عن المواصلات والتوقيت وخطط المسار والنصائح العملية."
+    ja: "こんにちは、観光地ガイドAIです。選んだ景点について、交通・時間配分・回り方・注意点を気軽に聞いてください。",
+    ko: "안녕하세요, 명소 가이드 AI입니다. 선택한 명소 기준으로 교통, 시간대, 동선, 유의사항을 물어보세요.",
+    es: "Hola, soy tu asistente de guía turística. Puedes preguntar por transporte, horarios, rutas y consejos prácticos del lugar seleccionado.",
+    fr: "Bonjour, je suis votre assistant guide. Vous pouvez demander transport, horaires, itinéraires et conseils pratiques sur le site choisi.",
+    ar: "مرحبًا، أنا مساعدك السياحي. يمكنك السؤال عن المواصلات والتوقيت وخط السير والنصائح العملية للمعلم الذي اخترته."
   };
+  return seedMessage[language] || seedMessage.en;
+}
+
+function ensureAiSeedMessage() {
+  if (state.aiMessages.length > 0) return;
   state.aiMessages.push({
     role: "assistant",
-    content: seedMessage[state.language] || seedMessage.en
+    content: aiSeedMessage(state.language),
+    meta: "seed"
   });
+}
+
+function syncAiSeedMessageLanguage() {
+  if (state.aiMessages.length !== 1) return;
+  const [first] = state.aiMessages;
+  if (first.role !== "assistant" || first.meta !== "seed") return;
+  first.content = aiSeedMessage(state.language);
 }
 
 function aiContextSpot() {
@@ -2894,7 +3075,7 @@ function renderFoodSection() {
 
   elements.foodGrid.innerHTML = rows
     .map((item) => {
-      const text = localize(item.value);
+      const text = localizeFoodLine(item.value);
       return `
         <article class="food-card">
           <span class="fact-pill food-pill">${uiText(item.key)}</span>
@@ -3032,6 +3213,7 @@ function focusCity(cityId, options = {}) {
 function renderAll() {
   applyMapTileLanguage();
   refreshUiText();
+  syncAiSeedMessageLanguage();
   renderHero();
   renderCitySelector();
   renderActiveCityPanel();
@@ -3104,6 +3286,7 @@ document.addEventListener("click", (event) => {
 
   if (langButton) {
     state.language = langButton.dataset.lang;
+    syncAiSeedMessageLanguage();
     renderAll();
     return;
   }
