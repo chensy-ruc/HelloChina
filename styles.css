@@ -890,6 +890,11 @@ a {
   font-family: var(--font-body);
 }
 
+.leaflet-container .maplibregl-map {
+  width: 100%;
+  height: 100%;
+}
+
 .city-marker-dot,
 .spot-marker-dot {
   position: relative;

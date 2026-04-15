@@ -1870,7 +1870,19 @@ const elements = {
 const cityMap = L.map("city-map", { zoomControl: false }).setView([39.9305, 116.3568], 10.6);
 const chinaMap = L.map("china-map", { zoomControl: false }).setView([35.6, 104.4], 4.2);
 
-const tileConfigs = {
+const VECTOR_STYLE_URL = "https://tiles.openfreemap.org/styles/liberty";
+
+const mapLabelFieldByLanguage = {
+  zh: "name_zh",
+  en: "name_en",
+  ja: "name_ja",
+  ko: "name_ko",
+  es: "name_es",
+  fr: "name_fr",
+  ar: "name_ar"
+};
+
+const fallbackTileConfigs = {
   zh: {
     key: "zh",
     url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -1902,6 +1914,9 @@ const tileConfigs = {
 let cityBaseLayer = null;
 let chinaBaseLayer = null;
 let activeTileKey = null;
+let tileApplyNonce = 0;
+let baseVectorStylePromise = null;
+const localizedVectorStyleCache = new Map();
 
 const chinaMarkers = new Map();
 let citySpotMarkers = [];
@@ -1934,7 +1949,8 @@ const externalContent = {
   cityIntroByLanguage: {},
   spotIntro: {},
   spotIntroByLanguage: {},
-  spotTicket: {}
+  spotTicket: {},
+  spotTicketByLanguage: {}
 };
 
 const cityFoodPicks = {
@@ -2188,22 +2204,129 @@ function localizeTicketNote(note) {
   return note;
 }
 
-function mapTileMode() {
-  if (state.language === "zh") return tileConfigs.zh;
-  if (state.language === "ja") return tileConfigs.ja;
-  return tileConfigs.intlEn;
+function fallbackMapTileMode(language = state.language) {
+  if (language === "zh") return fallbackTileConfigs.zh;
+  if (language === "ja") return fallbackTileConfigs.ja;
+  return fallbackTileConfigs.intlEn;
 }
 
-function applyMapTileLanguage() {
-  const config = mapTileMode();
-  if (activeTileKey === config.key) return;
+function canUseMaplibreLayer() {
+  return typeof L.maplibreGL === "function";
+}
 
-  if (cityBaseLayer) cityMap.removeLayer(cityBaseLayer);
-  if (chinaBaseLayer) chinaMap.removeLayer(chinaBaseLayer);
+function clearBaseLayers() {
+  if (cityBaseLayer && cityMap.hasLayer(cityBaseLayer)) {
+    cityMap.removeLayer(cityBaseLayer);
+  }
+  if (chinaBaseLayer && chinaMap.hasLayer(chinaBaseLayer)) {
+    chinaMap.removeLayer(chinaBaseLayer);
+  }
+  cityBaseLayer = null;
+  chinaBaseLayer = null;
+}
 
+function cloneJson(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function shouldLocalizeTextField(textField) {
+  if (!textField) return false;
+  const serialized = JSON.stringify(textField);
+  return serialized.includes("name");
+}
+
+function localizedMapTextExpression(language) {
+  const primaryField = mapLabelFieldByLanguage[language] || "name_en";
+  return [
+    "coalesce",
+    ["get", primaryField],
+    ["get", "name"],
+    ["get", "name_en"],
+    ["get", "name_int"],
+    ["get", "name:latin"],
+    ["get", "name:nonlatin"]
+  ];
+}
+
+function localizeVectorStyle(style, language) {
+  const localizedStyle = cloneJson(style);
+  const textExpression = localizedMapTextExpression(language);
+
+  localizedStyle.layers = (localizedStyle.layers || []).map((layer) => {
+    if (layer.type !== "symbol" || !layer.layout) return layer;
+    const textField = layer.layout["text-field"];
+    if (!shouldLocalizeTextField(textField)) return layer;
+    return {
+      ...layer,
+      layout: {
+        ...layer.layout,
+        "text-field": textExpression
+      }
+    };
+  });
+
+  return localizedStyle;
+}
+
+async function loadBaseVectorStyle() {
+  if (!baseVectorStylePromise) {
+    baseVectorStylePromise = fetch(VECTOR_STYLE_URL)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Vector style request failed: ${response.status}`);
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        baseVectorStylePromise = null;
+        throw error;
+      });
+  }
+  return baseVectorStylePromise;
+}
+
+async function localizedVectorStyle(language) {
+  const cached = localizedVectorStyleCache.get(language);
+  if (cached) return cloneJson(cached);
+
+  const baseStyle = await loadBaseVectorStyle();
+  const localizedStyle = localizeVectorStyle(baseStyle, language);
+  localizedVectorStyleCache.set(language, localizedStyle);
+  return cloneJson(localizedStyle);
+}
+
+function applyFallbackRasterTiles(language, targetKey) {
+  const config = fallbackMapTileMode(language);
+  clearBaseLayers();
   cityBaseLayer = L.tileLayer(config.url, config.options).addTo(cityMap);
   chinaBaseLayer = L.tileLayer(config.url, config.options).addTo(chinaMap);
-  activeTileKey = config.key;
+  activeTileKey = targetKey;
+}
+
+async function applyMapTileLanguage() {
+  const language = state.language;
+  const targetKey = `lang:${language}`;
+  if (activeTileKey === targetKey) return;
+
+  const nonce = ++tileApplyNonce;
+
+  if (canUseMaplibreLayer()) {
+    try {
+      const style = await localizedVectorStyle(language);
+      if (nonce !== tileApplyNonce) return;
+
+      clearBaseLayers();
+      cityBaseLayer = L.maplibreGL({ style }).addTo(cityMap);
+      chinaBaseLayer = L.maplibreGL({ style }).addTo(chinaMap);
+      activeTileKey = targetKey;
+      return;
+    } catch (error) {
+      console.warn("Maplibre localized basemap unavailable, fallback to raster tiles.", error);
+    }
+  }
+
+  if (nonce !== tileApplyNonce) return;
+  applyFallbackRasterTiles(language, targetKey);
 }
 
 function storageKey(name) {
@@ -2367,6 +2490,18 @@ function introPathWithLanguage(basePath, language) {
   return basePath.replace(/\.txt$/i, `.${language}.txt`);
 }
 
+function ticketPathWithLanguage(basePath, language) {
+  if (language === "zh") return basePath;
+  return basePath.replace(/\.txt$/i, `.${language}.txt`);
+}
+
+async function fetchPrimaryOrBackup(primaryPath, backupPath) {
+  const primary = await fetchTextFile(primaryPath);
+  if (primary) return primary;
+  if (!backupPath) return "";
+  return fetchTextFile(backupPath);
+}
+
 async function loadExternalContent() {
   const jobs = [];
   cities.forEach((city) => {
@@ -2395,6 +2530,7 @@ async function loadExternalContent() {
       const ticketPathB = `景点/${cityFolder}/${folder}/网站.txt`;
       const spotKey = `${city.id}:${spotZh}`;
       externalContent.spotIntroByLanguage[spotKey] = {};
+      externalContent.spotTicketByLanguage[spotKey] = {};
 
       introSupportedLanguages.forEach((language) => {
         jobs.push(
@@ -2407,16 +2543,19 @@ async function loadExternalContent() {
           })
         );
       });
-      jobs.push(
-        fetchTextFile(ticketPathA).then(async (text) => {
-          if (text) {
-            externalContent.spotTicket[spotKey] = text;
-            return;
-          }
-          const backup = await fetchTextFile(ticketPathB);
-          externalContent.spotTicket[spotKey] = backup;
-        })
-      );
+      introSupportedLanguages.forEach((language) => {
+        const localizedTicketPathA = ticketPathWithLanguage(ticketPathA, language);
+        const localizedTicketPathB = ticketPathWithLanguage(ticketPathB, language);
+        jobs.push(
+          fetchPrimaryOrBackup(localizedTicketPathA, localizedTicketPathB).then((text) => {
+            if (!text) return;
+            externalContent.spotTicketByLanguage[spotKey][language] = text;
+            if (language === "zh") {
+              externalContent.spotTicket[spotKey] = text;
+            }
+          })
+        );
+      });
     });
   });
 
@@ -2500,7 +2639,13 @@ function prefetchActiveCityTranslations() {
 }
 
 function ticketInfoForSpot(spot, city) {
-  const raw = (externalContent.spotTicket[spotContentKey(city, spot)] || "").trim();
+  const key = spotContentKey(city, spot);
+  const localized =
+    externalContent.spotTicketByLanguage[key]?.[state.language] ||
+    externalContent.spotTicketByLanguage[key]?.zh ||
+    externalContent.spotTicket[key] ||
+    "";
+  const raw = localized.trim();
   if (!raw) return { type: "none", value: "" };
   if (/^https?:\/\//i.test(raw)) return { type: "url", value: raw };
   return { type: "note", value: raw };
