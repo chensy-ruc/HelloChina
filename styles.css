@@ -734,6 +734,143 @@ a {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.weather-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+  gap: 20px;
+}
+
+.weather-card,
+.planner-card {
+  padding: 22px;
+  border-radius: 30px;
+  border: 1px solid rgba(66, 133, 244, 0.12);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: var(--shadow);
+}
+
+.weather-card-head,
+.planner-card-head,
+.forecast-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.weather-kicker {
+  margin: 0 0 8px;
+  color: var(--blue);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.weather-card h3,
+.planner-card h3,
+.planner-route h4 {
+  margin: 0;
+  font-family: var(--font-display);
+}
+
+.weather-metrics,
+.planner-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.weather-metrics {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.forecast-head {
+  margin-top: 18px;
+}
+
+.forecast-head h4 {
+  margin: 0;
+  font-size: 1.04rem;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.forecast-day,
+.planner-note {
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(66, 133, 244, 0.08);
+}
+
+.forecast-day strong,
+.forecast-day span,
+.forecast-day p,
+.forecast-day small,
+.planner-note p,
+.planner-copy,
+.weather-empty p,
+.planner-route p {
+  color: var(--muted);
+}
+
+.forecast-day strong,
+.forecast-day span {
+  display: block;
+}
+
+.forecast-day span {
+  margin-top: 6px;
+}
+
+.forecast-day p,
+.forecast-day small,
+.planner-note p,
+.planner-copy,
+.weather-empty p,
+.planner-route p {
+  margin: 8px 0 0;
+  line-height: 1.65;
+}
+
+.planner-copy {
+  margin-top: 12px;
+}
+
+.planner-route {
+  margin-top: 16px;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(66, 133, 244, 0.12);
+}
+
+.planner-route h4 {
+  margin-top: 12px;
+  font-size: 1.15rem;
+}
+
+.weather-route-button {
+  margin-top: 14px;
+}
+
+.weather-route-button[disabled] {
+  cursor: default;
+  opacity: 1;
+}
+
+.weather-empty {
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
 .spot-card {
   display: grid;
   overflow: hidden;
@@ -966,6 +1103,8 @@ a {
 .focus-card,
 .route-card,
 .spot-card,
+.weather-card,
+.planner-card,
 .panel-block {
   animation: riseUp 0.7s ease both;
   transform-style: preserve-3d;
@@ -985,7 +1124,11 @@ a {
 .map-card:hover,
 .focus-card:hover,
 .route-card:hover,
-.spot-card:hover {
+.spot-card:hover,
+.weather-card:hover,
+.planner-card:hover,
+.planner-note:hover,
+.forecast-day:hover {
   transform: translateY(-4px);
 }
 
@@ -1054,6 +1197,7 @@ a {
   .feature-nav,
   .switchboard-grid,
   .workspace-grid,
+  .weather-grid,
   .spot-grid,
   .food-grid {
     grid-template-columns: 1fr;
@@ -1081,7 +1225,9 @@ a {
   }
 
   .stat-grid,
-  .thumbnail-grid {
+  .thumbnail-grid,
+  .weather-metrics,
+  .forecast-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1120,7 +1266,10 @@ a {
   .city-chip,
   .spot-card-head,
   .panel-headline,
-  .map-card-head {
+  .map-card-head,
+  .weather-card-head,
+  .planner-card-head,
+  .forecast-head {
     flex-direction: column;
     align-items: start;
   }

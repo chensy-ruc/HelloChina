@@ -1823,6 +1823,12 @@ const state = {
   aiBusy: false
 };
 
+const weatherRuntime = {
+  cache: {},
+  pending: {},
+  errors: {}
+};
+
 const SCRIPT_AI_CONFIG = Object.freeze({
   // Set these values manually before running deployment/demo.
   endpoint: "https://api.openai.com/v1/chat/completions",
@@ -1859,6 +1865,12 @@ const elements = {
   routeDisplay: document.querySelector("#route-display"),
   spotGrid: document.querySelector("#spot-grid"),
   spotSectionCopy: document.querySelector("#spot-section-copy"),
+  weatherNavLink: document.querySelector("#nav-weather-link"),
+  weatherEyebrow: document.querySelector("#weather-eyebrow"),
+  weatherTitle: document.querySelector("#weather-title"),
+  weatherCopy: document.querySelector("#weather-copy"),
+  weatherCard: document.querySelector("#weather-card"),
+  plannerCard: document.querySelector("#planner-card"),
   foodGrid: document.querySelector("#food-grid"),
   aiContextLine: document.querySelector("#ai-context-line"),
   aiMessages: document.querySelector("#ai-messages"),
@@ -2134,6 +2146,342 @@ const foodLineTranslations = {
   }
 };
 
+const weatherUiContent = {
+  en: {
+    navWeather: "Weather",
+    eyebrow: "Live weather",
+    title: "Live forecast and travel rhythm for {city}.",
+    copy: "Real-time conditions plus a short forecast for picking routes, clothing, and better visit windows.",
+    loading: "Loading live forecast...",
+    error: "Live weather is temporarily unavailable.",
+    updated: "Updated",
+    now: "Now",
+    nextDays: "Next 3 days",
+    feelsLike: "Feels like",
+    wind: "Wind",
+    rainChance: "Rain chance",
+    plannerEyebrow: "Smart planner",
+    plannerTitle: "Weather-based travel suggestions",
+    plannerCopy: "Extra idea now implemented: the page turns weather into practical pacing, packing, and route advice.",
+    adviceWeather: "Today",
+    adviceCarry: "Carry",
+    adviceTiming: "Best window",
+    adviceRoute: "Recommended route",
+    applyRoute: "Use this route",
+    currentRoute: "Active route"
+  },
+  zh: {
+    navWeather: "天气",
+    eyebrow: "实时天气",
+    title: "{city}的实时天气与出行节奏",
+    copy: "结合当前天气和短时预报，帮助游客判断路线、穿衣和更合适的游览时段。",
+    loading: "正在加载实时天气...",
+    error: "天气数据暂时不可用。",
+    updated: "更新于",
+    now: "此刻",
+    nextDays: "未来 3 天",
+    feelsLike: "体感温度",
+    wind: "风速",
+    rainChance: "降雨概率",
+    plannerEyebrow: "智能建议",
+    plannerTitle: "基于天气的出行建议",
+    plannerCopy: "这里额外实现了一个增强功能：把天气直接转换成节奏、携带物和路线建议。",
+    adviceWeather: "今日判断",
+    adviceCarry: "建议携带",
+    adviceTiming: "更佳时段",
+    adviceRoute: "推荐路线",
+    applyRoute: "切换到这条路线",
+    currentRoute: "当前路线"
+  },
+  ja: {
+    navWeather: "天気",
+    eyebrow: "ライブ天気",
+    title: "{city}の天気と回り方の目安",
+    copy: "現在の天気と短期予報をもとに、ルート、服装、回る時間帯を判断しやすくします。",
+    loading: "ライブ天気を読み込み中...",
+    error: "天気データを一時的に取得できません。",
+    updated: "更新",
+    now: "現在",
+    nextDays: "今後3日",
+    feelsLike: "体感温度",
+    wind: "風速",
+    rainChance: "降水確率",
+    plannerEyebrow: "スマート提案",
+    plannerTitle: "天気に合わせた観光提案",
+    plannerCopy: "追加アイデアとして、天気をそのまま持ち物・回り方・ルート提案に変える機能を実装しました。",
+    adviceWeather: "今日の判断",
+    adviceCarry: "持ち物",
+    adviceTiming: "おすすめ時間帯",
+    adviceRoute: "おすすめルート",
+    applyRoute: "このルートに切替",
+    currentRoute: "現在のルート"
+  },
+  ko: {
+    navWeather: "날씨",
+    eyebrow: "실시간 날씨",
+    title: "{city} 실시간 날씨와 동선 리듬",
+    copy: "현재 날씨와 단기 예보를 바탕으로 코스, 복장, 더 좋은 방문 시간을 판단할 수 있게 합니다.",
+    loading: "실시간 날씨를 불러오는 중...",
+    error: "날씨 데이터를 잠시 불러올 수 없습니다.",
+    updated: "업데이트",
+    now: "현재",
+    nextDays: "앞으로 3일",
+    feelsLike: "체감 온도",
+    wind: "풍속",
+    rainChance: "강수 확률",
+    plannerEyebrow: "스마트 제안",
+    plannerTitle: "날씨 기반 여행 제안",
+    plannerCopy: "추가 아이디어로, 날씨를 바로 동선·준비물·추천 루트로 바꾸는 기능을 구현했습니다.",
+    adviceWeather: "오늘 판단",
+    adviceCarry: "준비물",
+    adviceTiming: "좋은 시간대",
+    adviceRoute: "추천 루트",
+    applyRoute: "이 루트 적용",
+    currentRoute: "현재 루트"
+  },
+  es: {
+    navWeather: "Clima",
+    eyebrow: "Clima en vivo",
+    title: "Pronóstico y ritmo de visita para {city}.",
+    copy: "Condiciones en tiempo real y previsión corta para ajustar rutas, ropa y mejores franjas de visita.",
+    loading: "Cargando el clima en vivo...",
+    error: "El clima en vivo no está disponible temporalmente.",
+    updated: "Actualizado",
+    now: "Ahora",
+    nextDays: "Próximos 3 días",
+    feelsLike: "Sensación térmica",
+    wind: "Viento",
+    rainChance: "Prob. de lluvia",
+    plannerEyebrow: "Plan inteligente",
+    plannerTitle: "Sugerencias de viaje según el clima",
+    plannerCopy: "Idea extra ya implementada: convertir el clima en consejos prácticos de ritmo, equipaje y ruta.",
+    adviceWeather: "Hoy",
+    adviceCarry: "Llevar",
+    adviceTiming: "Mejor franja",
+    adviceRoute: "Ruta recomendada",
+    applyRoute: "Usar esta ruta",
+    currentRoute: "Ruta activa"
+  },
+  fr: {
+    navWeather: "Météo",
+    eyebrow: "Météo en direct",
+    title: "Prévision et rythme de visite pour {city}.",
+    copy: "Conditions en temps réel et prévision courte pour mieux choisir l'itinéraire, la tenue et le bon créneau.",
+    loading: "Chargement de la météo en direct...",
+    error: "La météo en direct est temporairement indisponible.",
+    updated: "Mis à jour",
+    now: "Maintenant",
+    nextDays: "3 prochains jours",
+    feelsLike: "Ressenti",
+    wind: "Vent",
+    rainChance: "Risque de pluie",
+    plannerEyebrow: "Plan intelligent",
+    plannerTitle: "Suggestions de visite selon la météo",
+    plannerCopy: "Idée supplémentaire désormais en place : transformer la météo en conseils pratiques sur le rythme, le sac et l'itinéraire.",
+    adviceWeather: "Aujourd'hui",
+    adviceCarry: "À prendre",
+    adviceTiming: "Meilleur créneau",
+    adviceRoute: "Itinéraire conseillé",
+    applyRoute: "Utiliser cet itinéraire",
+    currentRoute: "Itinéraire actif"
+  },
+  ar: {
+    navWeather: "الطقس",
+    eyebrow: "الطقس المباشر",
+    title: "توقعات الطقس وإيقاع الزيارة في {city}",
+    copy: "حالة الطقس الحالية مع توقع قصير لمساعدة الزائر على اختيار المسار والملابس والتوقيت الأنسب.",
+    loading: "جار تحميل الطقس المباشر...",
+    error: "بيانات الطقس غير متاحة مؤقتًا.",
+    updated: "آخر تحديث",
+    now: "الآن",
+    nextDays: "الأيام الثلاثة القادمة",
+    feelsLike: "المحسوسة",
+    wind: "الرياح",
+    rainChance: "احتمال المطر",
+    plannerEyebrow: "تخطيط ذكي",
+    plannerTitle: "اقتراحات سفر حسب الطقس",
+    plannerCopy: "تم تنفيذ فكرة إضافية هنا: تحويل الطقس مباشرة إلى نصائح عملية للسرعة والمستلزمات والمسار.",
+    adviceWeather: "حكم اليوم",
+    adviceCarry: "المقترح حمله",
+    adviceTiming: "الوقت الأفضل",
+    adviceRoute: "المسار المقترح",
+    applyRoute: "استخدم هذا المسار",
+    currentRoute: "المسار الحالي"
+  }
+};
+
+const weatherConditionText = {
+  en: { clear: "Clear", partly: "Partly cloudy", cloudy: "Cloudy", fog: "Fog", drizzle: "Drizzle", rain: "Rain", snow: "Snow", storm: "Storm" },
+  zh: { clear: "晴朗", partly: "局部多云", cloudy: "多云", fog: "有雾", drizzle: "毛毛雨", rain: "降雨", snow: "降雪", storm: "雷暴" },
+  ja: { clear: "晴れ", partly: "晴れ時々くもり", cloudy: "くもり", fog: "霧", drizzle: "霧雨", rain: "雨", snow: "雪", storm: "雷雨" },
+  ko: { clear: "맑음", partly: "구름 조금", cloudy: "흐림", fog: "안개", drizzle: "이슬비", rain: "비", snow: "눈", storm: "뇌우" },
+  es: { clear: "Despejado", partly: "Parcialmente nublado", cloudy: "Nublado", fog: "Niebla", drizzle: "Llovizna", rain: "Lluvia", snow: "Nieve", storm: "Tormenta" },
+  fr: { clear: "Dégagé", partly: "Partiellement nuageux", cloudy: "Nuageux", fog: "Brouillard", drizzle: "Bruine", rain: "Pluie", snow: "Neige", storm: "Orage" },
+  ar: { clear: "صحو", partly: "غائم جزئيًا", cloudy: "غائم", fog: "ضباب", drizzle: "رذاذ", rain: "مطر", snow: "ثلج", storm: "عاصفة رعدية" }
+};
+
+const travelAdviceText = {
+  en: {
+    rainCompact: "Keep the day a little tighter and avoid stitching too many exposed outdoor stops together.",
+    hotShade: "The middle of the day will feel stronger, so move longer walks to earlier or later hours.",
+    coldSteady: "Morning and evening run cooler, so a steadier route with shorter transfers will feel easier.",
+    windCare: "Wind is noticeable today, so open waterfront or summit-style stops will feel sharper.",
+    clearGo: "Conditions are open enough for scenic walks and outdoor viewpoints to stay in the main plan.",
+    nightGo: "Evening conditions are usable, so night-view sections can sit later in the route.",
+    umbrella: "Umbrella or a light rain shell.",
+    sun: "Sunscreen, water, and a lighter top.",
+    layer: "One extra layer for the cooler hours.",
+    wind: "A light windproof layer.",
+    light: "Keep the bag light and walk-ready.",
+    earlyLate: "Push longer outdoor walking to the earlier and later hours.",
+    lateMorning: "Late morning into afternoon should be the easiest main window.",
+    goldenHour: "Sunset onward is a strong window for open views and photos.",
+    flexible: "Conditions are fairly even, so the schedule can stay flexible."
+  },
+  zh: {
+    rainCompact: "今天更适合紧凑一些，别把太多暴露在户外的点硬串在一起。",
+    hotShade: "中午体感会更强，长距离步行更适合放到早一点或晚一点。",
+    coldSteady: "早晚偏凉，走更稳一点、换乘更少的路线会轻松很多。",
+    windCare: "今天风感比较明显，水边和高处的停留体感会更强。",
+    clearGo: "天气整体比较放得开，适合保留开阔步行段和户外观景点。",
+    nightGo: "傍晚到夜间条件不错，夜景段可以放在后半程。",
+    umbrella: "雨伞或轻便防水外套。",
+    sun: "防晒、饮水和更轻的上衣。",
+    layer: "早晚多带一层薄外套。",
+    wind: "一件轻薄防风层。",
+    light: "背包尽量轻一点，保持好走路的状态。",
+    earlyLate: "更适合把户外步行集中在早一点和晚一点的时间段。",
+    lateMorning: "上午偏后到下午会是更舒服的主时段。",
+    goldenHour: "日落前后适合安排开阔景观和拍照点。",
+    flexible: "整体条件比较均衡，行程可以保持灵活。"
+  },
+  ja: {
+    rainCompact: "今日は少しコンパクトに回り、屋外に長くさらされる区間を詰め込みすぎない方がよいです。",
+    hotShade: "日中の体感が強くなりやすいので、長い徒歩区間は朝か夕方寄りに回す方が楽です。",
+    coldSteady: "朝晩は冷えやすいため、移動を短めにした安定した回り方の方が楽です。",
+    windCare: "今日は風が目立つので、水辺や高所の区間は体感が強くなります。",
+    clearGo: "景色を見ながら歩く区間や屋外の展望ポイントを主線に残しやすい天気です。",
+    nightGo: "夕方以降の条件が使いやすいので、夜景系の区間を後半に置けます。",
+    umbrella: "折りたたみ傘か軽いレインシェル。",
+    sun: "日焼け対策、水分、軽めのトップス。",
+    layer: "朝晩用に薄手の上着を一枚。",
+    wind: "軽い防風レイヤー。",
+    light: "荷物は軽めにして歩きやすく。",
+    earlyLate: "長めの屋外歩行は朝か夕方側に寄せるのが無難です。",
+    lateMorning: "遅めの午前から午後が主な動きやすい時間帯です。",
+    goldenHour: "夕景と写真は日没前後が狙い目です。",
+    flexible: "全体の条件は比較的そろっているので、行程は柔軟に組めます。"
+  },
+  ko: {
+    rainCompact: "오늘은 동선을 조금 더 압축하고, 노출이 큰 야외 구간을 너무 많이 묶지 않는 편이 좋습니다.",
+    hotShade: "한낮 체감이 더 강해질 수 있어 긴 도보 구간은 이른 시간이나 늦은 시간대로 옮기는 편이 낫습니다.",
+    coldSteady: "아침저녁이 서늘하니 이동이 짧고 안정적인 코스가 더 편합니다.",
+    windCare: "오늘은 바람이 제법 느껴져 수변이나 높은 곳 체감이 더 강합니다.",
+    clearGo: "전망이 트인 산책 구간과 야외 포인트를 메인 일정에 넣기 좋은 날씨입니다.",
+    nightGo: "저녁 이후 조건이 괜찮아 야경 구간을 후반에 배치해도 좋습니다.",
+    umbrella: "우산이나 가벼운 방수 겉옷.",
+    sun: "자외선 차단, 물, 가벼운 상의.",
+    layer: "아침저녁용 얇은 겉옷 한 겹.",
+    wind: "가벼운 방풍 레이어.",
+    light: "가방은 가볍게 유지하고 걷기 편하게 준비하세요.",
+    earlyLate: "긴 야외 도보는 이른 시간과 늦은 시간에 몰아두는 편이 좋습니다.",
+    lateMorning: "늦은 오전부터 오후가 메인 이동 시간대로 무난합니다.",
+    goldenHour: "일몰 전후가 개방형 전망과 사진에 좋습니다.",
+    flexible: "전체 조건이 비교적 고르게 유지되어 일정은 유연하게 잡아도 됩니다."
+  },
+  es: {
+    rainCompact: "Conviene mantener el día un poco más compacto y no unir demasiadas paradas muy expuestas al aire libre.",
+    hotShade: "La franja central del día se sentirá más fuerte, así que los paseos largos funcionan mejor antes o después.",
+    coldSteady: "La mañana y la noche serán más frescas; una ruta más estable y con traslados cortos será más cómoda.",
+    windCare: "Hoy el viento se nota, así que las zonas abiertas junto al agua o en altura se sentirán más intensas.",
+    clearGo: "Las condiciones permiten mantener caminatas escénicas y miradores al aire libre dentro del plan principal.",
+    nightGo: "La tarde-noche es aprovechable, así que los tramos de vistas nocturnas pueden ir al final de la ruta.",
+    umbrella: "Paraguas o una capa ligera impermeable.",
+    sun: "Protector solar, agua y una prenda superior más ligera.",
+    layer: "Una capa extra para las horas más frescas.",
+    wind: "Una capa ligera cortaviento.",
+    light: "Conviene llevar la mochila ligera y preparada para caminar.",
+    earlyLate: "Conviene concentrar los tramos largos al aire libre al inicio o al final del día.",
+    lateMorning: "De media mañana a la tarde será la franja principal más cómoda.",
+    goldenHour: "El atardecer es un buen momento para vistas abiertas y fotos.",
+    flexible: "Las condiciones son bastante parejas, así que el horario puede seguir flexible."
+  },
+  fr: {
+    rainCompact: "Mieux vaut garder une journée un peu plus compacte et éviter d'enchaîner trop de sites très exposés en extérieur.",
+    hotShade: "Le cœur de journée sera plus marqué, donc les longues marches passent mieux plus tôt ou plus tard.",
+    coldSteady: "Le matin et le soir seront plus frais ; un parcours plus stable avec moins de transferts sera plus confortable.",
+    windCare: "Le vent se sent aujourd'hui, donc les séquences ouvertes au bord de l'eau ou en hauteur seront plus vives.",
+    clearGo: "Les conditions permettent de garder les belles marches panoramiques et les points de vue extérieurs dans le plan principal.",
+    nightGo: "La fin de journée reste exploitable, donc les passages de nuit peuvent aller en seconde partie d'itinéraire.",
+    umbrella: "Parapluie ou veste de pluie légère.",
+    sun: "Protection solaire, eau et haut plus léger.",
+    layer: "Une couche légère en plus pour les heures fraîches.",
+    wind: "Une couche légère coupe-vent.",
+    light: "Gardez le sac léger et prêt pour la marche.",
+    earlyLate: "Placez les longues portions en extérieur plutôt en début ou fin de journée.",
+    lateMorning: "La fin de matinée jusqu'à l'après-midi sera la meilleure fenêtre principale.",
+    goldenHour: "Le créneau du coucher du soleil est fort pour les vues ouvertes et les photos.",
+    flexible: "Les conditions restent assez régulières, donc l'horaire peut rester flexible."
+  },
+  ar: {
+    rainCompact: "من الأفضل إبقاء اليوم أكثر تماسكًا وعدم جمع عدد كبير من المحطات المفتوحة في الهواء الطلق معًا.",
+    hotShade: "فترة منتصف النهار ستكون أقوى إحساسًا، لذا من الأفضل نقل المشي الطويل إلى وقت أبكر أو متأخر.",
+    coldSteady: "الصباح والمساء أبرد نسبيًا، لذلك سيكون المسار الأهدأ مع تنقلات أقصر أسهل.",
+    windCare: "الرياح ملحوظة اليوم، لذلك ستشعر المحطات المفتوحة قرب الماء أو في الأماكن المرتفعة بشكل أوضح.",
+    clearGo: "الظروف مناسبة للإبقاء على مسارات المشي المفتوحة ونقاط المشاهدة الخارجية ضمن الخطة الرئيسية.",
+    nightGo: "فترة المساء مناسبة، لذلك يمكن وضع مقاطع المشاهد الليلية في الجزء الأخير من المسار.",
+    umbrella: "مظلة أو طبقة خفيفة مقاومة للمطر.",
+    sun: "واقي شمس وماء وملابس أخف.",
+    layer: "طبقة إضافية خفيفة لساعات البرودة.",
+    wind: "طبقة خفيفة مقاومة للرياح.",
+    light: "الأفضل إبقاء الحقيبة خفيفة وجاهزة للمشي.",
+    earlyLate: "يفضل وضع المشي الخارجي الأطول في الساعات المبكرة أو المتأخرة.",
+    lateMorning: "من أواخر الصباح إلى بعد الظهر ستكون الفترة الأسهل للحركة.",
+    goldenHour: "وقت الغروب مناسب للمشاهد المفتوحة والتصوير.",
+    flexible: "الظروف متوازنة نسبيًا، لذلك يمكن إبقاء الجدول مرنًا."
+  }
+};
+
+const languageLocaleMap = {
+  zh: "zh-CN",
+  en: "en-US",
+  ja: "ja-JP",
+  ko: "ko-KR",
+  es: "es-ES",
+  fr: "fr-FR",
+  ar: "ar-SA"
+};
+
+const weatherThemeExposure = {
+  history: 1.7,
+  temple: 1.8,
+  garden: 3.1,
+  mountain: 4.2,
+  park: 3.3,
+  water: 3.5,
+  street: 2.8,
+  shopping: 1.2,
+  landmark: 2.2,
+  museum: 1.0,
+  night: 1.6,
+  nature: 4.0
+};
+
+const weatherThemeNightScore = {
+  history: 0.8,
+  temple: 0.5,
+  garden: 0.6,
+  mountain: 0.2,
+  park: 0.5,
+  water: 0.9,
+  street: 1.0,
+  shopping: 1.1,
+  landmark: 1.0,
+  museum: 0.3,
+  night: 1.4,
+  nature: 0.3
+};
+
 function currentUi() {
   return uiContent[state.language];
 }
@@ -2158,6 +2506,18 @@ function localizeBestTime(bestTime) {
 
 function uiText(key) {
   return currentUi()[key] || uiContent.en[key] || "";
+}
+
+function currentWeatherUi() {
+  return weatherUiContent[state.language] || weatherUiContent.en;
+}
+
+function weatherText(key) {
+  return currentWeatherUi()[key] || weatherUiContent.en[key] || "";
+}
+
+function localeForLanguage(language = state.language) {
+  return languageLocaleMap[language] || languageLocaleMap.en;
 }
 
 function localizeFoodLine(record) {
@@ -3046,6 +3406,10 @@ function refreshUiText() {
   document.querySelectorAll(".lang-btn").forEach((button) => {
     button.classList.toggle("is-active", button.dataset.lang === state.language);
   });
+
+  elements.weatherNavLink.textContent = weatherText("navWeather");
+  elements.weatherEyebrow.textContent = weatherText("eyebrow");
+  elements.weatherCopy.textContent = weatherText("copy");
 }
 
 function renderHero() {
@@ -3202,6 +3566,337 @@ function renderSpotCards() {
       `;
     })
     .join("");
+}
+
+function weatherCacheIsFresh(entry) {
+  return Boolean(entry && Date.now() - entry.fetchedAt < 20 * 60 * 1000);
+}
+
+function weatherConditionKey(code) {
+  if (code === 0) return "clear";
+  if ([1, 2].includes(code)) return "partly";
+  if (code === 3) return "cloudy";
+  if ([45, 48].includes(code)) return "fog";
+  if ([51, 53, 55, 56, 57].includes(code)) return "drizzle";
+  if ([61, 63, 65, 66, 67, 80, 81, 82].includes(code)) return "rain";
+  if ([71, 73, 75, 77, 85, 86].includes(code)) return "snow";
+  if ([95, 96, 99].includes(code)) return "storm";
+  return "cloudy";
+}
+
+function weatherConditionLabel(code, language = state.language) {
+  const key = weatherConditionKey(code);
+  return weatherConditionText[language]?.[key] || weatherConditionText.en[key] || "";
+}
+
+function formatWeatherDay(dateString) {
+  if (!dateString) return "";
+  return new Intl.DateTimeFormat(localeForLanguage(), {
+    timeZone: "Asia/Shanghai",
+    weekday: "short",
+    month: "numeric",
+    day: "numeric"
+  }).format(new Date(`${dateString}T12:00:00+08:00`));
+}
+
+function formatWeatherUpdatedTime(dateString) {
+  if (!dateString) return "";
+  const isoString = `${dateString}:00+08:00`;
+  return new Intl.DateTimeFormat(localeForLanguage(), {
+    timeZone: "Asia/Shanghai",
+    hour: "2-digit",
+    minute: "2-digit"
+  }).format(new Date(isoString));
+}
+
+function mean(values) {
+  if (!values.length) return 0;
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function currentWeatherFlags(weather) {
+  const today = weather.daily[0] || {};
+  const conditionKey = weatherConditionKey(weather.current.weatherCode);
+  const rainy =
+    ["drizzle", "rain", "storm", "snow"].includes(conditionKey) ||
+    (today.rainChance || 0) >= 55 ||
+    (weather.current.precipitation || 0) > 0;
+  const hot = Math.max(today.maxTemp || -100, weather.current.feelsLike || -100) >= 31;
+  const cold = Math.min(today.minTemp || 100, weather.current.temperature || 100) <= 9;
+  const windy = (weather.current.windSpeed || 0) >= 24;
+  const clear = ["clear", "partly"].includes(conditionKey);
+  const night = weather.current.isDay === 0;
+
+  return { today, conditionKey, rainy, hot, cold, windy, clear, night };
+}
+
+function averageRouteExposure(route) {
+  return mean(route.spots.map((spot) => weatherThemeExposure[spot.theme] || 2.5));
+}
+
+function averageRouteNightScore(route) {
+  return mean(route.spots.map((spot) => weatherThemeNightScore[spot.theme] || 0.5));
+}
+
+function recommendRouteForWeather(routes, weather) {
+  const flags = currentWeatherFlags(weather);
+
+  return routes
+    .filter((route) => route.spots.length)
+    .map((route) => {
+      const exposure = averageRouteExposure(route);
+      const nightScore = averageRouteNightScore(route);
+      let score = 0;
+
+      if (flags.rainy || flags.windy) {
+        score -= exposure * 1.4;
+      } else if (flags.hot) {
+        score -= exposure * 1.05;
+      } else if (flags.cold) {
+        score -= exposure * 0.6;
+      } else {
+        score += exposure * 0.9;
+      }
+
+      if (flags.night) {
+        score += nightScore * 1.2;
+      } else {
+        score += nightScore * 0.12;
+      }
+
+      if ((flags.rainy || flags.hot || flags.cold || flags.windy) && route.id === "dynamic") {
+        score += 1.2;
+      }
+
+      if (!flags.rainy && !flags.hot && !flags.cold && !flags.windy && route.id === "dynamic") {
+        score -= 0.2;
+      }
+
+      return { route, score };
+    })
+    .sort((left, right) => right.score - left.score)[0]?.route || null;
+}
+
+function buildTravelPlanner(weather) {
+  const flags = currentWeatherFlags(weather);
+  const advice = travelAdviceText[state.language] || travelAdviceText.en;
+  const routes = activeRoutes();
+  const recommendedRoute = recommendRouteForWeather(routes, weather);
+
+  const weatherLine = flags.rainy
+    ? advice.rainCompact
+    : flags.windy
+      ? advice.windCare
+      : flags.hot
+        ? advice.hotShade
+        : flags.cold
+          ? advice.coldSteady
+          : flags.night
+            ? advice.nightGo
+            : advice.clearGo;
+
+  const carryLine = flags.rainy
+    ? advice.umbrella
+    : flags.hot
+      ? advice.sun
+      : flags.windy
+        ? advice.wind
+        : flags.cold
+          ? advice.layer
+          : advice.light;
+
+  const timingLine = flags.rainy || flags.hot
+    ? advice.earlyLate
+    : flags.clear && !flags.night && (flags.today.maxTemp || 0) <= 28
+      ? advice.lateMorning
+      : flags.clear
+        ? advice.goldenHour
+        : advice.flexible;
+
+  return {
+    weatherLine,
+    carryLine,
+    timingLine,
+    recommendedRoute
+  };
+}
+
+async function fetchWeatherForCity(city) {
+  const [latitude, longitude] = city.marker;
+  const url = new URL("https://api.open-meteo.com/v1/forecast");
+  url.searchParams.set("latitude", latitude);
+  url.searchParams.set("longitude", longitude);
+  url.searchParams.set(
+    "current",
+    "temperature_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,is_day"
+  );
+  url.searchParams.set(
+    "daily",
+    "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max"
+  );
+  url.searchParams.set("timezone", "auto");
+  url.searchParams.set("forecast_days", "4");
+  url.searchParams.set("wind_speed_unit", "kmh");
+
+  const response = await fetch(url.toString());
+  if (!response.ok) {
+    throw new Error(`Weather request failed: ${response.status}`);
+  }
+
+  const payload = await response.json();
+  return {
+    current: {
+      temperature: payload?.current?.temperature_2m ?? 0,
+      feelsLike: payload?.current?.apparent_temperature ?? 0,
+      precipitation: payload?.current?.precipitation ?? 0,
+      weatherCode: payload?.current?.weather_code ?? 3,
+      windSpeed: payload?.current?.wind_speed_10m ?? 0,
+      isDay: payload?.current?.is_day ?? 1,
+      time: payload?.current?.time || ""
+    },
+    daily: (payload?.daily?.time || []).map((date, index) => ({
+      date,
+      weatherCode: payload?.daily?.weather_code?.[index] ?? 3,
+      maxTemp: payload?.daily?.temperature_2m_max?.[index] ?? 0,
+      minTemp: payload?.daily?.temperature_2m_min?.[index] ?? 0,
+      rainChance: payload?.daily?.precipitation_probability_max?.[index] ?? 0
+    }))
+  };
+}
+
+function ensureCityWeather(city) {
+  const cacheEntry = weatherRuntime.cache[city.id];
+  if (weatherCacheIsFresh(cacheEntry) || weatherRuntime.pending[city.id]) return;
+
+  weatherRuntime.pending[city.id] = true;
+  delete weatherRuntime.errors[city.id];
+
+  fetchWeatherForCity(city)
+    .then((data) => {
+      weatherRuntime.cache[city.id] = {
+        fetchedAt: Date.now(),
+        data
+      };
+    })
+    .catch((error) => {
+      weatherRuntime.errors[city.id] = error;
+    })
+    .finally(() => {
+      delete weatherRuntime.pending[city.id];
+      if (city.id === state.activeCityId) {
+        renderWeatherSection();
+      }
+    });
+}
+
+function renderWeatherSection() {
+  const city = activeCity();
+  const entry = weatherRuntime.cache[city.id];
+  const cacheValid = weatherCacheIsFresh(entry);
+  const error = weatherRuntime.errors[city.id];
+
+  elements.weatherTitle.textContent = fillTemplate(weatherText("title"), {
+    city: localize(city.names)
+  });
+
+  if (!cacheValid) {
+    ensureCityWeather(city);
+  }
+
+  if (!entry?.data) {
+    elements.weatherCard.innerHTML = `
+      <div class="weather-empty">
+        <p>${error ? weatherText("error") : weatherText("loading")}</p>
+      </div>
+    `;
+    elements.plannerCard.innerHTML = `
+      <div class="weather-empty">
+        <p>${weatherText("plannerCopy")}</p>
+      </div>
+    `;
+    return;
+  }
+
+  const weather = entry.data;
+  const today = weather.daily[0] || {};
+  const planner = buildTravelPlanner(weather);
+  const nextDays = weather.daily.slice(1, 4);
+  const route = planner.recommendedRoute;
+  const routeIsActive = route?.id === state.activeRouteId;
+
+  elements.weatherCard.innerHTML = `
+    <div class="weather-card-head">
+      <div>
+        <p class="weather-kicker">${weatherConditionLabel(weather.current.weatherCode)}</p>
+        <h3>${weatherText("now")} · ${Math.round(weather.current.temperature)}°C</h3>
+      </div>
+      <span class="mini-pill" style="background:${city.soft};color:${city.accent};">
+        ${weatherText("updated")} ${formatWeatherUpdatedTime(weather.current.time)}
+      </span>
+    </div>
+    <div class="weather-metrics">
+      <span class="fact-pill">${weatherText("feelsLike")}: ${Math.round(weather.current.feelsLike)}°C</span>
+      <span class="fact-pill">${weatherText("wind")}: ${Math.round(weather.current.windSpeed)} km/h</span>
+      <span class="fact-pill">${weatherText("rainChance")}: ${Math.round(today.rainChance || 0)}%</span>
+    </div>
+    <div class="forecast-head">
+      <h4>${weatherText("nextDays")}</h4>
+    </div>
+    <div class="forecast-grid">
+      ${nextDays
+        .map(
+          (day) => `
+            <article class="forecast-day">
+              <strong>${formatWeatherDay(day.date)}</strong>
+              <span>${weatherConditionLabel(day.weatherCode)}</span>
+              <p>${Math.round(day.maxTemp)}° / ${Math.round(day.minTemp)}°</p>
+              <small>${weatherText("rainChance")}: ${Math.round(day.rainChance || 0)}%</small>
+            </article>
+          `
+        )
+        .join("")}
+    </div>
+  `;
+
+  elements.plannerCard.innerHTML = `
+    <div class="planner-card-head">
+      <div>
+        <p class="weather-kicker">${weatherText("plannerEyebrow")}</p>
+        <h3>${weatherText("plannerTitle")}</h3>
+      </div>
+    </div>
+    <p class="planner-copy">${weatherText("plannerCopy")}</p>
+    <div class="planner-grid">
+      <article class="planner-note">
+        <span class="fact-pill">${weatherText("adviceWeather")}</span>
+        <p>${planner.weatherLine}</p>
+      </article>
+      <article class="planner-note">
+        <span class="fact-pill">${weatherText("adviceCarry")}</span>
+        <p>${planner.carryLine}</p>
+      </article>
+      <article class="planner-note">
+        <span class="fact-pill">${weatherText("adviceTiming")}</span>
+        <p>${planner.timingLine}</p>
+      </article>
+    </div>
+    ${
+      route
+        ? `
+          <div class="planner-route" style="background:${city.soft};border-color:${hexToRgba(city.accent, 0.18)};">
+            <span class="fact-pill" style="background:#fff;color:${city.accent};">${weatherText("adviceRoute")}</span>
+            <h4>${localize(route.names)}</h4>
+            <p>${localize(route.description)}</p>
+            ${
+              routeIsActive
+                ? `<button class="route-tab is-active weather-route-button" type="button" disabled>${weatherText("currentRoute")}</button>`
+                : `<button class="route-tab weather-route-button" type="button" data-route="${route.id}" style="background:#fff;color:${city.accent};border-color:${hexToRgba(city.accent, 0.24)};">${weatherText("applyRoute")}</button>`
+            }
+          </div>
+        `
+        : ""
+    }
+  `;
 }
 
 function renderFoodSection() {
@@ -3367,6 +4062,7 @@ function renderAll() {
   renderSpotFocus();
   renderRoutes();
   renderSpotCards();
+  renderWeatherSection();
   renderFoodSection();
   prefetchActiveCityTranslations();
   renderAiContext();
@@ -3381,7 +4077,7 @@ function renderAll() {
 }
 
 function bindFloatEffects() {
-  const selector = ".hero-card, .map-card, .focus-card, .route-card, .spot-card, .panel-block, .city-chip, .food-card, .ai-card";
+  const selector = ".hero-card, .map-card, .focus-card, .route-card, .spot-card, .panel-block, .city-chip, .food-card, .ai-card, .weather-card, .planner-card, .planner-note, .forecast-day";
   document.querySelectorAll(selector).forEach((element) => {
     if (element.dataset.floatBound === "true") return;
     element.dataset.floatBound = "true";
@@ -3467,6 +4163,7 @@ document.addEventListener("click", (event) => {
   if (routeButton) {
     state.activeRouteId = routeButton.dataset.route;
     renderRoutes();
+    renderWeatherSection();
     renderCityMap();
   }
 });
