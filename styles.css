@@ -782,7 +782,14 @@ a {
 }
 
 .weather-metrics {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.weather-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
 }
 
 .forecast-head {
@@ -796,11 +803,12 @@ a {
 
 .forecast-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 12px;
   margin-top: 14px;
 }
 
+.weather-overview-card,
 .forecast-day,
 .planner-note {
   padding: 16px;
@@ -809,6 +817,7 @@ a {
   border: 1px solid rgba(66, 133, 244, 0.08);
 }
 
+.weather-overview-card span,
 .forecast-day strong,
 .forecast-day span,
 .forecast-day p,
@@ -818,6 +827,18 @@ a {
 .weather-empty p,
 .planner-route p {
   color: var(--muted);
+}
+
+.weather-overview-card span {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.weather-overview-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.12rem;
+  font-family: var(--font-display);
 }
 
 .forecast-day strong,
@@ -1227,6 +1248,7 @@ a {
   .stat-grid,
   .thumbnail-grid,
   .weather-metrics,
+  .weather-overview-grid,
   .forecast-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

@@ -2156,13 +2156,17 @@ const weatherUiContent = {
     error: "Live weather is temporarily unavailable.",
     updated: "Updated",
     now: "Now",
-    nextDays: "Next 3 days",
+    nextDays: "Next 5 days",
     feelsLike: "Feels like",
     wind: "Wind",
     rainChance: "Rain chance",
+    highLow: "High / low",
+    sunrise: "Sunrise",
+    sunset: "Sunset",
+    precipitation: "Rain now",
     plannerEyebrow: "Smart planner",
     plannerTitle: "Weather-based travel suggestions",
-    plannerCopy: "Extra idea now implemented: the page turns weather into practical pacing, packing, and route advice.",
+    plannerCopy: "A quick planning note for today, so you can pace the route, pack lightly, and keep the comfortable time window.",
     adviceWeather: "Today",
     adviceCarry: "Carry",
     adviceTiming: "Best window",
@@ -2179,13 +2183,17 @@ const weatherUiContent = {
     error: "天气数据暂时不可用。",
     updated: "更新于",
     now: "此刻",
-    nextDays: "未来 3 天",
+    nextDays: "未来 5 天",
     feelsLike: "体感温度",
     wind: "风速",
     rainChance: "降雨概率",
+    highLow: "最高 / 最低",
+    sunrise: "日出",
+    sunset: "日落",
+    precipitation: "当前降水",
     plannerEyebrow: "智能建议",
     plannerTitle: "基于天气的出行建议",
-    plannerCopy: "这里额外实现了一个增强功能：把天气直接转换成节奏、携带物和路线建议。",
+    plannerCopy: "先根据今天的天气，把更舒服的节奏、随身物品和更顺路的玩法整理给你。",
     adviceWeather: "今日判断",
     adviceCarry: "建议携带",
     adviceTiming: "更佳时段",
@@ -2202,13 +2210,17 @@ const weatherUiContent = {
     error: "天気データを一時的に取得できません。",
     updated: "更新",
     now: "現在",
-    nextDays: "今後3日",
+    nextDays: "今後5日",
     feelsLike: "体感温度",
     wind: "風速",
     rainChance: "降水確率",
+    highLow: "最高 / 最低",
+    sunrise: "日の出",
+    sunset: "日没",
+    precipitation: "現在の降水",
     plannerEyebrow: "スマート提案",
     plannerTitle: "天気に合わせた観光提案",
-    plannerCopy: "追加アイデアとして、天気をそのまま持ち物・回り方・ルート提案に変える機能を実装しました。",
+    plannerCopy: "今日の天気に合わせて、回り方、持ち物、動きやすい時間帯を先に整理します。",
     adviceWeather: "今日の判断",
     adviceCarry: "持ち物",
     adviceTiming: "おすすめ時間帯",
@@ -2225,13 +2237,17 @@ const weatherUiContent = {
     error: "날씨 데이터를 잠시 불러올 수 없습니다.",
     updated: "업데이트",
     now: "현재",
-    nextDays: "앞으로 3일",
+    nextDays: "앞으로 5일",
     feelsLike: "체감 온도",
     wind: "풍속",
     rainChance: "강수 확률",
+    highLow: "최고 / 최저",
+    sunrise: "일출",
+    sunset: "일몰",
+    precipitation: "현재 강수",
     plannerEyebrow: "스마트 제안",
     plannerTitle: "날씨 기반 여행 제안",
-    plannerCopy: "추가 아이디어로, 날씨를 바로 동선·준비물·추천 루트로 바꾸는 기능을 구현했습니다.",
+    plannerCopy: "오늘 날씨에 맞춰 더 편한 동선, 준비물, 움직이기 좋은 시간대를 먼저 정리해 둡니다.",
     adviceWeather: "오늘 판단",
     adviceCarry: "준비물",
     adviceTiming: "좋은 시간대",
@@ -2248,13 +2264,17 @@ const weatherUiContent = {
     error: "El clima en vivo no está disponible temporalmente.",
     updated: "Actualizado",
     now: "Ahora",
-    nextDays: "Próximos 3 días",
+    nextDays: "Próximos 5 días",
     feelsLike: "Sensación térmica",
     wind: "Viento",
     rainChance: "Prob. de lluvia",
+    highLow: "Máx. / mín.",
+    sunrise: "Amanecer",
+    sunset: "Atardecer",
+    precipitation: "Lluvia ahora",
     plannerEyebrow: "Plan inteligente",
     plannerTitle: "Sugerencias de viaje según el clima",
-    plannerCopy: "Idea extra ya implementada: convertir el clima en consejos prácticos de ritmo, equipaje y ruta.",
+    plannerCopy: "Una nota rápida para hoy, para ajustar el ritmo, lo que conviene llevar y la franja más cómoda para salir.",
     adviceWeather: "Hoy",
     adviceCarry: "Llevar",
     adviceTiming: "Mejor franja",
@@ -2271,13 +2291,17 @@ const weatherUiContent = {
     error: "La météo en direct est temporairement indisponible.",
     updated: "Mis à jour",
     now: "Maintenant",
-    nextDays: "3 prochains jours",
+    nextDays: "5 prochains jours",
     feelsLike: "Ressenti",
     wind: "Vent",
     rainChance: "Risque de pluie",
+    highLow: "Max. / min.",
+    sunrise: "Lever du soleil",
+    sunset: "Coucher du soleil",
+    precipitation: "Pluie actuelle",
     plannerEyebrow: "Plan intelligent",
     plannerTitle: "Suggestions de visite selon la météo",
-    plannerCopy: "Idée supplémentaire désormais en place : transformer la météo en conseils pratiques sur le rythme, le sac et l'itinéraire.",
+    plannerCopy: "Une note rapide pour aujourd'hui, afin d'ajuster le rythme, le sac et le meilleur créneau pour sortir.",
     adviceWeather: "Aujourd'hui",
     adviceCarry: "À prendre",
     adviceTiming: "Meilleur créneau",
@@ -2294,13 +2318,17 @@ const weatherUiContent = {
     error: "بيانات الطقس غير متاحة مؤقتًا.",
     updated: "آخر تحديث",
     now: "الآن",
-    nextDays: "الأيام الثلاثة القادمة",
+    nextDays: "الأيام الخمسة القادمة",
     feelsLike: "المحسوسة",
     wind: "الرياح",
     rainChance: "احتمال المطر",
+    highLow: "العظمى / الصغرى",
+    sunrise: "الشروق",
+    sunset: "الغروب",
+    precipitation: "المطر الآن",
     plannerEyebrow: "تخطيط ذكي",
     plannerTitle: "اقتراحات سفر حسب الطقس",
-    plannerCopy: "تم تنفيذ فكرة إضافية هنا: تحويل الطقس مباشرة إلى نصائح عملية للسرعة والمستلزمات والمسار.",
+    plannerCopy: "ملاحظة سريعة لليوم تساعدك على ضبط الإيقاع وما يلزم حمله واختيار الوقت الأكثر راحة للخروج.",
     adviceWeather: "حكم اليوم",
     adviceCarry: "المقترح حمله",
     adviceTiming: "الوقت الأفضل",
@@ -3609,6 +3637,16 @@ function formatWeatherUpdatedTime(dateString) {
   }).format(new Date(isoString));
 }
 
+function formatWeatherClock(dateTimeString) {
+  if (!dateTimeString) return "";
+  const isoString = `${dateTimeString}:00+08:00`;
+  return new Intl.DateTimeFormat(localeForLanguage(), {
+    timeZone: "Asia/Shanghai",
+    hour: "2-digit",
+    minute: "2-digit"
+  }).format(new Date(isoString));
+}
+
 function mean(values) {
   if (!values.length) return 0;
   return values.reduce((sum, value) => sum + value, 0) / values.length;
@@ -3732,10 +3770,10 @@ async function fetchWeatherForCity(city) {
   );
   url.searchParams.set(
     "daily",
-    "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max"
+    "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset"
   );
   url.searchParams.set("timezone", "auto");
-  url.searchParams.set("forecast_days", "4");
+  url.searchParams.set("forecast_days", "6");
   url.searchParams.set("wind_speed_unit", "kmh");
 
   const response = await fetch(url.toString());
@@ -3759,7 +3797,9 @@ async function fetchWeatherForCity(city) {
       weatherCode: payload?.daily?.weather_code?.[index] ?? 3,
       maxTemp: payload?.daily?.temperature_2m_max?.[index] ?? 0,
       minTemp: payload?.daily?.temperature_2m_min?.[index] ?? 0,
-      rainChance: payload?.daily?.precipitation_probability_max?.[index] ?? 0
+      rainChance: payload?.daily?.precipitation_probability_max?.[index] ?? 0,
+      sunrise: payload?.daily?.sunrise?.[index] || "",
+      sunset: payload?.daily?.sunset?.[index] || ""
     }))
   };
 }
@@ -3820,7 +3860,7 @@ function renderWeatherSection() {
   const weather = entry.data;
   const today = weather.daily[0] || {};
   const planner = buildTravelPlanner(weather);
-  const nextDays = weather.daily.slice(1, 4);
+  const nextDays = weather.daily.slice(1, 6);
   const route = planner.recommendedRoute;
   const routeIsActive = route?.id === state.activeRouteId;
 
@@ -3838,6 +3878,21 @@ function renderWeatherSection() {
       <span class="fact-pill">${weatherText("feelsLike")}: ${Math.round(weather.current.feelsLike)}°C</span>
       <span class="fact-pill">${weatherText("wind")}: ${Math.round(weather.current.windSpeed)} km/h</span>
       <span class="fact-pill">${weatherText("rainChance")}: ${Math.round(today.rainChance || 0)}%</span>
+      <span class="fact-pill">${weatherText("precipitation")}: ${Number(weather.current.precipitation || 0).toFixed(1)} mm</span>
+    </div>
+    <div class="weather-overview-grid">
+      <article class="weather-overview-card">
+        <span>${weatherText("highLow")}</span>
+        <strong>${Math.round(today.maxTemp || 0)}° / ${Math.round(today.minTemp || 0)}°</strong>
+      </article>
+      <article class="weather-overview-card">
+        <span>${weatherText("sunrise")}</span>
+        <strong>${formatWeatherClock(today.sunrise)}</strong>
+      </article>
+      <article class="weather-overview-card">
+        <span>${weatherText("sunset")}</span>
+        <strong>${formatWeatherClock(today.sunset)}</strong>
+      </article>
     </div>
     <div class="forecast-head">
       <h4>${weatherText("nextDays")}</h4>
