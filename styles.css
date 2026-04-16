@@ -758,6 +758,19 @@ a {
   gap: 14px;
 }
 
+.weather-card-tools {
+  display: grid;
+  gap: 10px;
+  justify-items: end;
+}
+
+.weather-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: end;
+}
+
 .weather-kicker {
   margin: 0 0 8px;
   color: var(--blue);
@@ -772,6 +785,15 @@ a {
 .planner-route h4 {
   margin: 0;
   font-family: var(--font-display);
+}
+
+.weather-sync-note {
+  margin: 0;
+  max-width: 260px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.55;
+  text-align: right;
 }
 
 .weather-metrics,
@@ -878,6 +900,16 @@ a {
 
 .weather-route-button {
   margin-top: 14px;
+}
+
+.weather-refresh-button {
+  white-space: nowrap;
+}
+
+.weather-refresh-button[disabled] {
+  cursor: default;
+  opacity: 0.72;
+  box-shadow: none;
 }
 
 .weather-route-button[disabled] {
@@ -1294,5 +1326,17 @@ a {
   .forecast-head {
     flex-direction: column;
     align-items: start;
+  }
+
+  .weather-card-tools,
+  .weather-card-actions {
+    width: 100%;
+    justify-items: start;
+    justify-content: start;
+  }
+
+  .weather-sync-note {
+    max-width: none;
+    text-align: left;
   }
 }
