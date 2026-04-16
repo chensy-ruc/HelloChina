@@ -1833,7 +1833,10 @@ const weatherRuntime = {
 };
 
 const foodForumRuntime = {
-  userReviews: {}
+  userReviews: {},
+  userVenues: {},
+  translationPending: {},
+  translationFailed: {}
 };
 
 const WEATHER_CACHE_TTL_MS = 10 * 60 * 1000;
@@ -2161,7 +2164,7 @@ const foodForumUiContent = {
   en: {
     eyebrow: "Food Forum",
     title: "Diner reviews and neighborhood picks for the active city.",
-    text: "Switch between featured places, read quick crowd notes, and add your own rating, signature dish, and short recommendation.",
+    text: "Switch between featured places, read quick crowd notes, add your own rating, and even create a brand-new place for later visitors.",
     selectVenue: "Featured places",
     topPick: "Top pick right now",
     average: "Average",
@@ -2174,6 +2177,12 @@ const foodForumUiContent = {
     shareTitle: "Add your own food review",
     shareText: "Your note stays in this browser and helps the next viewer compare where to eat.",
     currentVenue: "Current venue",
+    reviewCurrentHint: "Leave the new-place fields empty to review the currently selected venue.",
+    addNewVenue: "Add a new place",
+    venueName: "Place name",
+    venueNamePlaceholder: "Name of the restaurant or snack stop",
+    venueArea: "Area or street",
+    venueAreaPlaceholder: "Neighborhood, street, or nearby landmark",
     reviewer: "Your name",
     reviewerPlaceholder: "Name or nickname",
     rating: "Rating",
@@ -2186,7 +2195,7 @@ const foodForumUiContent = {
   zh: {
     eyebrow: "美食论坛",
     title: "围绕当前城市，查看食客评价与推荐去处。",
-    text: "你可以切换代表性店铺，查看大家的评分与推荐，再补充自己的打分、招牌菜和简短点评。",
+    text: "你可以切换代表性店铺，查看大家的评分与推荐，再补充自己的打分、招牌菜和简短点评；如果想评价一家页面里还没有的店，也可以直接新增。",
     selectVenue: "推荐店铺",
     topPick: "当前最高推荐",
     average: "平均分",
@@ -2199,6 +2208,12 @@ const foodForumUiContent = {
     shareTitle: "写下你的美食评价",
     shareText: "你的留言会保存在当前浏览器里，方便下一位查看这个页面的人快速比较去哪家吃。",
     currentVenue: "当前店铺",
+    reviewCurrentHint: "如果只是点评当前选中的店铺，下面“新增店铺”这几项可以留空。",
+    addNewVenue: "新增店铺",
+    venueName: "店铺名称",
+    venueNamePlaceholder: "餐馆、馆子或小吃摊的名字",
+    venueArea: "所在片区或街道",
+    venueAreaPlaceholder: "例如春熙路、鼓楼、河坊街附近",
     reviewer: "你的称呼",
     reviewerPlaceholder: "名字或昵称",
     rating: "评分",
@@ -2211,7 +2226,7 @@ const foodForumUiContent = {
   ja: {
     eyebrow: "グルメ掲示板",
     title: "選択中の都市に合わせて、食客レビューとおすすめ店を確認できます。",
-    text: "代表的な店を切り替えながら評価とおすすめを見て、自分の点数や推しメニューも残せます。",
+    text: "代表的な店を切り替えながら評価とおすすめを見て、自分の点数や推しメニューを残せます。まだ載っていない店も追加できます。",
     selectVenue: "注目の店",
     topPick: "いま最もおすすめ",
     average: "平均評価",
@@ -2224,6 +2239,12 @@ const foodForumUiContent = {
     shareTitle: "自分の食レビューを書く",
     shareText: "投稿はこのブラウザ内に保存され、次に見る人が店を比較しやすくなります。",
     currentVenue: "現在の店",
+    reviewCurrentHint: "現在の店にレビューするだけなら、新規店入力欄は空欄のままで構いません。",
+    addNewVenue: "新しい店を追加",
+    venueName: "店名",
+    venueNamePlaceholder: "店名や屋台名",
+    venueArea: "エリア・通り",
+    venueAreaPlaceholder: "街区、通り名、近くのランドマークなど",
     reviewer: "名前",
     reviewerPlaceholder: "名前やニックネーム",
     rating: "評価",
@@ -2236,7 +2257,7 @@ const foodForumUiContent = {
   ko: {
     eyebrow: "미식 포럼",
     title: "현재 도시 기준으로 식객 평가와 추천 가게를 볼 수 있습니다.",
-    text: "대표 가게를 바꿔 보며 평점과 추천 메뉴를 확인하고, 직접 점수와 한줄 후기도 남길 수 있습니다.",
+    text: "대표 가게를 바꿔 보며 평점과 추천 메뉴를 확인하고, 직접 점수와 한줄 후기를 남길 수 있습니다. 아직 없는 가게도 새로 추가할 수 있습니다.",
     selectVenue: "추천 가게",
     topPick: "현재 최고 추천",
     average: "평균 평점",
@@ -2249,6 +2270,12 @@ const foodForumUiContent = {
     shareTitle: "직접 음식 후기를 작성하기",
     shareText: "작성한 내용은 이 브라우저에 저장되어 다음 사람이 가게를 비교할 때 참고할 수 있습니다.",
     currentVenue: "현재 가게",
+    reviewCurrentHint: "현재 선택한 가게만 평가할 경우 새 가게 입력칸은 비워 두면 됩니다.",
+    addNewVenue: "새 가게 추가",
+    venueName: "가게 이름",
+    venueNamePlaceholder: "식당이나 노점 이름",
+    venueArea: "지역 또는 거리",
+    venueAreaPlaceholder: "상권, 거리 이름, 가까운 랜드마크",
     reviewer: "이름",
     reviewerPlaceholder: "이름 또는 닉네임",
     rating: "평점",
@@ -2261,7 +2288,7 @@ const foodForumUiContent = {
   es: {
     eyebrow: "Foro gastronómico",
     title: "Reseñas de comensales y lugares recomendados para la ciudad activa.",
-    text: "Cambia entre locales destacados, revisa notas rápidas de otros visitantes y añade tu propia puntuación, plato y comentario.",
+    text: "Cambia entre locales destacados, revisa notas rápidas de otros visitantes y añade tu propia puntuación. Si un local aún no aparece, también puedes crearlo.",
     selectVenue: "Locales destacados",
     topPick: "Mejor valorado ahora",
     average: "Promedio",
@@ -2274,6 +2301,12 @@ const foodForumUiContent = {
     shareTitle: "Añade tu propia opinión",
     shareText: "Tu nota se guarda en este navegador y ayuda a la siguiente persona a comparar dónde comer.",
     currentVenue: "Local actual",
+    reviewCurrentHint: "Si solo quieres valorar el local seleccionado, puedes dejar vacíos los campos de nuevo local.",
+    addNewVenue: "Añadir un local nuevo",
+    venueName: "Nombre del local",
+    venueNamePlaceholder: "Nombre del restaurante o puesto",
+    venueArea: "Zona o calle",
+    venueAreaPlaceholder: "Barrio, calle o referencia cercana",
     reviewer: "Tu nombre",
     reviewerPlaceholder: "Nombre o apodo",
     rating: "Puntuación",
@@ -2286,7 +2319,7 @@ const foodForumUiContent = {
   fr: {
     eyebrow: "Forum gourmand",
     title: "Avis de clients et bonnes adresses pour la ville active.",
-    text: "Changez de lieu, lisez les notes rapides des autres visiteurs, puis ajoutez votre propre note, plat conseillé et commentaire.",
+    text: "Changez de lieu, lisez les notes rapides des autres visiteurs, puis ajoutez votre propre note. Vous pouvez aussi créer une adresse qui n'est pas encore listée.",
     selectVenue: "Adresses mises en avant",
     topPick: "Adresse la mieux notée",
     average: "Moyenne",
@@ -2299,6 +2332,12 @@ const foodForumUiContent = {
     shareTitle: "Ajouter votre propre retour",
     shareText: "Votre message reste dans ce navigateur et aide la prochaine personne à comparer où manger.",
     currentVenue: "Adresse actuelle",
+    reviewCurrentHint: "Si vous notez seulement l'adresse sélectionnée, vous pouvez laisser vides les champs de nouvelle adresse.",
+    addNewVenue: "Ajouter une nouvelle adresse",
+    venueName: "Nom de l'adresse",
+    venueNamePlaceholder: "Nom du restaurant ou du stand",
+    venueArea: "Quartier ou rue",
+    venueAreaPlaceholder: "Quartier, rue ou point de repère proche",
     reviewer: "Votre nom",
     reviewerPlaceholder: "Nom ou pseudo",
     rating: "Note",
@@ -2311,7 +2350,7 @@ const foodForumUiContent = {
   ar: {
     eyebrow: "منتدى الطعام",
     title: "آراء الزوار وترشيحات المطاعم في المدينة الحالية.",
-    text: "يمكنك التنقل بين الأماكن المميزة، وقراءة ملاحظات الزوار، ثم إضافة تقييمك وطبقك المقترح وتعليقك القصير.",
+    text: "يمكنك التنقل بين الأماكن المميزة وقراءة ملاحظات الزوار ثم إضافة تقييمك. وإذا لم تكن الجهة موجودة بعد، يمكنك إنشاء مكان جديد أيضًا.",
     selectVenue: "الأماكن المميزة",
     topPick: "الأعلى ترشيحًا الآن",
     average: "المتوسط",
@@ -2324,6 +2363,12 @@ const foodForumUiContent = {
     shareTitle: "اكتب رأيك عن هذا المكان",
     shareText: "ستبقى ملاحظتك محفوظة في هذا المتصفح لتساعد الزائر التالي على المقارنة بين أماكن الطعام.",
     currentVenue: "المكان الحالي",
+    reviewCurrentHint: "إذا كنت تراجع المكان المحدد فقط، يمكنك ترك حقول المكان الجديد فارغة.",
+    addNewVenue: "إضافة مكان جديد",
+    venueName: "اسم المكان",
+    venueNamePlaceholder: "اسم المطعم أو الكشك",
+    venueArea: "المنطقة أو الشارع",
+    venueAreaPlaceholder: "الحي أو الشارع أو معلم قريب",
     reviewer: "اسمك",
     reviewerPlaceholder: "الاسم أو اللقب",
     rating: "التقييم",
@@ -3356,6 +3401,43 @@ function formatReviewDate(dateString) {
   }).format(parsed);
 }
 
+function languageName(language) {
+  const langNameMap = {
+    zh: "Simplified Chinese",
+    en: "English",
+    ja: "Japanese",
+    ko: "Korean",
+    es: "Spanish",
+    fr: "French",
+    ar: "Arabic"
+  };
+  return langNameMap[language] || "English";
+}
+
+function normalizeLocalizedRecord(value, sourceLanguage = "zh") {
+  if (!value) return { _sourceLanguage: sourceLanguage };
+  if (typeof value === "string") {
+    return { [sourceLanguage]: value.trim(), _sourceLanguage: sourceLanguage };
+  }
+
+  const normalized = { _sourceLanguage: value._sourceLanguage || sourceLanguage };
+  introSupportedLanguages.forEach((language) => {
+    if (!value?.[language]) return;
+    normalized[language] = String(value[language]).trim();
+  });
+  return normalized;
+}
+
+function sourceTextFromRecord(record) {
+  if (!record || typeof record !== "object") return "";
+  const sourceLanguage = record._sourceLanguage || "zh";
+  return record[sourceLanguage] || record.zh || record.en || Object.values(record).find((value) => typeof value === "string") || "";
+}
+
+function foodForumTranslationKey(kind, cityId, itemId, field, language) {
+  return `${language}:${kind}:${cityId}:${itemId}:${field}`;
+}
+
 function normalizeTicketNote(note) {
   return (note || "").replace(/\s+/g, "").trim();
 }
@@ -3529,16 +3611,48 @@ function normalizeFoodForumReviews(rawValue) {
       normalized[cityId][venueId] = reviews
         .map((review) => {
           if (!review || typeof review !== "object") return null;
+          const sourceLanguage = review.sourceLanguage || review.dish?._sourceLanguage || review.comment?._sourceLanguage || "zh";
           return {
             reviewer: String(review.reviewer || "").trim().slice(0, 36),
             rating: Math.max(1, Math.min(5, Number(review.rating) || 0)),
-            dish: String(review.dish || "").trim().slice(0, 60),
-            comment: String(review.comment || "").trim().slice(0, 240),
+            dish: normalizeLocalizedRecord(review.dish, sourceLanguage),
+            comment: normalizeLocalizedRecord(review.comment, sourceLanguage),
+            sourceLanguage,
             createdAt: review.createdAt || new Date().toISOString()
           };
         })
-        .filter((review) => review && review.reviewer && review.comment);
+        .filter((review) => review && review.reviewer && sourceTextFromRecord(review.comment));
     });
+  });
+
+  return normalized;
+}
+
+function normalizeFoodForumVenues(rawValue) {
+  if (!rawValue || typeof rawValue !== "object") return {};
+  const normalized = {};
+
+  Object.entries(rawValue).forEach(([cityId, venues]) => {
+    if (!Array.isArray(venues)) return;
+    normalized[cityId] = venues
+      .map((venue) => {
+        if (!venue || typeof venue !== "object" || !venue.id) return null;
+        const sourceLanguage =
+          venue.sourceLanguage ||
+          venue.names?._sourceLanguage ||
+          venue.area?._sourceLanguage ||
+          venue.specialty?._sourceLanguage ||
+          "zh";
+        return {
+          id: String(venue.id),
+          names: normalizeLocalizedRecord(venue.names, sourceLanguage),
+          area: normalizeLocalizedRecord(venue.area, sourceLanguage),
+          specialty: normalizeLocalizedRecord(venue.specialty, sourceLanguage),
+          sourceLanguage,
+          createdAt: venue.createdAt || new Date().toISOString()
+        };
+      })
+      .filter((venue) => venue && sourceTextFromRecord(venue.names));
   });
 
   return normalized;
@@ -3557,6 +3671,24 @@ function loadFoodForumReviewsFromStorage() {
 function persistFoodForumReviews() {
   try {
     localStorage.setItem(storageKey("foodForumReviews.v1"), JSON.stringify(foodForumRuntime.userReviews));
+  } catch (error) {
+    // Ignore storage errors and keep runtime state in memory.
+  }
+}
+
+function loadFoodForumVenuesFromStorage() {
+  try {
+    const raw = localStorage.getItem(storageKey("foodForumVenues.v1"));
+    if (!raw) return;
+    foodForumRuntime.userVenues = normalizeFoodForumVenues(JSON.parse(raw));
+  } catch (error) {
+    foodForumRuntime.userVenues = {};
+  }
+}
+
+function persistFoodForumVenues() {
+  try {
+    localStorage.setItem(storageKey("foodForumVenues.v1"), JSON.stringify(foodForumRuntime.userVenues));
   } catch (error) {
     // Ignore storage errors and keep runtime state in memory.
   }
@@ -3611,6 +3743,7 @@ function isAiConfigured() {
 
 function translationLanguageName(language) {
   const langNameMap = {
+    zh: "Simplified Chinese",
     en: "English",
     ja: "Japanese",
     ko: "Korean",
@@ -3656,6 +3789,83 @@ async function translateFromZh(zhText, language) {
   } catch (error) {
     return "";
   }
+}
+
+async function translateBetweenLanguages(text, sourceLanguage, targetLanguage) {
+  if (!isAiConfigured() || !text || sourceLanguage === targetLanguage) return "";
+
+  const source = languageName(sourceLanguage);
+  const target = languageName(targetLanguage);
+
+  try {
+    const response = await fetch(aiRuntime.settings.endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${aiRuntime.settings.apiKey}`
+      },
+      body: JSON.stringify({
+        model: aiRuntime.settings.model,
+        temperature: 0.2,
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are a senior travel translator. Translate the source text into the target language accurately and naturally. Keep all facts, place names, tone, and sentence boundaries aligned with the source. Do not summarize or add explanation. Return translation only."
+          },
+          {
+            role: "user",
+            content: `Source language: ${source}\nTarget language: ${target}\n\nSource text:\n${text}`
+          }
+        ]
+      })
+    });
+    if (!response.ok) return "";
+    const payload = await response.json();
+    return (payload?.choices?.[0]?.message?.content || "").trim();
+  } catch (error) {
+    return "";
+  }
+}
+
+function requestFoodForumRecordTranslation(record, options) {
+  const { kind, cityId, itemId, field } = options;
+  if (!record || typeof record !== "object") return;
+  if (record[state.language]) return;
+  if (!isAiConfigured()) return;
+
+  const sourceLanguage = record._sourceLanguage || "zh";
+  const sourceText = sourceTextFromRecord(record);
+  if (!sourceText || sourceLanguage === state.language) return;
+
+  const pendingKey = foodForumTranslationKey(kind, cityId, itemId, field, state.language);
+  if (foodForumRuntime.translationPending[pendingKey] || foodForumRuntime.translationFailed[pendingKey]) return;
+
+  foodForumRuntime.translationPending[pendingKey] = true;
+  translateBetweenLanguages(sourceText, sourceLanguage, state.language)
+    .then((translated) => {
+      if (translated) {
+        record[state.language] = translated;
+        if (kind === "venue") {
+          persistFoodForumVenues();
+        } else {
+          persistFoodForumReviews();
+        }
+      } else {
+        foodForumRuntime.translationFailed[pendingKey] = true;
+      }
+    })
+    .finally(() => {
+      delete foodForumRuntime.translationPending[pendingKey];
+      renderFoodSection();
+    });
+}
+
+function localizeFoodForumRecord(record, options = {}) {
+  if (typeof record === "string") return record;
+  const localized = record?.[state.language] || record?.en || record?.zh || sourceTextFromRecord(record);
+  requestFoodForumRecordTranslation(record, options);
+  return localized || "";
 }
 
 function translationPendingKey(scope, rawKey, language) {
@@ -4980,7 +5190,7 @@ function renderWeatherSection() {
 }
 
 function foodForumVenues(cityId) {
-  return cityFoodForumVenues[cityId] || [];
+  return [...(cityFoodForumVenues[cityId] || []), ...(foodForumRuntime.userVenues[cityId] || [])];
 }
 
 function selectedFoodVenue(city) {
@@ -4996,7 +5206,14 @@ function selectedFoodVenue(city) {
 }
 
 function foodForumReviewComment(review, city, venue) {
-  if (review.comment && !review.template) return review.comment;
+  if (review.comment && !review.template) {
+    return localizeFoodForumRecord(review.comment, {
+      kind: "review",
+      cityId: city.id,
+      itemId: `${venue.id}:${review.createdAt}`,
+      field: "comment"
+    });
+  }
   const templates = foodForumCommentTemplates[state.language] || foodForumCommentTemplates.en;
   const template = templates[review.template] || foodForumCommentTemplates.en[review.template] || "";
   return fillTemplate(template, {
@@ -5042,6 +5259,16 @@ function topFoodVenue(city) {
     })[0] || null;
 }
 
+function createFoodVenueId(name) {
+  const base = String(name || "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 40) || "custom-venue";
+  return `${base}-${Date.now().toString(36)}`;
+}
+
 function renderFoodForum(city) {
   const venues = foodForumVenues(city.id);
   if (!venues.length) {
@@ -5065,7 +5292,7 @@ function renderFoodForum(city) {
           ? `
             <div class="food-forum-top">
               <span class="fact-pill">${foodForumText("topPick")}</span>
-              <strong>${escapeHtml(localize(topPick.venue.names))}</strong>
+              <strong>${escapeHtml(localizeFoodForumRecord(topPick.venue.names, { kind: "venue", cityId: city.id, itemId: topPick.venue.id, field: "names" }))}</strong>
               <small>${foodForumText("average")} ${topPick.average.toFixed(1)} · ${topPick.reviews.length} ${foodForumText("reviews")}</small>
             </div>
           `
@@ -5090,7 +5317,7 @@ function renderFoodForum(city) {
                   : ""
               }"
             >
-              <strong>${escapeHtml(localize(venue.names))}</strong>
+              <strong>${escapeHtml(localizeFoodForumRecord(venue.names, { kind: "venue", cityId: city.id, itemId: venue.id, field: "names" }))}</strong>
               <span>${reviews.length ? `${average.toFixed(1)} · ${reviews.length} ${foodForumText("reviews")}` : foodForumText("empty")}</span>
             </button>
           `;
@@ -5103,7 +5330,7 @@ function renderFoodForum(city) {
           <div class="food-forum-summary-head">
             <div>
               <p class="panel-kicker">${foodForumText("currentVenue")}</p>
-              <h4>${escapeHtml(localize(selectedVenue.names))}</h4>
+              <h4>${escapeHtml(localizeFoodForumRecord(selectedVenue.names, { kind: "venue", cityId: city.id, itemId: selectedVenue.id, field: "names" }))}</h4>
             </div>
             <div class="food-forum-score">
               <strong>${selectedReviews.length ? selectedAverage.toFixed(1) : "0.0"}</strong>
@@ -5111,8 +5338,8 @@ function renderFoodForum(city) {
             </div>
           </div>
           <div class="fact-grid">
-            <span class="fact-pill">${foodForumText("area")}: ${escapeHtml(localize(selectedVenue.area))}</span>
-            <span class="fact-pill">${foodForumText("signature")}: ${escapeHtml(localize(selectedVenue.specialty))}</span>
+            <span class="fact-pill">${foodForumText("area")}: ${escapeHtml(localizeFoodForumRecord(selectedVenue.area, { kind: "venue", cityId: city.id, itemId: selectedVenue.id, field: "area" }))}</span>
+            <span class="fact-pill">${foodForumText("signature")}: ${escapeHtml(localizeFoodForumRecord(selectedVenue.specialty, { kind: "venue", cityId: city.id, itemId: selectedVenue.id, field: "specialty" }))}</span>
             <span class="fact-pill">${selectedReviews.length} ${foodForumText("reviews")}</span>
           </div>
         </article>
@@ -5135,7 +5362,7 @@ function renderFoodForum(city) {
                           </div>
                           <span class="food-review-stars" aria-label="${review.rating} stars">${starsMarkup(review.rating)}</span>
                         </div>
-                        <p class="food-review-dish">${foodForumText("signature")}: ${escapeHtml(localize(review.dish) || review.dish)}</p>
+                        <p class="food-review-dish">${foodForumText("signature")}: ${escapeHtml(localizeFoodForumRecord(review.dish, { kind: "review", cityId: city.id, itemId: `${selectedVenue.id}:${review.createdAt}`, field: "dish" }))}</p>
                         <p class="food-review-comment">${escapeHtml(foodForumReviewComment(review, city, selectedVenue))}</p>
                       </article>
                     `
@@ -5151,6 +5378,18 @@ function renderFoodForum(city) {
         <p>${foodForumText("shareText")}</p>
         <form class="food-review-form" id="food-review-form">
           <input type="hidden" name="venueId" value="${selectedVenue.id}">
+          <div class="food-review-current-note">${foodForumText("reviewCurrentHint")}</div>
+          <div class="food-review-new-venue">
+            <p class="panel-kicker">${foodForumText("addNewVenue")}</p>
+            <label>
+              <span>${foodForumText("venueName")}</span>
+              <input name="venueName" type="text" maxlength="80" placeholder="${escapeHtml(foodForumText("venueNamePlaceholder"))}">
+            </label>
+            <label>
+              <span>${foodForumText("venueArea")}</span>
+              <input name="venueArea" type="text" maxlength="80" placeholder="${escapeHtml(foodForumText("venueAreaPlaceholder"))}">
+            </label>
+          </div>
           <label>
             <span>${foodForumText("reviewer")}</span>
             <input name="reviewer" type="text" maxlength="36" placeholder="${escapeHtml(foodForumText("reviewerPlaceholder"))}" required>
@@ -5481,13 +5720,33 @@ document.addEventListener("submit", (event) => {
   event.preventDefault();
   const city = activeCity();
   const formData = new FormData(form);
-  const venueId = String(formData.get("venueId") || "");
+  let venueId = String(formData.get("venueId") || "");
+  const venueName = String(formData.get("venueName") || "").trim();
+  const venueArea = String(formData.get("venueArea") || "").trim();
   const reviewer = String(formData.get("reviewer") || "").trim();
   const dish = String(formData.get("dish") || "").trim();
   const comment = String(formData.get("comment") || "").trim();
   const rating = Math.max(1, Math.min(5, Number(formData.get("rating")) || 0));
+  const sourceLanguage = state.language;
 
   if (!venueId || !reviewer || !dish || !comment || !rating) return;
+
+  if (venueName) {
+    venueId = createFoodVenueId(venueName);
+    if (!foodForumRuntime.userVenues[city.id]) {
+      foodForumRuntime.userVenues[city.id] = [];
+    }
+
+    foodForumRuntime.userVenues[city.id].unshift({
+      id: venueId,
+      names: normalizeLocalizedRecord(venueName, sourceLanguage),
+      area: normalizeLocalizedRecord(venueArea || localize(city.names), sourceLanguage),
+      specialty: normalizeLocalizedRecord(dish, sourceLanguage),
+      sourceLanguage,
+      createdAt: new Date().toISOString()
+    });
+    persistFoodForumVenues();
+  }
 
   if (!foodForumRuntime.userReviews[city.id]) {
     foodForumRuntime.userReviews[city.id] = {};
@@ -5499,8 +5758,9 @@ document.addEventListener("submit", (event) => {
   foodForumRuntime.userReviews[city.id][venueId].unshift({
     reviewer: reviewer.slice(0, 36),
     rating,
-    dish: dish.slice(0, 60),
-    comment: comment.slice(0, 240),
+    dish: normalizeLocalizedRecord(dish.slice(0, 60), sourceLanguage),
+    comment: normalizeLocalizedRecord(comment.slice(0, 240), sourceLanguage),
+    sourceLanguage,
     createdAt: new Date().toISOString()
   });
 
@@ -5548,6 +5808,7 @@ elements.focusTicketLink.addEventListener("click", (event) => {
 
 async function bootstrap() {
   loadFoodForumReviewsFromStorage();
+  loadFoodForumVenuesFromStorage();
   loadIntroTranslationsFromStorage();
   ensureAiSeedMessage();
   setupChinaMap();
