@@ -1818,6 +1818,7 @@ const state = {
   activeSpotId: null,
   activeImageIndex: 0,
   activeRouteId: "dynamic",
+  activeWeatherDayIndex: 0,
   activeAskSpotId: null,
   aiMessages: [],
   aiBusy: false
@@ -2173,8 +2174,10 @@ const weatherUiContent = {
     precipitation: "Rain now",
     plannerEyebrow: "Smart planner",
     plannerTitle: "Weather-based travel suggestions",
-    plannerCopy: "A quick planning note for today, so you can pace the route, pack lightly, and keep the comfortable time window.",
-    adviceWeather: "Today",
+    plannerCopy: "Pick a day and the page will adjust the rhythm, packing, and route suggestions to match that forecast.",
+    plannerChooseDay: "Choose a day",
+    plannerToday: "Today",
+    adviceWeather: "Day outlook",
     adviceCarry: "Carry",
     adviceTiming: "Best window",
     adviceRoute: "Recommended route",
@@ -2203,8 +2206,10 @@ const weatherUiContent = {
     precipitation: "当前降水",
     plannerEyebrow: "智能建议",
     plannerTitle: "基于天气的出行建议",
-    plannerCopy: "先根据今天的天气，把更舒服的节奏、随身物品和更顺路的玩法整理给你。",
-    adviceWeather: "今日判断",
+    plannerCopy: "选择某一天后，页面会根据那天的天气重新整理节奏、随身物品和更顺路的玩法。",
+    plannerChooseDay: "选择日期",
+    plannerToday: "今天",
+    adviceWeather: "当日判断",
     adviceCarry: "建议携带",
     adviceTiming: "更佳时段",
     adviceRoute: "推荐路线",
@@ -2233,8 +2238,10 @@ const weatherUiContent = {
     precipitation: "現在の降水",
     plannerEyebrow: "スマート提案",
     plannerTitle: "天気に合わせた観光提案",
-    plannerCopy: "今日の天気に合わせて、回り方、持ち物、動きやすい時間帯を先に整理します。",
-    adviceWeather: "今日の判断",
+    plannerCopy: "日付を選ぶと、その日の天気に合わせて回り方、持ち物、動きやすい時間帯を整理します。",
+    plannerChooseDay: "日付を選ぶ",
+    plannerToday: "今日",
+    adviceWeather: "当日の判断",
     adviceCarry: "持ち物",
     adviceTiming: "おすすめ時間帯",
     adviceRoute: "おすすめルート",
@@ -2263,8 +2270,10 @@ const weatherUiContent = {
     precipitation: "현재 강수",
     plannerEyebrow: "스마트 제안",
     plannerTitle: "날씨 기반 여행 제안",
-    plannerCopy: "오늘 날씨에 맞춰 더 편한 동선, 준비물, 움직이기 좋은 시간대를 먼저 정리해 둡니다.",
-    adviceWeather: "오늘 판단",
+    plannerCopy: "날짜를 고르면 그날의 날씨에 맞춰 더 편한 동선, 준비물, 시간대를 다시 정리합니다.",
+    plannerChooseDay: "날짜 선택",
+    plannerToday: "오늘",
+    adviceWeather: "해당 날짜 판단",
     adviceCarry: "준비물",
     adviceTiming: "좋은 시간대",
     adviceRoute: "추천 루트",
@@ -2293,8 +2302,10 @@ const weatherUiContent = {
     precipitation: "Lluvia ahora",
     plannerEyebrow: "Plan inteligente",
     plannerTitle: "Sugerencias de viaje según el clima",
-    plannerCopy: "Una nota rápida para hoy, para ajustar el ritmo, lo que conviene llevar y la franja más cómoda para salir.",
-    adviceWeather: "Hoy",
+    plannerCopy: "Elige un día y la página ajustará el ritmo, lo que conviene llevar y la ruta sugerida según ese pronóstico.",
+    plannerChooseDay: "Elegir día",
+    plannerToday: "Hoy",
+    adviceWeather: "Lectura del día",
     adviceCarry: "Llevar",
     adviceTiming: "Mejor franja",
     adviceRoute: "Ruta recomendada",
@@ -2323,8 +2334,10 @@ const weatherUiContent = {
     precipitation: "Pluie actuelle",
     plannerEyebrow: "Plan intelligent",
     plannerTitle: "Suggestions de visite selon la météo",
-    plannerCopy: "Une note rapide pour aujourd'hui, afin d'ajuster le rythme, le sac et le meilleur créneau pour sortir.",
-    adviceWeather: "Aujourd'hui",
+    plannerCopy: "Choisissez un jour et la page ajustera le rythme, le sac et l'itinéraire conseillé selon cette prévision.",
+    plannerChooseDay: "Choisir un jour",
+    plannerToday: "Aujourd'hui",
+    adviceWeather: "Lecture du jour",
     adviceCarry: "À prendre",
     adviceTiming: "Meilleur créneau",
     adviceRoute: "Itinéraire conseillé",
@@ -2353,8 +2366,10 @@ const weatherUiContent = {
     precipitation: "المطر الآن",
     plannerEyebrow: "تخطيط ذكي",
     plannerTitle: "اقتراحات سفر حسب الطقس",
-    plannerCopy: "ملاحظة سريعة لليوم تساعدك على ضبط الإيقاع وما يلزم حمله واختيار الوقت الأكثر راحة للخروج.",
-    adviceWeather: "حكم اليوم",
+    plannerCopy: "اختر يومًا وستعيد الصفحة ضبط الإيقاع وما يلزم حمله والمسار الأنسب وفق توقعات ذلك اليوم.",
+    plannerChooseDay: "اختر يومًا",
+    plannerToday: "اليوم",
+    adviceWeather: "قراءة هذا اليوم",
     adviceCarry: "المقترح حمله",
     adviceTiming: "الوقت الأفضل",
     adviceRoute: "المسار المقترح",
@@ -2520,6 +2535,268 @@ const travelAdviceText = {
     lateMorning: "من أواخر الصباح إلى بعد الظهر ستكون الفترة الأسهل للحركة.",
     goldenHour: "وقت الغروب مناسب للمشاهد المفتوحة والتصوير.",
     flexible: "الظروف متوازنة نسبيًا، لذلك يمكن إبقاء الجدول مرنًا."
+  }
+};
+
+const cityWeatherStrategyText = {
+  en: {
+    beijing: {
+      rain: "In Beijing, shift palace-axis walks and large park stretches later, and let museum or courtyard stops hold the middle of the route.",
+      hot: "In Beijing, trim the long exposed plaza sections around midday and keep the Forbidden City style walks earlier or later.",
+      cold: "In Beijing, keep the more open north-city and park segments shorter, and rely on denser inner-city stops to warm the pace back up.",
+      wind: "In Beijing, the broad axial spaces and ridgeline viewpoints feel sharper in the wind, so shorten the open-air sections.",
+      clear: "In Beijing, clear weather is worth using on the ceremonial axis and bigger panorama stops, because the city opens up visually."
+    },
+    shanghai: {
+      rain: "In Shanghai, break the Bund and waterfront segments into shorter stops, and let museums, lanes, and café-friendly blocks carry more of the day.",
+      hot: "In Shanghai, humid heat builds quickly along the riverfront, so push the longest waterfront stretches away from the middle of the day.",
+      cold: "In Shanghai, riverside wind can make the day feel cooler than the number suggests, so indoor breaks help keep the route comfortable.",
+      wind: "In Shanghai, the Bund and elevated waterfront views feel noticeably sharper in the wind, so keep those stops brief and timed.",
+      clear: "In Shanghai, clear weather is worth spending on skyline, riverfront, and evening city-light sections because the payoff is visual."
+    },
+    xian: {
+      rain: "In Xi'an, shorten the City Wall and other broad archaeological stretches, and let museums, pagoda interiors, and food streets absorb the wet hours.",
+      hot: "In Xi'an, the wall and open heritage grounds heat up fast, so move the more exposed history segments to the start or end of the day.",
+      cold: "In Xi'an, the open historic grounds feel cooler in the morning, so begin with tighter city stops before opening the route back up.",
+      wind: "In Xi'an, the City Wall and large open squares feel more exposed in the wind, so treat them as shorter highlight stops instead of long walks.",
+      clear: "In Xi'an, clear weather is ideal for longer heritage sightlines, city-wall views, and sunset-oriented historic sections."
+    },
+    chengdu: {
+      rain: "In Chengdu, rain works better with a slower rhythm through alleys, tea-house areas, museums, and park edges rather than a long fully outdoor chain.",
+      hot: "In Chengdu, lean on shaded parks, tea-house districts, and slower indoor-outdoor mixes when the warm hours build in the afternoon.",
+      cold: "In Chengdu, the slower garden-and-alley rhythm still works well, but it helps to keep longer outdoor sitting periods shorter.",
+      wind: "In Chengdu, wind is less about viewpoints and more about comfort in open park edges, so keep the route dense and stop-to-stop.",
+      clear: "In Chengdu, steady weather supports a relaxed walk-heavy day, especially where parks, historic lanes, and culture stops overlap."
+    },
+    hangzhou: {
+      rain: "In Hangzhou, do not force one long West Lake loop in the rain; split the lakeside into shorter sections and pair it with temples, museums, or tea village pauses.",
+      hot: "In Hangzhou, save the longer lakefront and tea-hill walks for earlier or later, because the open waterside and slopes feel stronger at noon.",
+      cold: "In Hangzhou, lakeside humidity can make cooler weather feel heavier, so shorten the long shoreline stretches and keep transitions tight.",
+      wind: "In Hangzhou, the lakefront and hill-edge viewpoints feel more exposed in the wind, so treat them as scenic pauses rather than long stays.",
+      clear: "In Hangzhou, clear weather is worth spending on the lake, tea hills, and sunset-facing viewpoints because the scenery carries the day."
+    }
+  },
+  zh: {
+    beijing: {
+      rain: "在北京，下雨天更适合把中轴线的大段步行和大公园放到后面，把博物馆、院落和室内馆藏段放进中段过渡。",
+      hot: "在北京，正午要缩短大广场和无遮挡路段，把故宫一类的长线步行尽量放到更早或更晚。",
+      cold: "在北京，北城和公园这类更开阔的段落可以缩短一些，先用更密集的城区点位把节奏带起来。",
+      wind: "在北京，宽阔中轴和高处观景位在有风时体感会更强，更适合压缩成短停留而不是久走。",
+      clear: "在北京，天气放晴时很值得把中轴线、城市天际线和开阔观景点保留在主线里，视觉回报会更好。"
+    },
+    shanghai: {
+      rain: "在上海，下雨时不要把外滩和滨江段拉得太长，可以让博物馆、街巷和适合停留的街区承担更多主线内容。",
+      hot: "在上海，湿热天气会让滨江体感更明显，最长的江边步行最好避开中午时段。",
+      cold: "在上海，江边风会让体感比温度更低，适当穿插室内停留会更舒服。",
+      wind: "在上海，外滩和临江高开阔面的风感会比较直接，更适合短停打卡，不适合拉成长距离暴走。",
+      clear: "在上海，晴天更值得把天际线、滨江和夜景段放进主线，因为城市的观景价值会明显放大。"
+    },
+    xian: {
+      rain: "在西安，下雨时城墙和大面积遗址段要收短一些，可以让博物馆、塔类室内段和美食街承担雨天的中间节奏。",
+      hot: "在西安，城墙和开阔遗址在热天升温很快，暴露感强的历史段更适合放在早晚。",
+      cold: "在西安，开阔历史区在早上会更冷，先从更紧凑的城区段开始会更顺。",
+      wind: "在西安，城墙和大广场在有风时会更空更硬，建议改成短停留的亮点，不要走成长段。",
+      clear: "在西安，晴朗天气很适合保留城墙视野、历史街区和偏日落向的古城段，空间感会更完整。"
+    },
+    chengdu: {
+      rain: "在成都，下雨天更适合放慢一点，把街巷、茶馆、公园边缘和博物馆混着走，而不是硬串纯户外长线。",
+      hot: "在成都，热起来以后更适合依赖树荫、公园和茶馆街区，把下午最闷的时段放慢。",
+      cold: "在成都，园林和街巷的慢节奏依旧合适，但久坐和长时间户外停留可以稍微缩短。",
+      wind: "在成都，有风时重点不是观景高点，而是开放公园边缘的停留舒适度，所以路线更适合做得紧凑一点。",
+      clear: "在成都，稳定晴天很适合保留步行感更强的慢游路线，公园、老街和文化点位会串得很顺。"
+    },
+    hangzhou: {
+      rain: "在杭州，下雨时不要硬走一整圈西湖，更适合把湖边拆成几段短停留，再搭配寺院、博物馆或茶村过渡。",
+      hot: "在杭州，湖边和茶山一到中午体感会更重，长距离的湖岸和坡地步行更适合放到早晚。",
+      cold: "在杭州，湖边湿冷会让体感更沉，长湖岸段最好缩短，转场尽量更紧一点。",
+      wind: "在杭州，湖边和山边观景位在有风时更暴露，更适合做成短停拍照点，而不是长时间停留。",
+      clear: "在杭州，晴天很值得把西湖、茶山和偏日落向的观景点保留在主线里，景观本身就能撑起一天。"
+    }
+  },
+  ja: {
+    beijing: {
+      rain: "北京では雨の日は中軸の長い徒歩や大きな公園を後ろに回し、博物館や中庭系の見学を中盤のつなぎに置く方が回りやすいです。",
+      hot: "北京では真昼の大広場や日差しの強い区間を短くし、故宮のような長い徒歩区間は朝夕寄りに置く方が楽です。",
+      cold: "北京では北側の開けた公園や広い区間は少し短くし、密度の高い市街地の見どころで流れを作る方が楽です。",
+      wind: "北京では広い軸線や高所の展望ポイントは風があると体感が強くなるので、長居より短めのハイライト向きです。",
+      clear: "北京では晴天なら中軸、広い眺望、都市の抜け感を主線に残す価値が高いです。"
+    },
+    shanghai: {
+      rain: "上海では雨の日に外灘や川沿いを長く引っぱらず、博物館、路地、休みやすい街区を主線に混ぜる方がまとまります。",
+      hot: "上海では蒸し暑さが川沿いで強く出やすいので、長いウォーターフロント歩きは真昼を避ける方が無難です。",
+      cold: "上海では川風で体感が数字より低くなりやすいので、屋内休憩を挟む方が楽です。",
+      wind: "上海では外灘や川沿いの開けた場所は風がかなり通るので、短い立ち寄り向きで長歩きには寄せすぎない方がよいです。",
+      clear: "上海では晴れならスカイライン、川沿い、夜景区間を主線に入れる価値が高いです。"
+    },
+    xian: {
+      rain: "西安では雨の日は城壁や広い遺跡区間を短くし、博物館、塔の内部、グルメ街で中盤をつなぐ方が回りやすいです。",
+      hot: "西安では城壁や開けた歴史遺構が暑さを受けやすいので、露出の強い区間は朝夕に寄せる方が楽です。",
+      cold: "西安では開けた歴史区画が朝に冷えやすいので、先に密度の高い市街地側から始める方が流れを作りやすいです。",
+      wind: "西安では城壁や大きな広場は風があるとかなり開放的に感じるので、長く歩くより短い見どころとして扱う方が向いています。",
+      clear: "西安では晴天なら城壁の見晴らしや歴史街区、夕景寄りの古都らしい区間をしっかり活かせます。"
+    },
+    chengdu: {
+      rain: "成都では雨の日は少しゆっくりめにして、路地、茶館、公園の縁、博物館を混ぜながら回る方が街に合います。",
+      hot: "成都では暑い時間帯ほど木陰、公園、茶館エリアに寄せると楽で、午後は少しペースを落とす方が合います。",
+      cold: "成都では庭園や路地のゆるい回り方はそのまま合いますが、長時間の屋外滞在は少し短めにすると楽です。",
+      wind: "成都では風の日は高所の眺望よりも公園の開けた縁での体感に響くので、停留間隔を短くした密な回り方が向いています。",
+      clear: "成都では安定した晴天なら歩く比重の高いゆるい街歩きルートが特に活きます。"
+    },
+    hangzhou: {
+      rain: "杭州では雨の日に西湖を一気に一周せず、湖畔を短い区間に分けて寺や博物館、茶村の休みを挟む方がまとまります。",
+      hot: "杭州では湖畔と茶畑の坂は昼に体感が重くなるので、長い歩行は朝夕に寄せる方が楽です。",
+      cold: "杭州では湖辺の湿り気で体感が重くなりやすいので、長い湖畔区間は少し短くして移動を締める方がよいです。",
+      wind: "杭州では湖畔や山際の眺望ポイントは風の日にかなり開くので、長居より短い景観停止向きです。",
+      clear: "杭州では晴天なら西湖、茶畑、夕景方向の眺望を主線に残す価値が高いです。"
+    }
+  },
+  ko: {
+    beijing: {
+      rain: "베이징에서는 비 오는 날 중축선의 긴 도보와 큰 공원 구간을 뒤로 미루고, 박물관과 사합원 계열 구간으로 중간 흐름을 잡는 편이 좋습니다.",
+      hot: "베이징에서는 한낮의 넓은 광장과 직사광선 구간을 줄이고, 자금성처럼 긴 도보는 이른 시간이나 늦은 시간대로 미루는 편이 낫습니다.",
+      cold: "베이징에서는 북쪽의 더 트인 공원 구간을 조금 줄이고, 밀도 높은 도심 포인트로 흐름을 잡는 편이 더 편합니다.",
+      wind: "베이징에서는 넓은 축선과 높은 전망 포인트가 바람에 더 직접 노출되므로 긴 체류보다 짧은 하이라이트 정차에 더 맞습니다.",
+      clear: "베이징에서는 맑은 날 중축선과 넓은 시야 포인트를 메인 일정에 넣을 가치가 큽니다."
+    },
+    shanghai: {
+      rain: "상하이에서는 비 오는 날 와이탄과 강변 구간을 길게 끌지 말고, 박물관과 골목, 쉬기 좋은 거리 블록을 메인 동선에 섞는 편이 좋습니다.",
+      hot: "상하이에서는 습한 더위가 강변에서 더 크게 느껴지므로 가장 긴 강변 도보는 한낮을 피하는 편이 낫습니다.",
+      cold: "상하이에서는 강바람 때문에 체감이 수치보다 더 낮게 느껴질 수 있어 실내 휴식을 섞는 편이 편합니다.",
+      wind: "상하이에서는 와이탄과 강변의 열린 면이 바람을 크게 받아 짧은 포토 스톱으로 두는 편이 좋습니다.",
+      clear: "상하이에서는 맑은 날 스카이라인과 강변, 야경 구간을 메인 일정에 넣을 가치가 큽니다."
+    },
+    xian: {
+      rain: "시안에서는 비 오는 날 성벽과 넓은 유적 구간을 줄이고, 박물관과 탑 내부, 먹거리 거리가 중간 흐름을 맡도록 짜는 편이 좋습니다.",
+      hot: "시안에서는 성벽과 열린 유적지가 빨리 달아오르므로 노출이 큰 역사 구간은 아침이나 저녁으로 미루는 편이 낫습니다.",
+      cold: "시안에서는 열린 역사 지구가 아침에 더 차갑게 느껴져 먼저 밀도 높은 도심 구간부터 시작하는 편이 자연스럽습니다.",
+      wind: "시안에서는 성벽과 큰 광장이 바람을 정면으로 받아 긴 산책보다 짧은 하이라이트 정차에 더 적합합니다.",
+      clear: "시안에서는 맑은 날 성벽 전망과 역사 거리, 석양 쪽 고도 구간을 메인 동선에 살리기 좋습니다."
+    },
+    chengdu: {
+      rain: "청두에서는 비 오는 날 속도를 조금 늦추고 골목, 찻집, 공원 가장자리, 박물관을 섞어 걷는 편이 도시 분위기에 더 맞습니다.",
+      hot: "청두에서는 더운 시간대일수록 나무 그늘, 공원, 찻집 거리 쪽으로 기대는 편이 더 편하고 오후에는 페이스를 늦추는 편이 좋습니다.",
+      cold: "청두에서는 정원과 골목 중심의 느린 동선이 여전히 잘 맞지만, 오래 앉아 있거나 장시간 야외 체류는 조금 줄이는 편이 좋습니다.",
+      wind: "청두에서는 바람이 강한 날도 핵심은 높은 전망보다 열린 공원 가장자리의 체감이라 정차 간격을 짧게 가져가는 편이 좋습니다.",
+      clear: "청두에서는 안정적인 맑은 날에 걷는 비중이 높은 느린 도시 산책 동선이 특히 잘 살아납니다."
+    },
+    hangzhou: {
+      rain: "항저우에서는 비 오는 날 서호를 한 번에 길게 돌지 말고, 호숫가를 짧게 나눠 절, 박물관, 차 마을 휴식과 섞는 편이 좋습니다.",
+      hot: "항저우에서는 호숫가와 차밭 언덕이 한낮에 더 무겁게 느껴지므로 긴 걷기는 아침이나 저녁으로 미루는 편이 낫습니다.",
+      cold: "항저우에서는 호숫가의 습기가 서늘함을 더 크게 느끼게 하므로 긴 호숫가 구간을 줄이고 이동을 더 촘촘하게 묶는 편이 좋습니다.",
+      wind: "항저우에서는 호숫가와 산비탈 전망 포인트가 바람에 더 노출되므로 긴 체류보다 짧은 경관 정차에 더 적합합니다.",
+      clear: "항저우에서는 맑은 날 서호와 차밭 언덕, 석양 방향 전망을 메인 동선에 넣을 가치가 큽니다."
+    }
+  },
+  es: {
+    beijing: {
+      rain: "En Pekín, con lluvia conviene dejar para más tarde los paseos largos por el eje imperial y los grandes parques, y usar museos y patios como transición central.",
+      hot: "En Pekín, al mediodía conviene recortar las plazas abiertas y los tramos sin sombra, y mover los paseos largos tipo Ciudad Prohibida a primera o última hora.",
+      cold: "En Pekín, los parques más abiertos y los sectores del norte se sienten más fríos, así que ayuda apoyarse más en paradas urbanas densas.",
+      wind: "En Pekín, los ejes abiertos y los miradores altos se sienten más duros con viento, así que funcionan mejor como paradas cortas.",
+      clear: "En Pekín, el cielo claro merece reservarse para el eje principal, las vistas amplias y los puntos panorámicos."
+    },
+    shanghai: {
+      rain: "En Shanghái, con lluvia es mejor no alargar demasiado el Bund ni la ribera, y dejar que museos, callejones y barrios donde apetece quedarse sostengan más la ruta.",
+      hot: "En Shanghái, el calor húmedo se nota más junto al río, así que los tramos largos por la ribera conviene alejarlos del mediodía.",
+      cold: "En Shanghái, el viento del río puede hacer que la sensación sea más fría que la temperatura, así que ayudan las pausas interiores.",
+      wind: "En Shanghái, el Bund y las zonas abiertas junto al río reciben el viento de frente, así que conviene tratarlas como paradas breves.",
+      clear: "En Shanghái, con tiempo despejado vale la pena dar más peso al skyline, al frente fluvial y a los tramos nocturnos."
+    },
+    xian: {
+      rain: "En Xi'an, con lluvia conviene acortar la Muralla y los grandes recintos arqueológicos, y dejar que museos, pagodas interiores y calles gastronómicas absorban las horas húmedas.",
+      hot: "En Xi'an, la Muralla y los recintos históricos abiertos se recalientan rápido, así que los tramos más expuestos funcionan mejor al inicio o al final del día.",
+      cold: "En Xi'an, los espacios históricos abiertos se sienten más fríos por la mañana, así que ayuda empezar por un tejido urbano más compacto.",
+      wind: "En Xi'an, la Muralla y las grandes plazas quedan muy expuestas al viento, así que encajan mejor como paradas cortas que como paseos largos.",
+      clear: "En Xi'an, el tiempo despejado luce especialmente bien en las vistas de la Muralla, el casco histórico y los tramos de atardecer."
+    },
+    chengdu: {
+      rain: "En Chengdu, la lluvia funciona mejor con un ritmo más lento entre callejones, casas de té, bordes de parque y museos, no con una cadena larga totalmente exterior.",
+      hot: "En Chengdu, cuando sube el calor conviene apoyarse más en parques sombreados, zonas de casas de té y mezclas interior-exterior de ritmo lento.",
+      cold: "En Chengdu, el ritmo pausado de jardines y callejones sigue funcionando, pero conviene acortar las estancias largas al aire libre.",
+      wind: "En Chengdu, el viento afecta más a la comodidad en los bordes abiertos de parque que a los miradores, así que conviene un trazado más compacto.",
+      clear: "En Chengdu, un día estable favorece mucho una ruta relajada y caminable entre parques, barrios antiguos y paradas culturales."
+    },
+    hangzhou: {
+      rain: "En Hangzhou, con lluvia no conviene forzar una vuelta completa larga al Lago del Oeste; es mejor dividir la orilla en tramos cortos y sumarlos con templos, museos o pausas en aldeas de té.",
+      hot: "En Hangzhou, la orilla del lago y las colinas de té se sienten más pesadas al mediodía, así que las caminatas largas funcionan mejor temprano o al atardecer.",
+      cold: "En Hangzhou, la humedad junto al lago hace que el fresco pese más, así que conviene acortar los tramos largos por la orilla.",
+      wind: "En Hangzhou, la ribera del lago y los miradores de ladera quedan más expuestos con viento, así que funcionan mejor como pausas escénicas breves.",
+      clear: "En Hangzhou, el tiempo claro merece dedicarse al lago, a las colinas de té y a los miradores orientados al atardecer."
+    }
+  },
+  fr: {
+    beijing: {
+      rain: "À Pékin, sous la pluie, mieux vaut repousser les longues marches sur l'axe impérial et les grands parcs, et laisser musées et cours intérieures porter le milieu de journée.",
+      hot: "À Pékin, il vaut mieux raccourcir les grandes places et les sections sans ombre à midi, puis garder les longues marches type Cité interdite pour plus tôt ou plus tard.",
+      cold: "À Pékin, les parcs les plus ouverts et les secteurs du nord se ressentent davantage dans le froid, donc les séquences urbaines plus denses aident à garder le rythme.",
+      wind: "À Pékin, les grands axes ouverts et les points hauts prennent plus le vent, donc ils passent mieux en arrêts courts qu'en longues séquences.",
+      clear: "À Pékin, un ciel dégagé mérite d'être utilisé sur l'axe principal, les vues larges et les points panoramiques."
+    },
+    shanghai: {
+      rain: "À Shanghai, sous la pluie, évitez d'étirer le Bund et les berges ; mieux vaut laisser musées, ruelles et quartiers où l'on se pose porter davantage la journée.",
+      hot: "À Shanghai, la chaleur humide monte plus vite au bord du fleuve, donc les longues marches sur les berges passent mieux hors du milieu de journée.",
+      cold: "À Shanghai, le vent du fleuve peut rendre la sensation plus froide que le chiffre, donc les pauses en intérieur aident vraiment.",
+      wind: "À Shanghai, le Bund et les fronts d'eau ouverts prennent le vent de face, donc ils fonctionnent mieux en arrêts brefs qu'en longues marches.",
+      clear: "À Shanghai, un temps clair mérite de donner plus de place à la skyline, aux berges et aux séquences nocturnes."
+    },
+    xian: {
+      rain: "À Xi'an, sous la pluie, il vaut mieux raccourcir les passages sur les remparts et les grands sites archéologiques, puis laisser musées, pagodes intérieures et rues gourmandes tenir le milieu de parcours.",
+      hot: "À Xi'an, les remparts et les grands sites historiques ouverts chauffent vite, donc les sections les plus exposées passent mieux tôt ou tard.",
+      cold: "À Xi'an, les grands espaces historiques sont plus durs le matin, donc commencer par des séquences urbaines plus serrées est souvent plus confortable.",
+      wind: "À Xi'an, les remparts et les grandes places deviennent très exposés avec le vent, donc mieux vaut en faire des temps forts courts.",
+      clear: "À Xi'an, un ciel dégagé valorise vraiment les vues depuis les remparts, les quartiers historiques et les passages de coucher du soleil."
+    },
+    chengdu: {
+      rain: "À Chengdu, la pluie se prête mieux à un rythme plus lent entre ruelles, maisons de thé, bords de parc et musées qu'à une longue chaîne entièrement extérieure.",
+      hot: "À Chengdu, quand la chaleur monte, mieux vaut s'appuyer davantage sur les parcs ombragés, les quartiers de maisons de thé et les séquences plus lentes.",
+      cold: "À Chengdu, le rythme calme des jardins et ruelles reste pertinent, mais il vaut mieux raccourcir les longues stations assises dehors.",
+      wind: "À Chengdu, le vent joue surtout sur le confort dans les bords de parc ouverts plutôt que sur les points de vue, donc un tracé plus compact fonctionne mieux.",
+      clear: "À Chengdu, un temps stable convient très bien à une journée plus douce et très marchée entre parcs, vieilles rues et culture."
+    },
+    hangzhou: {
+      rain: "À Hangzhou, sous la pluie, il ne faut pas forcer une longue boucle complète du lac de l'Ouest ; mieux vaut découper les berges en courtes séquences et les associer à des temples, musées ou pauses dans les villages de thé.",
+      hot: "À Hangzhou, les berges du lac et les collines de thé deviennent plus lourdes à midi, donc les longues marches passent mieux tôt ou tard.",
+      cold: "À Hangzhou, l'humidité du lac rend la fraîcheur plus pesante, donc mieux vaut raccourcir les longues portions en bord d'eau.",
+      wind: "À Hangzhou, les points de vue au bord du lac et en lisière de colline sont plus exposés avec le vent, donc ils fonctionnent mieux en pauses courtes.",
+      clear: "À Hangzhou, un temps clair mérite d'être consacré au lac, aux collines de thé et aux points de vue tournés vers le coucher du soleil."
+    }
+  },
+  ar: {
+    beijing: {
+      rain: "في بكين، مع المطر من الأفضل تأجيل المقاطع الطويلة على المحور الرئيسي والحدائق الكبيرة، وترك المتاحف والساحات الداخلية تمسك بوسط اليوم.",
+      hot: "في بكين، من الأفضل تقصير الساحات الكبيرة والمقاطع المكشوفة وقت الظهيرة، وتأجيل المشي الطويل مثل مسار المدينة المحرمة إلى وقت أبكر أو متأخر.",
+      cold: "في بكين، تبدو الحدائق المفتوحة والمناطق الشمالية أبرد في الإحساس، لذلك تساعد المحطات الحضرية الأكثر كثافة على إبقاء الإيقاع مريحًا.",
+      wind: "في بكين، تتعرض المحاور المفتوحة ونقاط المشاهدة المرتفعة للرياح بشكل أوضح، لذلك تناسبها التوقفات القصيرة أكثر من المشي الطويل.",
+      clear: "في بكين، يستحق الطقس الصحو أن يخصص للمحور الرئيسي والمشاهد الواسعة ونقاط الإطلالة."
+    },
+    shanghai: {
+      rain: "في شنغهاي، مع المطر من الأفضل عدم إطالة مسار البوند والواجهة النهرية، وترك المتاحف والأزقة والأحياء المناسبة للتوقف تحمل جزءًا أكبر من اليوم.",
+      hot: "في شنغهاي، تزداد حدة الحر الرطب قرب النهر، لذلك من الأفضل إبعاد أطول مقاطع الواجهة النهرية عن وقت الظهيرة.",
+      cold: "في شنغهاي، قد تجعل رياح النهر الإحساس أبرد من الرقم نفسه، لذلك تساعد فترات الراحة الداخلية كثيرًا.",
+      wind: "في شنغهاي، تكون الواجهات المفتوحة عند البوند وعلى النهر أكثر تعرضًا للرياح، لذلك تناسبها التوقفات القصيرة أكثر من المشي الطويل.",
+      clear: "في شنغهاي، يستحق الطقس الصحو إعطاء مساحة أكبر للأفق العمراني والواجهة النهرية والمقاطع الليلية."
+    },
+    xian: {
+      rain: "في شيآن، مع المطر من الأفضل تقصير مقاطع السور والمواقع الأثرية المفتوحة، وترك المتاحف والباجودات الداخلية وشوارع الطعام تغطي الساعات الرطبة.",
+      hot: "في شيآن، يسخن السور والمواقع التاريخية المفتوحة بسرعة، لذلك تكون المقاطع الأكثر تعرضًا أفضل في أول اليوم أو آخره.",
+      cold: "في شيآن، تبدو المساحات التاريخية المفتوحة أبرد صباحًا، لذلك من الأفضل البدء بمقاطع حضرية أكثر تماسكًا.",
+      wind: "في شيآن، يصبح السور والساحات الكبيرة أكثر تعرضًا مع الرياح، لذلك يناسبهما التوقف القصير أكثر من المشي الطويل.",
+      clear: "في شيآن، يبرز الطقس الصحو مشاهد السور والأحياء التاريخية ومقاطع الغروب بشكل أفضل."
+    },
+    chengdu: {
+      rain: "في تشنغدو، يناسب المطر إيقاعًا أبطأ بين الأزقة وبيوت الشاي وحواف الحدائق والمتاحف أكثر من سلسلة طويلة مكشوفة بالكامل.",
+      hot: "في تشنغدو، عندما يشتد الحر يكون الاعتماد على الحدائق المظللة وأحياء بيوت الشاي والمسارات الأبطأ أكثر راحة.",
+      cold: "في تشنغدو، يظل إيقاع الحدائق والأزقة الهادئ مناسبًا، لكن من الأفضل تقصير الجلوس الطويل في الخارج.",
+      wind: "في تشنغدو، يتعلق تأثير الرياح أكثر براحة التوقف في حواف الحدائق المفتوحة لا بنقاط المشاهدة المرتفعة، لذلك يعمل المسار الأكثر تماسكًا بشكل أفضل.",
+      clear: "في تشنغدو، يدعم الطقس المستقر يومًا مريحًا يعتمد أكثر على المشي بين الحدائق والأحياء القديمة والثقافة."
+    },
+    hangzhou: {
+      rain: "في هانغتشو، مع المطر لا ينبغي فرض جولة طويلة كاملة حول بحيرة الغرب؛ من الأفضل تقسيم الواجهة المائية إلى مقاطع أقصر وضمها إلى المعابد والمتاحف أو استراحات قرى الشاي.",
+      hot: "في هانغتشو، تصبح واجهة البحيرة وتلال الشاي أثقل إحساسًا عند الظهيرة، لذلك تناسبها المشيات الطويلة في وقت أبكر أو متأخر.",
+      cold: "في هانغتشو، تجعل رطوبة البحيرة الإحساس بالبرودة أثقل، لذلك من الأفضل تقصير المقاطع الطويلة بمحاذاة الماء.",
+      wind: "في هانغتشو، تكون نقاط المشاهدة على البحيرة وحواف التلال أكثر تعرضًا مع الرياح، لذلك تناسبها التوقفات القصيرة.",
+      clear: "في هانغتشو، يستحق الطقس الصحو أن يخصص للبحيرة وتلال الشاي ونقاط الإطلالة المتجهة نحو الغروب."
+    }
   }
 };
 
@@ -3705,23 +3982,78 @@ function mean(values) {
   return values.reduce((sum, value) => sum + value, 0) / values.length;
 }
 
-function currentWeatherFlags(weather) {
-  const today = weather.daily[0] || {};
-  const conditionKey = weatherConditionKey(weather.current.weatherCode);
+function availablePlannerDays(weather) {
+  return weather.daily.slice(0, 6);
+}
+
+function clampWeatherDayIndex(weather) {
+  const plannerDays = availablePlannerDays(weather);
+  const maxIndex = Math.max(0, plannerDays.length - 1);
+  const safeIndex = Math.min(Math.max(0, state.activeWeatherDayIndex || 0), maxIndex);
+  if (safeIndex !== state.activeWeatherDayIndex) {
+    state.activeWeatherDayIndex = safeIndex;
+  }
+  return safeIndex;
+}
+
+function plannerDayLabel(day, index) {
+  if (index === 0) return weatherText("plannerToday");
+  return formatWeatherDay(day.date);
+}
+
+function cityWeatherStrategyKey(flags) {
+  if (flags.stormy || flags.rainy) return "rain";
+  if (flags.hot) return "hot";
+  if (flags.cold) return "cold";
+  if (flags.windy) return "wind";
+  if (flags.clear) return "clear";
+  return "";
+}
+
+function cityWeatherStrategyLine(cityId, flags) {
+  const key = cityWeatherStrategyKey(flags);
+  if (!key) return "";
+  return cityWeatherStrategyText[state.language]?.[cityId]?.[key] || cityWeatherStrategyText.en?.[cityId]?.[key] || "";
+}
+
+function currentWeatherFlags(weather, dayIndex = 0) {
+  const plannerDays = availablePlannerDays(weather);
+  const activeDay = plannerDays[dayIndex] || plannerDays[0] || {};
+  const useCurrent = dayIndex === 0;
+  const conditionCode = useCurrent ? weather.current.weatherCode : activeDay.weatherCode;
+  const conditionKey = weatherConditionKey(conditionCode);
+  const baselineTemp = useCurrent ? weather.current.temperature || 0 : mean([activeDay.maxTemp || 0, activeDay.minTemp || 0]);
+  const feelsLike = useCurrent ? weather.current.feelsLike || baselineTemp : activeDay.maxTemp || baselineTemp;
+  const windSpeed = useCurrent ? weather.current.windSpeed || 0 : activeDay.windSpeed || 0;
+  const precipitation = useCurrent ? weather.current.precipitation || 0 : 0;
   const rainy =
     ["drizzle", "rain", "storm", "snow"].includes(conditionKey) ||
-    (today.rainChance || 0) >= 55 ||
-    (weather.current.precipitation || 0) > 0;
-  const hot = Math.max(today.maxTemp || -100, weather.current.feelsLike || -100) >= 31;
-  const cold = Math.min(today.minTemp || 100, weather.current.temperature || 100) <= 9;
-  const windy = (weather.current.windSpeed || 0) >= 24;
+    (activeDay.rainChance || 0) >= 55 ||
+    precipitation > 0;
+  const hot = Math.max(activeDay.maxTemp || -100, feelsLike || -100) >= 31;
+  const cold = Math.min(activeDay.minTemp || 100, baselineTemp || 100) <= 9;
+  const windy = windSpeed >= 24;
   const clear = ["clear", "partly"].includes(conditionKey);
-  const night = weather.current.isDay === 0;
+  const night = useCurrent ? weather.current.isDay === 0 : false;
   const stormy = conditionKey === "storm";
-  const tempSwing = Math.abs((today.maxTemp || 0) - (today.minTemp || 0)) >= 10;
-  const mild = !rainy && !hot && !cold && !windy && (today.maxTemp || 0) >= 18 && (today.maxTemp || 0) <= 28;
+  const tempSwing = Math.abs((activeDay.maxTemp || 0) - (activeDay.minTemp || 0)) >= 10;
+  const mild = !rainy && !hot && !cold && !windy && (activeDay.maxTemp || 0) >= 18 && (activeDay.maxTemp || 0) <= 28;
 
-  return { today, conditionKey, rainy, hot, cold, windy, clear, night, stormy, tempSwing, mild };
+  return {
+    today: activeDay,
+    conditionKey,
+    rainy,
+    hot,
+    cold,
+    windy,
+    clear,
+    night,
+    stormy,
+    tempSwing,
+    mild,
+    windSpeed,
+    dayIndex
+  };
 }
 
 function averageRouteExposure(route) {
@@ -3740,8 +4072,8 @@ function combineAdviceLines(lines, limit = 2) {
   return uniqueAdviceLines(lines).slice(0, limit).join(" ");
 }
 
-function recommendRouteForWeather(routes, weather) {
-  const flags = currentWeatherFlags(weather);
+function recommendRouteForWeather(routes, weather, dayIndex = 0) {
+  const flags = currentWeatherFlags(weather, dayIndex);
 
   return routes
     .filter((route) => route.spots.length)
@@ -3779,11 +4111,12 @@ function recommendRouteForWeather(routes, weather) {
     .sort((left, right) => right.score - left.score)[0]?.route || null;
 }
 
-function buildTravelPlanner(weather) {
-  const flags = currentWeatherFlags(weather);
+function buildTravelPlanner(weather, city, dayIndex = 0) {
+  const flags = currentWeatherFlags(weather, dayIndex);
   const advice = travelAdviceText[state.language] || travelAdviceText.en;
   const routes = activeRoutes();
-  const recommendedRoute = recommendRouteForWeather(routes, weather);
+  const recommendedRoute = recommendRouteForWeather(routes, weather, dayIndex);
+  const cityStrategyLine = cityWeatherStrategyLine(city.id, flags);
   const weatherNotes = [];
   const carryNotes = [];
   const timingNotes = [];
@@ -3846,7 +4179,7 @@ function buildTravelPlanner(weather) {
     timingNotes.push(advice.flexible);
   }
 
-  const weatherLine = combineAdviceLines(weatherNotes, 2);
+  const weatherLine = combineAdviceLines([cityStrategyLine, ...weatherNotes], 2);
   const carryLine = combineAdviceLines(carryNotes, 2);
   const timingLine = combineAdviceLines(timingNotes, 2);
 
@@ -3869,7 +4202,7 @@ async function fetchWeatherForCity(city) {
   );
   url.searchParams.set(
     "daily",
-    "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset"
+    "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset,wind_speed_10m_max"
   );
   url.searchParams.set("timezone", "auto");
   url.searchParams.set("forecast_days", "6");
@@ -3897,6 +4230,7 @@ async function fetchWeatherForCity(city) {
       maxTemp: payload?.daily?.temperature_2m_max?.[index] ?? 0,
       minTemp: payload?.daily?.temperature_2m_min?.[index] ?? 0,
       rainChance: payload?.daily?.precipitation_probability_max?.[index] ?? 0,
+      windSpeed: payload?.daily?.wind_speed_10m_max?.[index] ?? 0,
       sunrise: payload?.daily?.sunrise?.[index] || "",
       sunset: payload?.daily?.sunset?.[index] || ""
     }))
@@ -3994,8 +4328,11 @@ function renderWeatherSection() {
 
   const weather = entry.data;
   const today = weather.daily[0] || {};
-  const planner = buildTravelPlanner(weather);
+  const plannerDays = availablePlannerDays(weather);
+  const activeWeatherDayIndex = clampWeatherDayIndex(weather);
+  const planner = buildTravelPlanner(weather, city, activeWeatherDayIndex);
   const nextDays = weather.daily.slice(1, 6);
+  const activePlannerDay = plannerDays[activeWeatherDayIndex] || plannerDays[0] || today;
   const route = planner.recommendedRoute;
   const routeIsActive = route?.id === state.activeRouteId;
 
@@ -4070,6 +4407,34 @@ function renderWeatherSection() {
       </div>
     </div>
     <p class="planner-copy">${weatherText("plannerCopy")}</p>
+    <div class="planner-day-meta">
+      <span class="fact-pill">${weatherText("plannerChooseDay")}</span>
+      <span class="mini-pill" style="background:${city.soft};color:${city.accent};">
+        ${plannerDayLabel(activePlannerDay, activeWeatherDayIndex)} · ${weatherConditionLabel(activePlannerDay.weatherCode)} · ${Math.round(activePlannerDay.maxTemp || 0)}° / ${Math.round(activePlannerDay.minTemp || 0)}°
+      </span>
+    </div>
+    <div class="planner-day-switcher">
+      ${plannerDays
+        .map(
+          (day, index) => `
+            <button
+              class="planner-day-button ${index === activeWeatherDayIndex ? "is-active" : ""}"
+              type="button"
+              data-weather-day="${index}"
+              style="${
+                index === activeWeatherDayIndex
+                  ? `background:${city.soft};color:${city.accent};border-color:${hexToRgba(city.accent, 0.24)};`
+                  : ""
+              }"
+            >
+              <strong>${plannerDayLabel(day, index)}</strong>
+              <span>${weatherConditionLabel(day.weatherCode)}</span>
+              <small>${Math.round(day.maxTemp || 0)}° / ${Math.round(day.minTemp || 0)}°</small>
+            </button>
+          `
+        )
+        .join("")}
+    </div>
     <div class="planner-grid">
       <article class="planner-note">
         <span class="fact-pill">${weatherText("adviceWeather")}</span>
@@ -4247,6 +4612,7 @@ function focusCity(cityId, options = {}) {
   state.activeAskSpotId = city.spots[0].id;
   state.activeImageIndex = 0;
   state.activeRouteId = "dynamic";
+  state.activeWeatherDayIndex = 0;
   renderAll();
 
   if (options.scroll) {
@@ -4329,6 +4695,7 @@ document.addEventListener("click", (event) => {
   const thumbButton = event.target.closest("[data-image-index]");
   const routeButton = event.target.closest("[data-route]");
   const weatherRefreshButton = event.target.closest("[data-weather-refresh]");
+  const weatherDayButton = event.target.closest("[data-weather-day]");
 
   if (langButton) {
     state.language = langButton.dataset.lang;
@@ -4370,6 +4737,12 @@ document.addEventListener("click", (event) => {
     renderRoutes();
     renderWeatherSection();
     renderCityMap();
+    return;
+  }
+
+  if (weatherDayButton) {
+    state.activeWeatherDayIndex = Number(weatherDayButton.dataset.weatherDay);
+    renderWeatherSection();
     return;
   }
 

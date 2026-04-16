@@ -886,6 +886,48 @@ a {
   margin-top: 12px;
 }
 
+.planner-day-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.planner-day-switcher {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.planner-day-button {
+  padding: 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(66, 133, 244, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  text-align: left;
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+}
+
+.planner-day-button strong,
+.planner-day-button span,
+.planner-day-button small {
+  display: block;
+}
+
+.planner-day-button span,
+.planner-day-button small {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.planner-day-button.is-active {
+  box-shadow: 0 10px 24px rgba(66, 133, 244, 0.12);
+}
+
 .planner-route {
   margin-top: 16px;
   padding: 18px;
@@ -922,6 +964,11 @@ a {
   display: grid;
   place-items: center;
   text-align: center;
+}
+
+.planner-day-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(66, 133, 244, 0.1);
 }
 
 .spot-card {
@@ -1338,5 +1385,15 @@ a {
   .weather-sync-note {
     max-width: none;
     text-align: left;
+  }
+
+  .planner-day-switcher {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .planner-day-switcher {
+    grid-template-columns: 1fr;
   }
 }
