@@ -1064,6 +1064,170 @@ a {
   margin-bottom: 10px;
 }
 
+.food-forum {
+  margin-top: 18px;
+  padding: 22px;
+  border-radius: 30px;
+  border: 1px solid rgba(66, 133, 244, 0.12);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: var(--shadow);
+}
+
+.food-forum-head,
+.food-forum-summary-head,
+.food-review-meta {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.food-forum-head h3,
+.food-forum-form-card h4,
+.food-forum-summary h4 {
+  margin: 0;
+  font-family: var(--font-display);
+}
+
+.food-forum-top {
+  display: grid;
+  gap: 6px;
+  justify-items: end;
+  text-align: right;
+}
+
+.food-forum-top small,
+.food-forum-form-card p,
+.food-review-meta span,
+.food-review-comment,
+.food-review-dish {
+  color: var(--muted);
+}
+
+.food-forum-chip-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.food-venue-button {
+  padding: 14px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(66, 133, 244, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+}
+
+.food-venue-button strong,
+.food-venue-button span {
+  display: block;
+}
+
+.food-venue-button span {
+  margin-top: 6px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.food-forum-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.food-forum-main {
+  display: grid;
+  gap: 14px;
+}
+
+.food-forum-summary,
+.food-forum-form-card,
+.food-review-card {
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(66, 133, 244, 0.08);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.food-forum-score {
+  display: grid;
+  gap: 4px;
+  justify-items: end;
+}
+
+.food-forum-score strong {
+  font-size: 1.5rem;
+  font-family: var(--font-display);
+}
+
+.food-review-list {
+  display: grid;
+  gap: 12px;
+}
+
+.food-review-meta strong {
+  display: block;
+}
+
+.food-review-stars {
+  color: #f29900;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.food-review-dish,
+.food-review-comment {
+  margin: 10px 0 0;
+  line-height: 1.68;
+}
+
+.food-review-empty {
+  min-height: 160px;
+}
+
+.food-review-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.food-review-form label {
+  display: grid;
+  gap: 8px;
+}
+
+.food-review-form label span {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.food-review-form input,
+.food-review-form select,
+.food-review-form textarea {
+  width: 100%;
+  border: 1px solid rgba(66, 133, 244, 0.14);
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--text);
+  font: inherit;
+  resize: vertical;
+}
+
+.food-review-submit {
+  width: 100%;
+}
+
+.food-venue-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(66, 133, 244, 0.1);
+}
+
 .ai-card {
   padding: 20px;
   border-radius: 30px;
@@ -1299,7 +1463,8 @@ a {
   .workspace-grid,
   .weather-grid,
   .spot-grid,
-  .food-grid {
+  .food-grid,
+  .food-forum-layout {
     grid-template-columns: 1fr;
   }
 
@@ -1368,6 +1533,9 @@ a {
   .spot-card-head,
   .panel-headline,
   .map-card-head,
+  .food-forum-head,
+  .food-forum-summary-head,
+  .food-review-meta,
   .weather-card-head,
   .planner-card-head,
   .forecast-head {
@@ -1390,9 +1558,14 @@ a {
   .planner-day-switcher {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .food-forum-chip-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
+  .food-forum-chip-row,
   .planner-day-switcher {
     grid-template-columns: 1fr;
   }

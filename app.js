@@ -1819,6 +1819,7 @@ const state = {
   activeImageIndex: 0,
   activeRouteId: "dynamic",
   activeWeatherDayIndex: 0,
+  activeFoodVenueId: null,
   activeAskSpotId: null,
   aiMessages: [],
   aiBusy: false
@@ -1829,6 +1830,10 @@ const weatherRuntime = {
   pending: {},
   errors: {},
   timerId: null
+};
+
+const foodForumRuntime = {
+  userReviews: {}
 };
 
 const WEATHER_CACHE_TTL_MS = 10 * 60 * 1000;
@@ -1877,6 +1882,7 @@ const elements = {
   weatherCard: document.querySelector("#weather-card"),
   plannerCard: document.querySelector("#planner-card"),
   foodGrid: document.querySelector("#food-grid"),
+  foodForum: document.querySelector("#food-forum"),
   aiContextLine: document.querySelector("#ai-context-line"),
   aiMessages: document.querySelector("#ai-messages"),
   aiInput: document.querySelector("#ai-input"),
@@ -2148,6 +2154,433 @@ const foodLineTranslations = {
     es: "Paseo nocturno relajado por Hefang Street y Southern Song Imperial Street",
     fr: "Balade nocturne détendue entre Hefang Street et la rue impériale des Song du Sud",
     ar: "جولة ليلية خفيفة في شارع هيفانغ والشارع الإمبراطوري لأسرة سونغ الجنوبية"
+  }
+};
+
+const foodForumUiContent = {
+  en: {
+    eyebrow: "Food Forum",
+    title: "Diner reviews and neighborhood picks for the active city.",
+    text: "Switch between featured places, read quick crowd notes, and add your own rating, signature dish, and short recommendation.",
+    selectVenue: "Featured places",
+    topPick: "Top pick right now",
+    average: "Average",
+    reviews: "reviews",
+    signature: "Signature order",
+    area: "Area",
+    recent: "Recent diner notes",
+    empty: "No reviews yet for this place. Be the first one to leave a note.",
+    shareKicker: "Share your pick",
+    shareTitle: "Add your own food review",
+    shareText: "Your note stays in this browser and helps the next viewer compare where to eat.",
+    currentVenue: "Current venue",
+    reviewer: "Your name",
+    reviewerPlaceholder: "Name or nickname",
+    rating: "Rating",
+    dish: "Recommended dish",
+    dishPlaceholder: "What should people order first?",
+    comment: "Quick comment",
+    commentPlaceholder: "What stood out, and who is this place good for?",
+    submit: "Post review"
+  },
+  zh: {
+    eyebrow: "美食论坛",
+    title: "围绕当前城市，查看食客评价与推荐去处。",
+    text: "你可以切换代表性店铺，查看大家的评分与推荐，再补充自己的打分、招牌菜和简短点评。",
+    selectVenue: "推荐店铺",
+    topPick: "当前最高推荐",
+    average: "平均分",
+    reviews: "条评价",
+    signature: "推荐点单",
+    area: "所在片区",
+    recent: "最新食客点评",
+    empty: "这家店暂时还没有评价，你可以成为第一个留言的人。",
+    shareKicker: "发布点评",
+    shareTitle: "写下你的美食评价",
+    shareText: "你的留言会保存在当前浏览器里，方便下一位查看这个页面的人快速比较去哪家吃。",
+    currentVenue: "当前店铺",
+    reviewer: "你的称呼",
+    reviewerPlaceholder: "名字或昵称",
+    rating: "评分",
+    dish: "推荐菜",
+    dishPlaceholder: "最值得先点什么？",
+    comment: "简短评价",
+    commentPlaceholder: "这家店最突出的地方是什么，适合什么样的人去？",
+    submit: "发布评价"
+  },
+  ja: {
+    eyebrow: "グルメ掲示板",
+    title: "選択中の都市に合わせて、食客レビューとおすすめ店を確認できます。",
+    text: "代表的な店を切り替えながら評価とおすすめを見て、自分の点数や推しメニューも残せます。",
+    selectVenue: "注目の店",
+    topPick: "いま最もおすすめ",
+    average: "平均評価",
+    reviews: "件のレビュー",
+    signature: "おすすめ注文",
+    area: "エリア",
+    recent: "最近の食客メモ",
+    empty: "この店にはまだレビューがありません。最初のコメントを残せます。",
+    shareKicker: "レビュー投稿",
+    shareTitle: "自分の食レビューを書く",
+    shareText: "投稿はこのブラウザ内に保存され、次に見る人が店を比較しやすくなります。",
+    currentVenue: "現在の店",
+    reviewer: "名前",
+    reviewerPlaceholder: "名前やニックネーム",
+    rating: "評価",
+    dish: "おすすめ料理",
+    dishPlaceholder: "まず何を頼むべきですか？",
+    comment: "ひと言メモ",
+    commentPlaceholder: "どこが良かったか、どんな人向きかを書いてください。",
+    submit: "レビューを投稿"
+  },
+  ko: {
+    eyebrow: "미식 포럼",
+    title: "현재 도시 기준으로 식객 평가와 추천 가게를 볼 수 있습니다.",
+    text: "대표 가게를 바꿔 보며 평점과 추천 메뉴를 확인하고, 직접 점수와 한줄 후기도 남길 수 있습니다.",
+    selectVenue: "추천 가게",
+    topPick: "현재 최고 추천",
+    average: "평균 평점",
+    reviews: "개 후기",
+    signature: "추천 주문",
+    area: "지역",
+    recent: "최근 식객 후기",
+    empty: "이 가게에는 아직 후기가 없습니다. 첫 후기를 남겨 보세요.",
+    shareKicker: "후기 남기기",
+    shareTitle: "직접 음식 후기를 작성하기",
+    shareText: "작성한 내용은 이 브라우저에 저장되어 다음 사람이 가게를 비교할 때 참고할 수 있습니다.",
+    currentVenue: "현재 가게",
+    reviewer: "이름",
+    reviewerPlaceholder: "이름 또는 닉네임",
+    rating: "평점",
+    dish: "추천 메뉴",
+    dishPlaceholder: "처음 가면 무엇을 시켜야 하나요?",
+    comment: "짧은 코멘트",
+    commentPlaceholder: "무엇이 좋았고, 어떤 사람에게 잘 맞는지 적어 주세요.",
+    submit: "후기 등록"
+  },
+  es: {
+    eyebrow: "Foro gastronómico",
+    title: "Reseñas de comensales y lugares recomendados para la ciudad activa.",
+    text: "Cambia entre locales destacados, revisa notas rápidas de otros visitantes y añade tu propia puntuación, plato y comentario.",
+    selectVenue: "Locales destacados",
+    topPick: "Mejor valorado ahora",
+    average: "Promedio",
+    reviews: "reseñas",
+    signature: "Pedido recomendado",
+    area: "Zona",
+    recent: "Notas recientes",
+    empty: "Este local aún no tiene reseñas. Puedes dejar la primera.",
+    shareKicker: "Comparte tu reseña",
+    shareTitle: "Añade tu propia opinión",
+    shareText: "Tu nota se guarda en este navegador y ayuda a la siguiente persona a comparar dónde comer.",
+    currentVenue: "Local actual",
+    reviewer: "Tu nombre",
+    reviewerPlaceholder: "Nombre o apodo",
+    rating: "Puntuación",
+    dish: "Plato recomendado",
+    dishPlaceholder: "¿Qué deberían pedir primero?",
+    comment: "Comentario breve",
+    commentPlaceholder: "¿Qué destacó y para quién encaja mejor este sitio?",
+    submit: "Publicar reseña"
+  },
+  fr: {
+    eyebrow: "Forum gourmand",
+    title: "Avis de clients et bonnes adresses pour la ville active.",
+    text: "Changez de lieu, lisez les notes rapides des autres visiteurs, puis ajoutez votre propre note, plat conseillé et commentaire.",
+    selectVenue: "Adresses mises en avant",
+    topPick: "Adresse la mieux notée",
+    average: "Moyenne",
+    reviews: "avis",
+    signature: "Commande conseillée",
+    area: "Quartier",
+    recent: "Derniers avis",
+    empty: "Cette adresse n'a pas encore d'avis. Vous pouvez laisser le premier.",
+    shareKicker: "Partager un avis",
+    shareTitle: "Ajouter votre propre retour",
+    shareText: "Votre message reste dans ce navigateur et aide la prochaine personne à comparer où manger.",
+    currentVenue: "Adresse actuelle",
+    reviewer: "Votre nom",
+    reviewerPlaceholder: "Nom ou pseudo",
+    rating: "Note",
+    dish: "Plat conseillé",
+    dishPlaceholder: "Que faut-il commander en premier ?",
+    comment: "Commentaire rapide",
+    commentPlaceholder: "Qu'est-ce qui ressort, et pour quel type de visiteur l'adresse fonctionne bien ?",
+    submit: "Publier l'avis"
+  },
+  ar: {
+    eyebrow: "منتدى الطعام",
+    title: "آراء الزوار وترشيحات المطاعم في المدينة الحالية.",
+    text: "يمكنك التنقل بين الأماكن المميزة، وقراءة ملاحظات الزوار، ثم إضافة تقييمك وطبقك المقترح وتعليقك القصير.",
+    selectVenue: "الأماكن المميزة",
+    topPick: "الأعلى ترشيحًا الآن",
+    average: "المتوسط",
+    reviews: "مراجعة",
+    signature: "الطلب المقترح",
+    area: "المنطقة",
+    recent: "أحدث الملاحظات",
+    empty: "لا توجد مراجعات لهذه الجهة بعد. يمكنك ترك أول تعليق.",
+    shareKicker: "أضف مراجعتك",
+    shareTitle: "اكتب رأيك عن هذا المكان",
+    shareText: "ستبقى ملاحظتك محفوظة في هذا المتصفح لتساعد الزائر التالي على المقارنة بين أماكن الطعام.",
+    currentVenue: "المكان الحالي",
+    reviewer: "اسمك",
+    reviewerPlaceholder: "الاسم أو اللقب",
+    rating: "التقييم",
+    dish: "الطبق المقترح",
+    dishPlaceholder: "ما الذي يجب طلبه أولًا؟",
+    comment: "تعليق قصير",
+    commentPlaceholder: "ما الذي يميز هذا المكان، ولمن يناسب أكثر؟",
+    submit: "نشر المراجعة"
+  }
+};
+
+const cityFoodForumVenues = {
+  beijing: [
+    {
+      id: "yaoji-chaogan",
+      names: { zh: "姚记炒肝店", en: "Yaoji Chaogan" },
+      area: { zh: "鼓楼", en: "Gulou" },
+      specialty: { zh: "炒肝配包子", en: "Chaogan with steamed buns" }
+    },
+    {
+      id: "bianyifang-duck",
+      names: { zh: "便宜坊烤鸭店", en: "Bianyifang Roast Duck" },
+      area: { zh: "前门", en: "Qianmen" },
+      specialty: { zh: "焖炉烤鸭", en: "Roast duck" }
+    },
+    {
+      id: "fangzhuanchang-no69",
+      names: { zh: "方砖厂69号炸酱面", en: "Fangzhuanchang No.69 Zhajiangmian" },
+      area: { zh: "南锣鼓巷", en: "Nanluoguxiang" },
+      specialty: { zh: "老北京炸酱面", en: "Beijing zhajiangmian" }
+    }
+  ],
+  shanghai: [
+    {
+      id: "dahuchun",
+      names: { zh: "大壶春", en: "Dahuchun" },
+      area: { zh: "四川中路", en: "Middle Sichuan Road" },
+      specialty: { zh: "鲜肉生煎", en: "Pan-fried pork buns" }
+    },
+    {
+      id: "jiajia-tangbao",
+      names: { zh: "佳家汤包", en: "Jia Jia Tang Bao" },
+      area: { zh: "黄河路", en: "Huanghe Road" },
+      specialty: { zh: "蟹粉小笼", en: "Crab xiaolongbao" }
+    },
+    {
+      id: "xiandelai",
+      names: { zh: "鲜得来排骨年糕", en: "Xian De Lai" },
+      area: { zh: "云南南路", en: "South Yunnan Road" },
+      specialty: { zh: "排骨年糕", en: "Pork chop rice cakes" }
+    }
+  ],
+  xian: [
+    {
+      id: "laomijia-paomo",
+      names: { zh: "老米家大雨泡馍", en: "Lao Mi Jia Paomo" },
+      area: { zh: "回民街", en: "Muslim Quarter" },
+      specialty: { zh: "牛羊肉泡馍", en: "Beef and lamb paomo" }
+    },
+    {
+      id: "zhangji-roujiamo",
+      names: { zh: "子午路张记肉夹馍", en: "Zhangji Roujiamo" },
+      area: { zh: "南院门", en: "Nanyuanmen" },
+      specialty: { zh: "腊汁肉夹馍", en: "Braised pork roujiamo" }
+    },
+    {
+      id: "dingjia-surou",
+      names: { zh: "定家小酥肉", en: "Dingjia Crispy Beef" },
+      area: { zh: "洒金桥", en: "Sajinqiao" },
+      specialty: { zh: "小酥肉", en: "Crispy beef stew" }
+    }
+  ],
+  chengdu: [
+    {
+      id: "mingting",
+      names: { zh: "明婷饭店", en: "Mingting Restaurant" },
+      area: { zh: "曹家巷", en: "Caojia Alley" },
+      specialty: { zh: "麻婆豆腐", en: "Mapo tofu" }
+    },
+    {
+      id: "dongzikou",
+      names: { zh: "洞子口张老二凉粉", en: "Dongzikou Zhanglaoer" },
+      area: { zh: "文殊院", en: "Wenshu Monastery" },
+      specialty: { zh: "甜水面", en: "Sweet-water noodles" }
+    },
+    {
+      id: "mawangzi",
+      names: { zh: "马旺子川小馆", en: "Mawangzi" },
+      area: { zh: "太古里", en: "Taikoo Li" },
+      specialty: { zh: "宫保鸡丁", en: "Kung Pao chicken" }
+    }
+  ],
+  hangzhou: [
+    {
+      id: "kuiyuanguan",
+      names: { zh: "奎元馆", en: "Kuiyuangguan" },
+      area: { zh: "解放路", en: "Jiefang Road" },
+      specialty: { zh: "片儿川", en: "Pian’erchuan noodles" }
+    },
+    {
+      id: "louwailou",
+      names: { zh: "楼外楼", en: "Louwailou" },
+      area: { zh: "孤山路", en: "Gushan Road" },
+      specialty: { zh: "西湖醋鱼", en: "West Lake fish in vinegar gravy" }
+    },
+    {
+      id: "zhiweiguan",
+      names: { zh: "知味观", en: "Zhiweiguan" },
+      area: { zh: "湖滨", en: "Lakeside" },
+      specialty: { zh: "杭点与小笼", en: "Hangzhou dim sum and soup buns" }
+    }
+  ]
+};
+
+const foodForumCommentTemplates = {
+  en: {
+    queueWorth: "{dish} is the order to lock in here. Even with a queue, the first bite feels worth the wait.",
+    localSteady: "This feels more like a reliable local stop than a photo stop, and {dish} is the safest first order.",
+    lateNight: "This lands especially well later in the day, and {dish} keeps the meal focused without feeling too heavy.",
+    morningFriendly: "A good slower start to the day. {dish} is easy to recommend if you want breakfast with local character.",
+    worthDetour: "{dish} is strong enough to justify a short detour, especially if you want one meal here to feel memorable.",
+    valuePick: "For the price and portion, {dish} is the easiest thing to recommend first.",
+    hitOrMiss: "The room has energy, but {dish} felt a little more average than the queue suggested.",
+    firstTry: "If this is your first food stop in {city}, {dish} is the easiest order to start with."
+  },
+  zh: {
+    queueWorth: "{dish}是这里最稳的点法。哪怕要排队，第一口也会让人觉得这段等待是值得的。",
+    localSteady: "这家更像稳定的本地口碑店，不是只适合拍照打卡的那种，先点{dish}基本不会出错。",
+    lateNight: "更适合放在一天后半程来吃，{dish}有满足感，但又不会重到把后面节奏拖慢。",
+    morningFriendly: "很适合慢一点的早上来吃，{dish}拿来当这座城市的第一口很自然。",
+    worthDetour: "{dish}本身就足够让人愿意为这家店多绕一点路，尤其适合把一顿饭吃得更有记忆点。",
+    valuePick: "按分量和价格来算，{dish}是这里最容易先推荐给别人的选择。",
+    hitOrMiss: "店里氛围是热闹的，但{dish}本身没有排队时想象得那么惊艳。",
+    firstTry: "如果这是你在{city}的第一顿本地味道，先点{dish}会比较稳。"
+  },
+  ja: {
+    queueWorth: "{dish}はここでまず押さえたい一皿です。行列があっても、最初のひと口で待った価値を感じやすいです。",
+    localSteady: "写真映えよりも地元で安定して支持されるタイプの店で、最初の一皿は{dish}が無難です。",
+    lateNight: "一日の後半に入れると特にまとまりやすく、{dish}は重すぎず満足感があります。",
+    morningFriendly: "少しゆっくり始めたい朝に向いていて、{dish}はその街の最初の一皿として勧めやすいです。",
+    worthDetour: "{dish}は少し回り道してでも試す理由になりやすく、一食を印象に残しやすいです。",
+    valuePick: "量と値段のバランスで見ると、最初に勧めやすいのは{dish}です。",
+    hitOrMiss: "店の活気はありますが、{dish}自体は行列の期待ほどではないと感じました。",
+    firstTry: "{city}で最初のローカルフードにするなら、{dish}から入ると安定しやすいです。"
+  },
+  ko: {
+    queueWorth: "{dish}은 여기서 가장 먼저 잡아야 할 메뉴입니다. 줄이 있어도 첫입에서 기다린 보람이 느껴집니다.",
+    localSteady: "사진용보다 꾸준히 사랑받는 동네 맛집 느낌이 강하고, 첫 주문은 {dish}이 가장 안정적입니다.",
+    lateNight: "하루 후반에 넣기 좋은 편이고, {dish}은 부담을 과하게 올리지 않으면서도 만족감이 있습니다.",
+    morningFriendly: "조금 느긋하게 시작하는 아침에 잘 맞고, {dish}은 이 도시의 첫 한 끼로 추천하기 쉽습니다.",
+    worthDetour: "{dish} 하나만으로도 조금 돌아갈 이유가 생길 만큼 기억에 남기 좋은 편입니다.",
+    valuePick: "가격과 양을 같이 보면, 가장 먼저 추천하기 쉬운 건 {dish}입니다.",
+    hitOrMiss: "가게 분위기는 좋지만, {dish} 자체는 줄의 기대만큼 강하게 남지는 않았습니다.",
+    firstTry: "{city}에서 첫 현지 음식이라면 {dish}부터 시작하는 편이 가장 무난합니다."
+  },
+  es: {
+    queueWorth: "{dish} es el pedido que conviene asegurar aquí. Incluso con cola, el primer bocado suele justificar la espera.",
+    localSteady: "Se siente más como un local fiable de barrio que como una parada solo para fotos, y {dish} es el pedido más seguro para empezar.",
+    lateNight: "Encaja especialmente bien al final del día, y {dish} da suficiente peso sin volver la comida demasiado densa.",
+    morningFriendly: "Va muy bien para empezar la mañana con calma, y {dish} es una forma cómoda de entrar en el sabor local.",
+    worthDetour: "{dish} tiene fuerza suficiente como para justificar un pequeño desvío y hacer que la comida se recuerde.",
+    valuePick: "Por ración y precio, lo más fácil de recomendar primero es {dish}.",
+    hitOrMiss: "El ambiente tiene vida, pero {dish} se sintió algo más normal de lo que prometía la cola.",
+    firstTry: "Si esta es tu primera parada gastronómica en {city}, {dish} es la forma más fácil de empezar bien."
+  },
+  fr: {
+    queueWorth: "{dish} est la commande à verrouiller ici. Même avec de l'attente, la première bouchée donne souvent raison à la file.",
+    localSteady: "L'adresse ressemble davantage à une valeur sûre de quartier qu'à un simple spot photo, et {dish} est le choix le plus stable pour commencer.",
+    lateNight: "Cela fonctionne particulièrement bien en seconde partie de journée, et {dish} apporte du relief sans trop alourdir le rythme.",
+    morningFriendly: "C'est une bonne option pour démarrer doucement la matinée, et {dish} s'intègre bien comme premier goût local.",
+    worthDetour: "{dish} suffit à justifier un léger détour, surtout si vous voulez qu'un repas reste en mémoire.",
+    valuePick: "En rapport quantité-prix, {dish} est le conseil le plus simple à donner en premier.",
+    hitOrMiss: "La salle a de l'énergie, mais {dish} m'a semblé un peu plus moyen que ce que la file laissait imaginer.",
+    firstTry: "Si c'est votre premier arrêt gourmand à {city}, commencer par {dish} est l'option la plus simple."
+  },
+  ar: {
+    queueWorth: "{dish} هو الطلب الذي يستحق أن تبدأ به هنا. حتى مع الطابور، تعطي أول لقمة إحساسًا بأن الانتظار كان مبررًا.",
+    localSteady: "المكان أقرب إلى ترشيح محلي ثابت منه إلى محطة للصور فقط، و{dish} هو الطلب الأكثر أمانًا للبدء.",
+    lateNight: "يناسب الجزء الأخير من اليوم بشكل خاص، و{dish} يعطي وجبة مركزة من دون أن تصبح ثقيلة أكثر من اللازم.",
+    morningFriendly: "يناسب بداية صباح هادئة، و{dish} خيار سهل للدخول إلى الطعم المحلي.",
+    worthDetour: "{dish} قوي بما يكفي ليجعل الالتفاف البسيط نحو هذا المكان مستحقًا فعلًا.",
+    valuePick: "من حيث السعر والكمية، أسهل شيء يمكن ترشيحه أولًا هو {dish}.",
+    hitOrMiss: "المكان حيوي، لكن {dish} بدا أقرب إلى المستوى العادي مما يوحي به الطابور.",
+    firstTry: "إذا كانت هذه أول محطة طعام لك في {city}، فالبداية مع {dish} هي الخيار الأسهل."
+  }
+};
+
+const seedFoodForumReviews = {
+  beijing: {
+    "yaoji-chaogan": [
+      { reviewer: "Mila", rating: 5, dish: { zh: "炒肝配包子", en: "Chaogan with steamed buns" }, template: "morningFriendly", createdAt: "2026-04-13T08:40:00+08:00" },
+      { reviewer: "Jon", rating: 3, dish: { zh: "炒肝", en: "Chaogan" }, template: "hitOrMiss", createdAt: "2026-04-11T09:10:00+08:00" }
+    ],
+    "bianyifang-duck": [
+      { reviewer: "Lena", rating: 5, dish: { zh: "焖炉烤鸭", en: "Roast duck" }, template: "worthDetour", createdAt: "2026-04-12T19:20:00+08:00" },
+      { reviewer: "Rui", rating: 4, dish: { zh: "烤鸭卷饼", en: "Duck wraps" }, template: "localSteady", createdAt: "2026-04-10T20:00:00+08:00" }
+    ],
+    "fangzhuanchang-no69": [
+      { reviewer: "Ava", rating: 4, dish: { zh: "炸酱面", en: "Zhajiangmian" }, template: "firstTry", createdAt: "2026-04-14T13:15:00+08:00" },
+      { reviewer: "Chen", rating: 5, dish: { zh: "炸酱面加蒜", en: "Zhajiangmian with garlic" }, template: "valuePick", createdAt: "2026-04-09T12:00:00+08:00" }
+    ]
+  },
+  shanghai: {
+    dahuchun: [
+      { reviewer: "Noah", rating: 5, dish: { zh: "鲜肉生煎", en: "Pan-fried pork buns" }, template: "queueWorth", createdAt: "2026-04-13T08:20:00+08:00" },
+      { reviewer: "Sofia", rating: 4, dish: { zh: "双拼生煎", en: "Mixed shengjian" }, template: "localSteady", createdAt: "2026-04-11T09:40:00+08:00" }
+    ],
+    "jiajia-tangbao": [
+      { reviewer: "Momo", rating: 5, dish: { zh: "蟹粉小笼", en: "Crab xiaolongbao" }, template: "worthDetour", createdAt: "2026-04-12T12:35:00+08:00" },
+      { reviewer: "Iris", rating: 3, dish: { zh: "鲜肉小笼", en: "Pork xiaolongbao" }, template: "hitOrMiss", createdAt: "2026-04-08T13:10:00+08:00" }
+    ],
+    xiandelai: [
+      { reviewer: "Leo", rating: 4, dish: { zh: "排骨年糕", en: "Pork chop rice cakes" }, template: "valuePick", createdAt: "2026-04-14T18:05:00+08:00" },
+      { reviewer: "Mina", rating: 4, dish: { zh: "辣酱排骨年糕", en: "Spicy rice cakes with pork chop" }, template: "lateNight", createdAt: "2026-04-07T19:00:00+08:00" }
+    ]
+  },
+  xian: {
+    "laomijia-paomo": [
+      { reviewer: "Adam", rating: 5, dish: { zh: "牛羊肉泡馍", en: "Paomo" }, template: "firstTry", createdAt: "2026-04-12T18:30:00+08:00" },
+      { reviewer: "Yuki", rating: 4, dish: { zh: "小炒泡馍", en: "Stir-fried paomo" }, template: "localSteady", createdAt: "2026-04-10T19:15:00+08:00" }
+    ],
+    "zhangji-roujiamo": [
+      { reviewer: "Ella", rating: 5, dish: { zh: "腊汁肉夹馍", en: "Braised pork roujiamo" }, template: "valuePick", createdAt: "2026-04-13T11:20:00+08:00" },
+      { reviewer: "Kai", rating: 4, dish: { zh: "肉夹馍配冰峰", en: "Roujiamo with Bingfeng soda" }, template: "lateNight", createdAt: "2026-04-09T12:15:00+08:00" }
+    ],
+    "dingjia-surou": [
+      { reviewer: "Tina", rating: 4, dish: { zh: "小酥肉", en: "Crispy beef stew" }, template: "worthDetour", createdAt: "2026-04-11T17:55:00+08:00" },
+      { reviewer: "Sam", rating: 3, dish: { zh: "麻辣小酥肉", en: "Spicy crispy beef" }, template: "hitOrMiss", createdAt: "2026-04-06T18:20:00+08:00" }
+    ]
+  },
+  chengdu: {
+    mingting: [
+      { reviewer: "Vera", rating: 5, dish: { zh: "麻婆豆腐", en: "Mapo tofu" }, template: "worthDetour", createdAt: "2026-04-13T19:50:00+08:00" },
+      { reviewer: "Bo", rating: 4, dish: { zh: "回锅肉", en: "Twice-cooked pork" }, template: "localSteady", createdAt: "2026-04-10T20:10:00+08:00" }
+    ],
+    dongzikou: [
+      { reviewer: "Nana", rating: 5, dish: { zh: "甜水面", en: "Sweet-water noodles" }, template: "queueWorth", createdAt: "2026-04-14T15:05:00+08:00" },
+      { reviewer: "Lee", rating: 4, dish: { zh: "凉粉", en: "Jelly noodles" }, template: "valuePick", createdAt: "2026-04-08T15:50:00+08:00" }
+    ],
+    mawangzi: [
+      { reviewer: "Ivy", rating: 4, dish: { zh: "宫保鸡丁", en: "Kung Pao chicken" }, template: "firstTry", createdAt: "2026-04-12T18:45:00+08:00" },
+      { reviewer: "Jun", rating: 3, dish: { zh: "辣子鸡", en: "Chili chicken" }, template: "hitOrMiss", createdAt: "2026-04-07T20:20:00+08:00" }
+    ]
+  },
+  hangzhou: {
+    kuiyuanguan: [
+      { reviewer: "Mia", rating: 5, dish: { zh: "片儿川", en: "Pian’erchuan noodles" }, template: "morningFriendly", createdAt: "2026-04-14T08:55:00+08:00" },
+      { reviewer: "Han", rating: 4, dish: { zh: "虾爆鳝面", en: "Eel and shrimp noodles" }, template: "localSteady", createdAt: "2026-04-10T09:25:00+08:00" }
+    ],
+    louwailou: [
+      { reviewer: "Clara", rating: 4, dish: { zh: "西湖醋鱼", en: "West Lake fish in vinegar gravy" }, template: "worthDetour", createdAt: "2026-04-11T18:35:00+08:00" },
+      { reviewer: "Ken", rating: 3, dish: { zh: "龙井虾仁", en: "Longjing tea shrimp" }, template: "hitOrMiss", createdAt: "2026-04-08T19:00:00+08:00" }
+    ],
+    zhiweiguan: [
+      { reviewer: "Wen", rating: 4, dish: { zh: "小笼与杭点", en: "Soup buns and Hangzhou dim sum" }, template: "firstTry", createdAt: "2026-04-13T14:10:00+08:00" },
+      { reviewer: "Ari", rating: 5, dish: { zh: "猫耳朵", en: "Cat-ear pasta" }, template: "valuePick", createdAt: "2026-04-09T15:40:00+08:00" }
+    ]
   }
 };
 
@@ -2891,6 +3324,38 @@ function localizeFoodLine(record) {
   return record?.en || zh || "";
 }
 
+function currentFoodForumUi() {
+  return foodForumUiContent[state.language] || foodForumUiContent.en;
+}
+
+function foodForumText(key) {
+  return currentFoodForumUi()[key] || foodForumUiContent.en[key] || "";
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function starsMarkup(rating) {
+  const safe = Math.max(1, Math.min(5, Math.round(Number(rating) || 0)));
+  return "★".repeat(safe) + "☆".repeat(5 - safe);
+}
+
+function formatReviewDate(dateString) {
+  if (!dateString) return "";
+  const parsed = new Date(dateString);
+  return new Intl.DateTimeFormat(localeForLanguage(), {
+    timeZone: "Asia/Shanghai",
+    month: "numeric",
+    day: "numeric"
+  }).format(parsed);
+}
+
 function normalizeTicketNote(note) {
   return (note || "").replace(/\s+/g, "").trim();
 }
@@ -3049,6 +3514,52 @@ async function applyMapTileLanguage() {
 
 function storageKey(name) {
   return `hellochina.${name}`;
+}
+
+function normalizeFoodForumReviews(rawValue) {
+  if (!rawValue || typeof rawValue !== "object") return {};
+  const normalized = {};
+
+  Object.entries(rawValue).forEach(([cityId, venueMap]) => {
+    if (!venueMap || typeof venueMap !== "object") return;
+    normalized[cityId] = {};
+
+    Object.entries(venueMap).forEach(([venueId, reviews]) => {
+      if (!Array.isArray(reviews)) return;
+      normalized[cityId][venueId] = reviews
+        .map((review) => {
+          if (!review || typeof review !== "object") return null;
+          return {
+            reviewer: String(review.reviewer || "").trim().slice(0, 36),
+            rating: Math.max(1, Math.min(5, Number(review.rating) || 0)),
+            dish: String(review.dish || "").trim().slice(0, 60),
+            comment: String(review.comment || "").trim().slice(0, 240),
+            createdAt: review.createdAt || new Date().toISOString()
+          };
+        })
+        .filter((review) => review && review.reviewer && review.comment);
+    });
+  });
+
+  return normalized;
+}
+
+function loadFoodForumReviewsFromStorage() {
+  try {
+    const raw = localStorage.getItem(storageKey("foodForumReviews.v1"));
+    if (!raw) return;
+    foodForumRuntime.userReviews = normalizeFoodForumReviews(JSON.parse(raw));
+  } catch (error) {
+    foodForumRuntime.userReviews = {};
+  }
+}
+
+function persistFoodForumReviews() {
+  try {
+    localStorage.setItem(storageKey("foodForumReviews.v1"), JSON.stringify(foodForumRuntime.userReviews));
+  } catch (error) {
+    // Ignore storage errors and keep runtime state in memory.
+  }
 }
 
 function createEmptyIntroTranslationMap() {
@@ -4468,11 +4979,213 @@ function renderWeatherSection() {
   `;
 }
 
+function foodForumVenues(cityId) {
+  return cityFoodForumVenues[cityId] || [];
+}
+
+function selectedFoodVenue(city) {
+  const venues = foodForumVenues(city.id);
+  if (!venues.length) return null;
+
+  const activeId = state.activeFoodVenueId;
+  const found = venues.find((venue) => venue.id === activeId);
+  if (found) return found;
+
+  state.activeFoodVenueId = venues[0].id;
+  return venues[0];
+}
+
+function foodForumReviewComment(review, city, venue) {
+  if (review.comment && !review.template) return review.comment;
+  const templates = foodForumCommentTemplates[state.language] || foodForumCommentTemplates.en;
+  const template = templates[review.template] || foodForumCommentTemplates.en[review.template] || "";
+  return fillTemplate(template, {
+    dish: localize(review.dish),
+    city: localize(city.names),
+    venue: localize(venue.names)
+  });
+}
+
+function combinedVenueReviews(city, venue) {
+  const seeded = (seedFoodForumReviews[city.id]?.[venue.id] || []).map((review) => ({
+    ...review,
+    source: "seed"
+  }));
+  const userReviews = (foodForumRuntime.userReviews[city.id]?.[venue.id] || []).map((review) => ({
+    ...review,
+    source: "user"
+  }));
+
+  return [...userReviews, ...seeded].sort(
+    (left, right) => new Date(right.createdAt).getTime() - new Date(left.createdAt).getTime()
+  );
+}
+
+function averageVenueRating(reviews) {
+  if (!reviews.length) return 0;
+  return mean(reviews.map((review) => Number(review.rating) || 0));
+}
+
+function topFoodVenue(city) {
+  return foodForumVenues(city.id)
+    .map((venue) => {
+      const reviews = combinedVenueReviews(city, venue);
+      return {
+        venue,
+        reviews,
+        average: averageVenueRating(reviews)
+      };
+    })
+    .sort((left, right) => {
+      if (right.average !== left.average) return right.average - left.average;
+      return right.reviews.length - left.reviews.length;
+    })[0] || null;
+}
+
+function renderFoodForum(city) {
+  const venues = foodForumVenues(city.id);
+  if (!venues.length) {
+    elements.foodForum.innerHTML = "";
+    return;
+  }
+
+  const selectedVenue = selectedFoodVenue(city);
+  const selectedReviews = combinedVenueReviews(city, selectedVenue);
+  const selectedAverage = averageVenueRating(selectedReviews);
+  const topPick = topFoodVenue(city);
+
+  elements.foodForum.innerHTML = `
+    <div class="food-forum-head">
+      <div>
+        <p class="panel-kicker">${foodForumText("eyebrow")}</p>
+        <h3>${foodForumText("title")}</h3>
+      </div>
+      ${
+        topPick
+          ? `
+            <div class="food-forum-top">
+              <span class="fact-pill">${foodForumText("topPick")}</span>
+              <strong>${escapeHtml(localize(topPick.venue.names))}</strong>
+              <small>${foodForumText("average")} ${topPick.average.toFixed(1)} · ${topPick.reviews.length} ${foodForumText("reviews")}</small>
+            </div>
+          `
+          : ""
+      }
+    </div>
+    <p class="planner-copy">${foodForumText("text")}</p>
+    <div class="food-forum-chip-row">
+      ${venues
+        .map((venue) => {
+          const isActive = venue.id === selectedVenue.id;
+          const reviews = combinedVenueReviews(city, venue);
+          const average = averageVenueRating(reviews);
+          return `
+            <button
+              class="food-venue-button ${isActive ? "is-active" : ""}"
+              type="button"
+              data-food-venue="${venue.id}"
+              style="${
+                isActive
+                  ? `background:${city.soft};color:${city.accent};border-color:${hexToRgba(city.accent, 0.24)};box-shadow:0 12px 26px ${hexToRgba(city.accent, 0.12)};`
+                  : ""
+              }"
+            >
+              <strong>${escapeHtml(localize(venue.names))}</strong>
+              <span>${reviews.length ? `${average.toFixed(1)} · ${reviews.length} ${foodForumText("reviews")}` : foodForumText("empty")}</span>
+            </button>
+          `;
+        })
+        .join("")}
+    </div>
+    <div class="food-forum-layout">
+      <div class="food-forum-main">
+        <article class="food-forum-summary">
+          <div class="food-forum-summary-head">
+            <div>
+              <p class="panel-kicker">${foodForumText("currentVenue")}</p>
+              <h4>${escapeHtml(localize(selectedVenue.names))}</h4>
+            </div>
+            <div class="food-forum-score">
+              <strong>${selectedReviews.length ? selectedAverage.toFixed(1) : "0.0"}</strong>
+              <span>${foodForumText("average")}</span>
+            </div>
+          </div>
+          <div class="fact-grid">
+            <span class="fact-pill">${foodForumText("area")}: ${escapeHtml(localize(selectedVenue.area))}</span>
+            <span class="fact-pill">${foodForumText("signature")}: ${escapeHtml(localize(selectedVenue.specialty))}</span>
+            <span class="fact-pill">${selectedReviews.length} ${foodForumText("reviews")}</span>
+          </div>
+        </article>
+        <div class="food-review-list">
+          <div class="panel-headline">
+            <div>
+              <p class="panel-kicker">${foodForumText("recent")}</p>
+            </div>
+          </div>
+          ${
+            selectedReviews.length
+              ? selectedReviews
+                  .map(
+                    (review) => `
+                      <article class="food-review-card">
+                        <div class="food-review-meta">
+                          <div>
+                            <strong>${escapeHtml(review.reviewer)}</strong>
+                            <span>${formatReviewDate(review.createdAt)}</span>
+                          </div>
+                          <span class="food-review-stars" aria-label="${review.rating} stars">${starsMarkup(review.rating)}</span>
+                        </div>
+                        <p class="food-review-dish">${foodForumText("signature")}: ${escapeHtml(localize(review.dish) || review.dish)}</p>
+                        <p class="food-review-comment">${escapeHtml(foodForumReviewComment(review, city, selectedVenue))}</p>
+                      </article>
+                    `
+                  )
+                  .join("")
+              : `<div class="weather-empty food-review-empty"><p>${foodForumText("empty")}</p></div>`
+          }
+        </div>
+      </div>
+      <aside class="food-forum-form-card">
+        <p class="panel-kicker">${foodForumText("shareKicker")}</p>
+        <h4>${foodForumText("shareTitle")}</h4>
+        <p>${foodForumText("shareText")}</p>
+        <form class="food-review-form" id="food-review-form">
+          <input type="hidden" name="venueId" value="${selectedVenue.id}">
+          <label>
+            <span>${foodForumText("reviewer")}</span>
+            <input name="reviewer" type="text" maxlength="36" placeholder="${escapeHtml(foodForumText("reviewerPlaceholder"))}" required>
+          </label>
+          <label>
+            <span>${foodForumText("rating")}</span>
+            <select name="rating" required>
+              <option value="5">5 · ${starsMarkup(5)}</option>
+              <option value="4">4 · ${starsMarkup(4)}</option>
+              <option value="3">3 · ${starsMarkup(3)}</option>
+              <option value="2">2 · ${starsMarkup(2)}</option>
+              <option value="1">1 · ${starsMarkup(1)}</option>
+            </select>
+          </label>
+          <label>
+            <span>${foodForumText("dish")}</span>
+            <input name="dish" type="text" maxlength="60" placeholder="${escapeHtml(foodForumText("dishPlaceholder"))}" required>
+          </label>
+          <label>
+            <span>${foodForumText("comment")}</span>
+            <textarea name="comment" rows="4" maxlength="240" placeholder="${escapeHtml(foodForumText("commentPlaceholder"))}" required></textarea>
+          </label>
+          <button class="primary-button food-review-submit" type="submit">${foodForumText("submit")}</button>
+        </form>
+      </aside>
+    </div>
+  `;
+}
+
 function renderFoodSection() {
   const city = activeCity();
   const picks = cityFoodPicks[city.id];
   if (!picks) {
     elements.foodGrid.innerHTML = "";
+    elements.foodForum.innerHTML = "";
     return;
   }
 
@@ -4494,6 +5207,8 @@ function renderFoodSection() {
       `;
     })
     .join("");
+
+  renderFoodForum(city);
 }
 
 function renderRoutes() {
@@ -4613,6 +5328,7 @@ function focusCity(cityId, options = {}) {
   state.activeImageIndex = 0;
   state.activeRouteId = "dynamic";
   state.activeWeatherDayIndex = 0;
+  state.activeFoodVenueId = null;
   renderAll();
 
   if (options.scroll) {
@@ -4696,6 +5412,7 @@ document.addEventListener("click", (event) => {
   const routeButton = event.target.closest("[data-route]");
   const weatherRefreshButton = event.target.closest("[data-weather-refresh]");
   const weatherDayButton = event.target.closest("[data-weather-day]");
+  const foodVenueButton = event.target.closest("[data-food-venue]");
 
   if (langButton) {
     state.language = langButton.dataset.lang;
@@ -4740,6 +5457,12 @@ document.addEventListener("click", (event) => {
     return;
   }
 
+  if (foodVenueButton) {
+    state.activeFoodVenueId = foodVenueButton.dataset.foodVenue;
+    renderFoodSection();
+    return;
+  }
+
   if (weatherDayButton) {
     state.activeWeatherDayIndex = Number(weatherDayButton.dataset.weatherDay);
     renderWeatherSection();
@@ -4749,6 +5472,41 @@ document.addEventListener("click", (event) => {
   if (weatherRefreshButton) {
     refreshActiveCityWeather(true);
   }
+});
+
+document.addEventListener("submit", (event) => {
+  const form = event.target.closest("#food-review-form");
+  if (!form) return;
+
+  event.preventDefault();
+  const city = activeCity();
+  const formData = new FormData(form);
+  const venueId = String(formData.get("venueId") || "");
+  const reviewer = String(formData.get("reviewer") || "").trim();
+  const dish = String(formData.get("dish") || "").trim();
+  const comment = String(formData.get("comment") || "").trim();
+  const rating = Math.max(1, Math.min(5, Number(formData.get("rating")) || 0));
+
+  if (!venueId || !reviewer || !dish || !comment || !rating) return;
+
+  if (!foodForumRuntime.userReviews[city.id]) {
+    foodForumRuntime.userReviews[city.id] = {};
+  }
+  if (!foodForumRuntime.userReviews[city.id][venueId]) {
+    foodForumRuntime.userReviews[city.id][venueId] = [];
+  }
+
+  foodForumRuntime.userReviews[city.id][venueId].unshift({
+    reviewer: reviewer.slice(0, 36),
+    rating,
+    dish: dish.slice(0, 60),
+    comment: comment.slice(0, 240),
+    createdAt: new Date().toISOString()
+  });
+
+  state.activeFoodVenueId = venueId;
+  persistFoodForumReviews();
+  renderFoodSection();
 });
 
 document.querySelector("#jump-random-city").addEventListener("click", () => {
@@ -4789,6 +5547,7 @@ elements.focusTicketLink.addEventListener("click", (event) => {
 });
 
 async function bootstrap() {
+  loadFoodForumReviewsFromStorage();
   loadIntroTranslationsFromStorage();
   ensureAiSeedMessage();
   setupChinaMap();
