@@ -54,15 +54,16 @@
           <button class="lang-btn" type="button" data-lang="fr">FR</button>
           <button class="lang-btn" type="button" data-lang="ar">AR</button>
         </div>
-        <a class="ghost-button" href="#city-workspace" data-ui="openGuide">Open Guide</a>
+        <a class="ghost-button" href="#city-workspace" data-ui="openGuide">Open Explorer</a>
       </div>
     </header>
 
     <nav class="feature-nav" aria-label="Primary guide navigation">
       <a class="feature-nav-link" href="#city-switchboard" data-ui="navMap">Map</a>
-      <a class="feature-nav-link" href="#city-workspace" data-ui="navGuide">Local Guide</a>
+      <a class="feature-nav-link" href="#city-workspace" data-ui="navGuide">Spot Explorer</a>
       <a class="feature-nav-link" href="#weather-section" id="nav-weather-link">Weather</a>
       <a class="feature-nav-link" href="#food-section" data-ui="navFood">Food</a>
+      <a class="feature-nav-link" href="#guide-section" data-ui="navLocalGuide">Local Guide</a>
       <a class="feature-nav-link" href="#ai-assistant" data-ui="navAI">AI Assistant</a>
     </nav>
 
@@ -140,7 +141,7 @@
                   <p class="panel-kicker" data-ui="activeCityKicker">Active city</p>
                   <h3 id="active-city-title">Beijing</h3>
                 </div>
-                <button class="tiny-button" type="button" id="jump-to-city-guide" data-ui="jumpToGuide">Open city guide</button>
+                <button class="tiny-button" type="button" id="jump-to-city-guide" data-ui="jumpToGuide">Open explorer</button>
               </div>
               <p class="active-city-summary" id="active-city-summary"></p>
               <div class="city-facts" id="active-city-facts"></div>
@@ -163,7 +164,7 @@
       <section class="city-workspace" id="city-workspace">
         <div class="section-head">
           <div>
-            <p class="eyebrow" data-ui="workspaceEyebrow">City workspace</p>
+            <p class="eyebrow" data-ui="workspaceEyebrow">Spot Explorer</p>
             <h2 id="workspace-city-title">Beijing</h2>
           </div>
           <p class="section-copy" id="workspace-city-copy"></p>
@@ -261,6 +262,17 @@
         </div>
         <div class="food-grid" id="food-grid"></div>
         <div class="food-forum" id="food-forum"></div>
+      </section>
+
+      <section class="guide-section" id="guide-section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-ui="guideEyebrow">Local Guide</p>
+            <h2 id="guide-title">Meet verified local guides for Beijing.</h2>
+          </div>
+          <p class="section-copy" id="guide-copy"></p>
+        </div>
+        <div class="guide-grid" id="guide-grid"></div>
       </section>
 
       <section class="ai-section" id="ai-assistant">

@@ -1,10 +1,11 @@
 const uiContent = {
   en: {
     brandTagline: "Travel maps for international friends in China",
-    openGuide: "Open Guide",
+    openGuide: "Open Explorer",
     navMap: "Map",
-    navGuide: "Local Guide",
+    navGuide: "Spot Explorer",
     navFood: "Food",
+    navLocalGuide: "Local Guide",
     navAI: "AI Assistant",
     heroEyebrow: "Five cities, one map-first travel hub",
     heroTitle: "Hello China: a map-style travel gateway designed for international friends.",
@@ -23,11 +24,11 @@ const uiContent = {
     citySelectorKicker: "City selector",
     citySelectorTitle: "Five featured cities",
     activeCityKicker: "Active city",
-    jumpToGuide: "Open city guide",
+    jumpToGuide: "Open explorer",
     chinaMapKicker: "China map",
     chinaMapTitle: "Tourist city entry points",
     chinaMapHint: "Click any city marker to update the city map and attraction list.",
-    workspaceEyebrow: "City workspace",
+    workspaceEyebrow: "Spot Explorer",
     cityMapKicker: "City map",
     cityMapHint: "Markers on this map are linked to the attraction cards below.",
     focusKicker: "Selected attraction",
@@ -45,7 +46,19 @@ const uiContent = {
     cardsHint: "Click a city, map marker, quick link, or card to update this guide.",
     spotSectionSummary: "Now showing {city} · {spots} attractions",
     activeCitySummary: "Now exploring {city}",
-    mapPopupHint: "Open the city guide",
+    mapPopupHint: "Open the spot explorer",
+    guideEyebrow: "Local Guide",
+    guideTitleTemplate: "Meet local guides for {city}",
+    guideTextTemplate:
+      "This paid guide board follows the active city. Compare nationality, working languages, years of experience, specialty, and direct contact details before sending an inquiry.",
+    guideNationality: "Nationality",
+    guideLanguages: "Languages",
+    guideExperience: "Experience",
+    guideSpecialty: "Best for",
+    guideContact: "Contact",
+    guideFromPrice: "From CNY {price} / half day",
+    guideYears: "{years} years",
+    guideBookNow: "Send inquiry",
     cardButton: "Ask AI about this spot",
     ticketLink: "Ticket / Booking",
     freeVisitNote: "Free entry for this attraction",
@@ -70,10 +83,11 @@ const uiContent = {
   },
   zh: {
     brandTagline: "为在华国际友人准备的旅行地图",
-    openGuide: "打开导览",
+    openGuide: "打开景点探索",
     navMap: "地图",
-    navGuide: "地陪",
+    navGuide: "景点探索",
     navFood: "美食",
+    navLocalGuide: "地陪",
     navAI: "AI问答",
     heroEyebrow: "五座城市，一站式地图导览",
     heroTitle: "你好中国：为国际友人设计的地图式旅行入口。",
@@ -92,11 +106,11 @@ const uiContent = {
     citySelectorKicker: "城市选择器",
     citySelectorTitle: "五个重点城市",
     activeCityKicker: "当前城市",
-    jumpToGuide: "打开城市导览",
+    jumpToGuide: "打开景点探索",
     chinaMapKicker: "中国地图",
     chinaMapTitle: "旅游城市入口",
     chinaMapHint: "点击任意城市标记，即可同步切换城市地图和景点列表。",
-    workspaceEyebrow: "城市工作区",
+    workspaceEyebrow: "景点探索",
     cityMapKicker: "城市地图",
     cityMapHint: "这个地图上的景点标记与下方景点卡片一一联动。",
     focusKicker: "当前景点",
@@ -114,7 +128,19 @@ const uiContent = {
     cardsHint: "点击城市、地图标记、快捷入口或卡片，都可以更新当前导览。",
     spotSectionSummary: "当前显示 {city} · {spots} 个景点",
     activeCitySummary: "当前正在浏览 {city}",
-    mapPopupHint: "打开城市导览",
+    mapPopupHint: "打开景点探索",
+    guideEyebrow: "地陪服务",
+    guideTitleTemplate: "联系 {city} 的本地导游",
+    guideTextTemplate:
+      "这个付费地陪板块会跟随当前城市切换。你可以直接查看导游的国籍、工作语言、导游年限、擅长线路与联系方式，再决定是否发起咨询。",
+    guideNationality: "国籍",
+    guideLanguages: "工作语言",
+    guideExperience: "导游经历",
+    guideSpecialty: "擅长路线",
+    guideContact: "联系方式",
+    guideFromPrice: "半日服务 ¥{price} 起",
+    guideYears: "{years}年",
+    guideBookNow: "发送咨询",
     cardButton: "向AI咨询这个景点",
     ticketLink: "购票 / 预约",
     freeVisitNote: "此景点免费参观",
@@ -139,10 +165,11 @@ const uiContent = {
   },
   ja: {
     brandTagline: "中国を旅する国際友人向けマップ",
-    openGuide: "ガイドを開く",
+    openGuide: "スポット探索を開く",
     navMap: "地図",
-    navGuide: "現地ガイド",
+    navGuide: "スポット探索",
     navFood: "グルメ",
+    navLocalGuide: "現地ガイド",
     navAI: "AIアシスタント",
     heroEyebrow: "5都市を1つのハブで",
     heroTitle: "こんにちは中国：国際的な友人のために設計された、地図型の旅行入口。",
@@ -161,11 +188,11 @@ const uiContent = {
     citySelectorKicker: "都市セレクター",
     citySelectorTitle: "5つの注目都市",
     activeCityKicker: "現在の都市",
-    jumpToGuide: "都市ガイドへ",
+    jumpToGuide: "スポット探索へ",
     chinaMapKicker: "中国マップ",
     chinaMapTitle: "観光都市の入口",
     chinaMapHint: "都市マーカーをクリックすると都市マップと一覧が更新されます。",
-    workspaceEyebrow: "都市ワークスペース",
+    workspaceEyebrow: "スポット探索",
     cityMapKicker: "都市マップ",
     cityMapHint: "この地図のマーカーは下の観光カードと連動しています。",
     focusKicker: "選択中スポット",
@@ -185,7 +212,19 @@ const uiContent = {
     cardsHint: "都市、マーカー、クイックリンク、カードをクリックするとガイドが更新されます。",
     spotSectionSummary: "{city} · {spots}スポットを表示中",
     activeCitySummary: "現在は {city} を表示中",
-    mapPopupHint: "都市ガイドを開く",
+    mapPopupHint: "スポット探索を開く",
+    guideEyebrow: "現地ガイド",
+    guideTitleTemplate: "{city}で案内を依頼できるガイド",
+    guideTextTemplate:
+      "この有料ガイド枠は現在の都市に連動します。国籍、対応言語、ガイド経験年数、得意ルート、連絡先を比べてから相談できます。",
+    guideNationality: "国籍",
+    guideLanguages: "対応言語",
+    guideExperience: "経験年数",
+    guideSpecialty: "得意分野",
+    guideContact: "連絡先",
+    guideFromPrice: "半日 CNY {price} から",
+    guideYears: "{years}年",
+    guideBookNow: "問い合わせる",
     cardButton: "このスポットに切替",
     ticketLink: "チケット / 予約",
     freeVisitNote: "この観光地は無料で見学できます",
@@ -210,10 +249,11 @@ const uiContent = {
   },
   ko: {
     brandTagline: "중국을 여행하는 국제 친구를 위한 지도",
-    openGuide: "가이드 열기",
+    openGuide: "명소 탐색 열기",
     navMap: "지도",
-    navGuide: "현지 가이드",
+    navGuide: "명소 탐색",
     navFood: "음식",
+    navLocalGuide: "현지 가이드",
     navAI: "AI 어시스턴트",
     heroEyebrow: "다섯 도시, 하나의 허브",
     heroTitle: "안녕하세요 중국: 국제 친구를 위해 설계된 지도형 여행 입구입니다.",
@@ -232,11 +272,11 @@ const uiContent = {
     citySelectorKicker: "도시 선택",
     citySelectorTitle: "다섯 개 핵심 도시",
     activeCityKicker: "현재 도시",
-    jumpToGuide: "도시 가이드 열기",
+    jumpToGuide: "명소 탐색 열기",
     chinaMapKicker: "중국 지도",
     chinaMapTitle: "관광 도시 입구",
     chinaMapHint: "도시 마커를 누르면 도시 지도와 명소 목록이 함께 갱신됩니다.",
-    workspaceEyebrow: "도시 워크스페이스",
+    workspaceEyebrow: "명소 탐색",
     cityMapKicker: "도시 지도",
     cityMapHint: "이 지도 마커는 아래 명소 카드와 연결되어 있습니다.",
     focusKicker: "선택한 명소",
@@ -256,7 +296,19 @@ const uiContent = {
     cardsHint: "도시, 지도 마커, 빠른 링크, 카드를 눌러 가이드를 업데이트하세요.",
     spotSectionSummary: "현재 {city} · {spots}개 명소 표시 중",
     activeCitySummary: "현재 {city} 탐색 중",
-    mapPopupHint: "도시 가이드 열기",
+    mapPopupHint: "명소 탐색 열기",
+    guideEyebrow: "현지 가이드",
+    guideTitleTemplate: "{city}에서 연결할 수 있는 가이드",
+    guideTextTemplate:
+      "이 유료 가이드 섹션은 현재 도시와 함께 바뀝니다. 국적, 사용 언어, 경력 연수, 강점 코스, 연락처를 보고 바로 문의할 수 있습니다.",
+    guideNationality: "국적",
+    guideLanguages: "사용 언어",
+    guideExperience: "가이드 경력",
+    guideSpecialty: "추천 코스",
+    guideContact: "연락처",
+    guideFromPrice: "반나절 CNY {price}부터",
+    guideYears: "{years}년",
+    guideBookNow: "문의 보내기",
     cardButton: "이 명소 보기",
     ticketLink: "티켓 / 예약",
     freeVisitNote: "이 명소는 무료로 관람할 수 있습니다",
@@ -281,10 +333,11 @@ const uiContent = {
   },
   es: {
     brandTagline: "Mapas de viaje por China para amigos internacionales",
-    openGuide: "Abrir guía",
+    openGuide: "Abrir explorador",
     navMap: "Mapa",
-    navGuide: "Guía local",
+    navGuide: "Explorar lugares",
     navFood: "Comida",
+    navLocalGuide: "Guía local",
     navAI: "Asistente AI",
     heroEyebrow: "Cinco ciudades, un solo centro",
     heroTitle: "Hola China: una puerta de viaje basada en mapas, diseñada para amigos internacionales.",
@@ -303,11 +356,11 @@ const uiContent = {
     citySelectorKicker: "Selector de ciudad",
     citySelectorTitle: "Cinco ciudades destacadas",
     activeCityKicker: "Ciudad activa",
-    jumpToGuide: "Abrir guía urbana",
+    jumpToGuide: "Abrir explorador",
     chinaMapKicker: "Mapa de China",
     chinaMapTitle: "Entradas a ciudades turísticas",
     chinaMapHint: "Haz clic en cualquier marcador para actualizar el mapa urbano y la lista.",
-    workspaceEyebrow: "Espacio urbano",
+    workspaceEyebrow: "Explorador de lugares",
     cityMapKicker: "Mapa urbano",
     cityMapHint: "Los marcadores de este mapa están conectados con las tarjetas de abajo.",
     focusKicker: "Atracción seleccionada",
@@ -327,7 +380,19 @@ const uiContent = {
     cardsHint: "Pulsa una ciudad, un marcador, un acceso rápido o una tarjeta para actualizar la guía.",
     spotSectionSummary: "Mostrando {city} · {spots} atracciones",
     activeCitySummary: "Explorando ahora {city}",
-    mapPopupHint: "Abrir guía urbana",
+    mapPopupHint: "Abrir explorador de lugares",
+    guideEyebrow: "Guía local",
+    guideTitleTemplate: "Contacta guías locales en {city}",
+    guideTextTemplate:
+      "Este módulo de guías de pago sigue la ciudad activa. Puedes comparar nacionalidad, idiomas de trabajo, años de experiencia, especialidad y contacto directo antes de enviar una consulta.",
+    guideNationality: "Nacionalidad",
+    guideLanguages: "Idiomas",
+    guideExperience: "Experiencia",
+    guideSpecialty: "Especialidad",
+    guideContact: "Contacto",
+    guideFromPrice: "Desde CNY {price} / medio día",
+    guideYears: "{years} años",
+    guideBookNow: "Enviar consulta",
     cardButton: "Ver este lugar",
     ticketLink: "Entradas / Reserva",
     freeVisitNote: "Esta atracción se visita gratis",
@@ -352,10 +417,11 @@ const uiContent = {
   },
   fr: {
     brandTagline: "Cartes de voyage en Chine pour amis internationaux",
-    openGuide: "Ouvrir le guide",
+    openGuide: "Ouvrir l'explorateur",
     navMap: "Carte",
-    navGuide: "Guide local",
+    navGuide: "Explorer les sites",
     navFood: "Cuisine",
+    navLocalGuide: "Guide local",
     navAI: "Assistant IA",
     heroEyebrow: "Cinq villes, un seul hub",
     heroTitle: "Bonjour la Chine : une porte d'entrée de voyage fondée sur la carte, conçue pour les amis internationaux.",
@@ -374,11 +440,11 @@ const uiContent = {
     citySelectorKicker: "Sélecteur de ville",
     citySelectorTitle: "Cinq villes vedettes",
     activeCityKicker: "Ville active",
-    jumpToGuide: "Ouvrir le guide",
+    jumpToGuide: "Ouvrir l'explorateur",
     chinaMapKicker: "Carte de Chine",
     chinaMapTitle: "Entrées des villes touristiques",
     chinaMapHint: "Cliquez sur un marqueur pour mettre à jour la carte locale et la liste.",
-    workspaceEyebrow: "Espace ville",
+    workspaceEyebrow: "Explorateur de sites",
     cityMapKicker: "Carte de ville",
     cityMapHint: "Les marqueurs de cette carte sont liés aux cartes d'attractions ci-dessous.",
     focusKicker: "Attraction sélectionnée",
@@ -398,7 +464,19 @@ const uiContent = {
     cardsHint: "Cliquez sur une ville, un marqueur, un lien rapide ou une carte pour mettre à jour le guide.",
     spotSectionSummary: "Affichage de {city} · {spots} sites",
     activeCitySummary: "Exploration en cours: {city}",
-    mapPopupHint: "Ouvrir le guide",
+    mapPopupHint: "Ouvrir l'explorateur de sites",
+    guideEyebrow: "Guide local",
+    guideTitleTemplate: "Contacter des guides locaux à {city}",
+    guideTextTemplate:
+      "Ce module de guides payants suit la ville active. Comparez nationalité, langues de travail, années d'expérience, spécialité et contact direct avant d'envoyer une demande.",
+    guideNationality: "Nationalité",
+    guideLanguages: "Langues",
+    guideExperience: "Expérience",
+    guideSpecialty: "Spécialité",
+    guideContact: "Contact",
+    guideFromPrice: "A partir de CNY {price} / demi-journée",
+    guideYears: "{years} ans",
+    guideBookNow: "Envoyer une demande",
     cardButton: "Afficher ce site",
     ticketLink: "Billet / Réservation",
     freeVisitNote: "Ce site se visite gratuitement",
@@ -423,10 +501,11 @@ const uiContent = {
   },
   ar: {
     brandTagline: "خرائط سفر في الصين للأصدقاء الدوليين",
-    openGuide: "افتح الدليل",
+    openGuide: "افتح استكشاف المعالم",
     navMap: "الخريطة",
-    navGuide: "الدليل المحلي",
+    navGuide: "استكشاف المعالم",
     navFood: "الطعام",
+    navLocalGuide: "المرشد المحلي",
     navAI: "مساعد الذكاء الاصطناعي",
     heroEyebrow: "خمس مدن، منصة واحدة",
     heroTitle: "مرحباً بالصين: بوابة سفر قائمة على الخريطة ومصممة للأصدقاء الدوليين.",
@@ -445,11 +524,11 @@ const uiContent = {
     citySelectorKicker: "اختيار المدينة",
     citySelectorTitle: "خمس مدن رئيسية",
     activeCityKicker: "المدينة الحالية",
-    jumpToGuide: "افتح دليل المدينة",
+    jumpToGuide: "افتح استكشاف المعالم",
     chinaMapKicker: "خريطة الصين",
     chinaMapTitle: "مداخل المدن السياحية",
     chinaMapHint: "اضغط على أي علامة لتحديث خريطة المدينة وقائمة المعالم.",
-    workspaceEyebrow: "مساحة المدينة",
+    workspaceEyebrow: "استكشاف المعالم",
     cityMapKicker: "خريطة المدينة",
     cityMapHint: "علامات هذه الخريطة مرتبطة ببطاقات المعالم في الأسفل.",
     focusKicker: "المعلم المحدد",
@@ -469,7 +548,19 @@ const uiContent = {
     cardsHint: "اضغط على مدينة أو علامة أو رابط سريع أو بطاقة لتحديث الدليل.",
     spotSectionSummary: "يتم الآن عرض {city} · {spots} معالم",
     activeCitySummary: "أنت الآن تستكشف {city}",
-    mapPopupHint: "افتح دليل المدينة",
+    mapPopupHint: "افتح استكشاف المعالم",
+    guideEyebrow: "خدمة المرشد المحلي",
+    guideTitleTemplate: "تواصل مع مرشدي {city}",
+    guideTextTemplate:
+      "هذا القسم المدفوع للمرشدين يتبدل مع المدينة الحالية. يمكنك مقارنة الجنسية واللغات وسنوات الخبرة والتخصص ووسيلة التواصل المباشر قبل إرسال الاستفسار.",
+    guideNationality: "الجنسية",
+    guideLanguages: "اللغات",
+    guideExperience: "الخبرة",
+    guideSpecialty: "أفضل ما يقدمه",
+    guideContact: "التواصل",
+    guideFromPrice: "ابتداءً من {price} يوان / نصف يوم",
+    guideYears: "{years} سنوات",
+    guideBookNow: "إرسال استفسار",
     cardButton: "عرض هذا المعلم",
     ticketLink: "تذاكر / حجز",
     freeVisitNote: "يمكن زيارة هذا المعلم مجانًا",
@@ -1886,6 +1977,9 @@ const elements = {
   plannerCard: document.querySelector("#planner-card"),
   foodGrid: document.querySelector("#food-grid"),
   foodForum: document.querySelector("#food-forum"),
+  guideTitle: document.querySelector("#guide-title"),
+  guideCopy: document.querySelector("#guide-copy"),
+  guideGrid: document.querySelector("#guide-grid"),
   aiContextLine: document.querySelector("#ai-context-line"),
   aiMessages: document.querySelector("#ai-messages"),
   aiInput: document.querySelector("#ai-input"),
@@ -2050,6 +2144,268 @@ const cityFoodPicks = {
       en: "A relaxed evening snack walk through Hefang Street and Southern Song Imperial Street."
     }
   }
+};
+
+const guideLanguageNames = {
+  zh: { zh: "中文", en: "英语", ja: "日语", ko: "韩语", es: "西语", fr: "法语", ar: "阿拉伯语" },
+  en: { zh: "Chinese", en: "English", ja: "Japanese", ko: "Korean", es: "Spanish", fr: "French", ar: "Arabic" },
+  ja: { zh: "中国語", en: "英語", ja: "日本語", ko: "韓国語", es: "スペイン語", fr: "フランス語", ar: "アラビア語" },
+  ko: { zh: "중국어", en: "영어", ja: "일본어", ko: "한국어", es: "스페인어", fr: "프랑스어", ar: "아랍어" },
+  es: { zh: "Chino", en: "Ingles", ja: "Japones", ko: "Coreano", es: "Espanol", fr: "Frances", ar: "Arabe" },
+  fr: { zh: "Chinois", en: "Anglais", ja: "Japonais", ko: "Coreen", es: "Espagnol", fr: "Francais", ar: "Arabe" },
+  ar: { zh: "الصينية", en: "الانجليزية", ja: "اليابانية", ko: "الكورية", es: "الاسبانية", fr: "الفرنسية", ar: "العربية" }
+};
+
+const guideNationalityNames = {
+  china: { zh: "中国", en: "China", ja: "中国", ko: "중국", es: "China", fr: "Chine", ar: "الصين" },
+  japan: { zh: "日本", en: "Japan", ja: "日本", ko: "일본", es: "Japon", fr: "Japon", ar: "اليابان" },
+  france: { zh: "法国", en: "France", ja: "フランス", ko: "프랑스", es: "Francia", fr: "France", ar: "فرنسا" },
+  spain: { zh: "西班牙", en: "Spain", ja: "スペイン", ko: "스페인", es: "Espana", fr: "Espagne", ar: "اسبانيا" },
+  morocco: { zh: "摩洛哥", en: "Morocco", ja: "モロッコ", ko: "모로코", es: "Marruecos", fr: "Maroc", ar: "المغرب" },
+  singapore: { zh: "新加坡", en: "Singapore", ja: "シンガポール", ko: "싱가포르", es: "Singapur", fr: "Singapour", ar: "سنغافورة" }
+};
+
+const guideContactChannelLabels = {
+  wechatEmail: {
+    zh: "微信 / 邮箱",
+    en: "WeChat / Email",
+    ja: "WeChat / メール",
+    ko: "위챗 / 이메일",
+    es: "WeChat / Correo",
+    fr: "WeChat / Email",
+    ar: "ويتشات / بريد"
+  },
+  whatsappEmail: {
+    zh: "WhatsApp / 邮箱",
+    en: "WhatsApp / Email",
+    ja: "WhatsApp / メール",
+    ko: "WhatsApp / 이메일",
+    es: "WhatsApp / Correo",
+    fr: "WhatsApp / Email",
+    ar: "واتساب / بريد"
+  },
+  emailOnly: {
+    zh: "邮箱",
+    en: "Email",
+    ja: "メール",
+    ko: "이메일",
+    es: "Correo",
+    fr: "Email",
+    ar: "البريد"
+  }
+};
+
+const cityGuideProfiles = {
+  beijing: [
+    {
+      id: "beijing-sofia",
+      name: "Sofia Chen",
+      nationality: "china",
+      languages: ["zh", "en", "ja"],
+      years: 6,
+      startPrice: 480,
+      specialty: {
+        zh: "故宫、长城与北京中轴线深度讲解",
+        en: "Forbidden City, Great Wall, and Beijing central-axis storytelling",
+        ja: "故宮、万里の長城、北京中軸線の案内",
+        ko: "자금성, 만리장성, 베이징 중축선 해설",
+        es: "Recorridos por la Ciudad Prohibida, la Gran Muralla y el eje central de Beijing",
+        fr: "Visites de la Cite interdite, de la Grande Muraille et de l'axe central de Pekin",
+        ar: "جولات في المدينة المحرمة وسور الصين ومحور بكين التاريخي"
+      },
+      contactChannel: "wechatEmail",
+      contactValue: "WeChat: sofia_beijingwalk · sofia.beijing@hellochina.demo",
+      inquiryEmail: "sofia.beijing@hellochina.demo"
+    },
+    {
+      id: "beijing-yuki",
+      name: "Yuki Sato",
+      nationality: "japan",
+      languages: ["ja", "en", "zh"],
+      years: 4,
+      startPrice: 520,
+      specialty: {
+        zh: "适合首次来华游客的皇城与胡同半日路线",
+        en: "Half-day imperial-city and hutong walks for first-time visitors",
+        ja: "初めての訪中旅行者向けの皇城と胡同の半日コース",
+        ko: "중국 첫 방문객을 위한 황성 및 후퉁 반일 코스",
+        es: "Rutas de medio dia por la ciudad imperial y los hutongs para quienes visitan China por primera vez",
+        fr: "Parcours d'une demi-journee dans la ville imperiale et les hutongs pour une premiere visite en Chine",
+        ar: "مسارات نصف يوم في المدينة الامبراطورية والأزقة التقليدية لزوار الصين لأول مرة"
+      },
+      contactChannel: "emailOnly",
+      contactValue: "yuki.beijing@hellochina.demo",
+      inquiryEmail: "yuki.beijing@hellochina.demo"
+    }
+  ],
+  shanghai: [
+    {
+      id: "shanghai-lucas",
+      name: "Lucas Martin",
+      nationality: "france",
+      languages: ["fr", "en", "zh"],
+      years: 5,
+      startPrice: 560,
+      specialty: {
+        zh: "外滩、法租界与海派建筑步行讲解",
+        en: "Bund, French Concession, and architecture walks",
+        ja: "外灘、旧フランス租界、海派建築の散策案内",
+        ko: "와이탄, 프랑스 조계지, 상하이 건축 산책",
+        es: "Paseos por el Bund, la Concesion Francesa y la arquitectura de Shanghai",
+        fr: "Balades sur le Bund, dans l'ancienne concession francaise et autour de l'architecture shanghaienne",
+        ar: "جولات في البوند والحي الفرنسي وعمارة شنغهاي"
+      },
+      contactChannel: "whatsappEmail",
+      contactValue: "WhatsApp: +33 6 52 18 27 40 · lucas.shanghai@hellochina.demo",
+      inquiryEmail: "lucas.shanghai@hellochina.demo"
+    },
+    {
+      id: "shanghai-mia",
+      name: "Mia Xu",
+      nationality: "china",
+      languages: ["zh", "en", "es"],
+      years: 7,
+      startPrice: 520,
+      specialty: {
+        zh: "迪士尼、陆家嘴与亲子轻松行程设计",
+        en: "Disney, Lujiazui, and family-friendly city planning",
+        ja: "ディズニー、陸家嘴、家族向けのゆったり行程",
+        ko: "디즈니, 루자쭈이, 가족 친화형 일정 설계",
+        es: "Disney, Lujiazui y planes urbanos relajados para familias",
+        fr: "Disney, Lujiazui et itineraires detendus pour les familles",
+        ar: "مسارات ديزني ولوجياتسوي والرحلات العائلية المريحة"
+      },
+      contactChannel: "wechatEmail",
+      contactValue: "WeChat: mia_citystories · mia.shanghai@hellochina.demo",
+      inquiryEmail: "mia.shanghai@hellochina.demo"
+    }
+  ],
+  xian: [
+    {
+      id: "xian-ana",
+      name: "Ana Ruiz",
+      nationality: "spain",
+      languages: ["es", "en", "zh"],
+      years: 5,
+      startPrice: 460,
+      specialty: {
+        zh: "兵马俑、城墙与回民街的一日文化线路",
+        en: "Terracotta Warriors, City Wall, and Muslim Quarter culture days",
+        ja: "兵馬俑、城壁、回民街を巡る文化ルート",
+        ko: "병마용, 성벽, 회민가를 잇는 문화 코스",
+        es: "Jornadas culturales por Guerreros de Terracota, muralla y barrio musulman",
+        fr: "Journees culturelles autour des soldats en terre cuite, des remparts et du quartier musulman",
+        ar: "مسارات ثقافية تشمل جيش التيراكوتا والسور القديم وحي المسلمين"
+      },
+      contactChannel: "whatsappEmail",
+      contactValue: "WhatsApp: +34 612 44 09 85 · ana.xian@hellochina.demo",
+      inquiryEmail: "ana.xian@hellochina.demo"
+    },
+    {
+      id: "xian-han",
+      name: "Han Ming",
+      nationality: "china",
+      languages: ["zh", "en", "fr"],
+      years: 8,
+      startPrice: 430,
+      specialty: {
+        zh: "历史遗址讲解与西安老城夜游安排",
+        en: "Historical-site interpretation and old-city evening routes",
+        ja: "史跡解説と西安旧市街の夜散策",
+        ko: "역사 유적 해설과 시안 구시가지 야간 코스",
+        es: "Explicacion historica y recorridos nocturnos por la ciudad vieja de Xian",
+        fr: "Presentation des sites historiques et parcours du soir dans la vieille ville de Xi'an",
+        ar: "شرح المواقع التاريخية ومسارات المساء داخل المدينة القديمة في شيآن"
+      },
+      contactChannel: "wechatEmail",
+      contactValue: "WeChat: han_xianroute · han.xian@hellochina.demo",
+      inquiryEmail: "han.xian@hellochina.demo"
+    }
+  ],
+  chengdu: [
+    {
+      id: "chengdu-amir",
+      name: "Amir El Idrissi",
+      nationality: "morocco",
+      languages: ["ar", "en", "zh"],
+      years: 4,
+      startPrice: 450,
+      specialty: {
+        zh: "大熊猫、宽窄巷子与茶馆慢游体验",
+        en: "Panda Base, Kuanzhai Alleys, and teahouse slow travel",
+        ja: "パンダ基地、寛窄巷子、茶館をゆっくり巡る案内",
+        ko: "판다기지, 콴자이샹즈, 찻집 슬로 트래블",
+        es: "Base de pandas, callejones Kuanzhai y experiencias tranquilas en casas de te",
+        fr: "Base des pandas, ruelles Kuanzhai et balades lentes dans les maisons de the",
+        ar: "جولات هادئة تشمل قاعدة الباندا وأزقة كوانتشاي وبيوت الشاي"
+      },
+      contactChannel: "whatsappEmail",
+      contactValue: "WhatsApp: +212 661 84 30 27 · amir.chengdu@hellochina.demo",
+      inquiryEmail: "amir.chengdu@hellochina.demo"
+    },
+    {
+      id: "chengdu-lin",
+      name: "Lin Yue",
+      nationality: "china",
+      languages: ["zh", "en", "ko"],
+      years: 7,
+      startPrice: 420,
+      specialty: {
+        zh: "川菜体验、夜游锦里与轻松拍照点串联",
+        en: "Sichuan food walks, Jinli at night, and easy photo stops",
+        ja: "四川グルメ、夜の錦里、写真向け立ち寄りスポット",
+        ko: "사천 음식 체험, 야간 진리, 사진 포인트 연계 코스",
+        es: "Rutas de comida sichuanesa, Jinli nocturno y paradas faciles para fotos",
+        fr: "Parcours gourmands du Sichuan, Jinli de nuit et arrets photo faciles",
+        ar: "تجارب طعام سيتشوان وجولات جينلي الليلية ونقاط تصوير سهلة"
+      },
+      contactChannel: "wechatEmail",
+      contactValue: "WeChat: lin_chengdugo · lin.chengdu@hellochina.demo",
+      inquiryEmail: "lin.chengdu@hellochina.demo"
+    }
+  ],
+  hangzhou: [
+    {
+      id: "hangzhou-claire",
+      name: "Claire Tan",
+      nationality: "singapore",
+      languages: ["en", "zh", "fr"],
+      years: 5,
+      startPrice: 500,
+      specialty: {
+        zh: "西湖、灵隐寺与龙井茶村的慢节奏路线",
+        en: "West Lake, Lingyin Temple, and Longjing tea-village pacing",
+        ja: "西湖、霊隠寺、龍井茶村をめぐるゆったりルート",
+        ko: "서호, 영은사, 룽징 차마을 슬로 코스",
+        es: "Ritmo tranquilo por el Lago del Oeste, el templo Lingyin y la aldea de te Longjing",
+        fr: "Parcours paisibles entre le lac de l'Ouest, le temple Lingyin et le village de the Longjing",
+        ar: "مسارات هادئة بين بحيرة الغرب ومعبد لينغيين وقرية شاي لونغجينغ"
+      },
+      contactChannel: "emailOnly",
+      contactValue: "claire.hangzhou@hellochina.demo",
+      inquiryEmail: "claire.hangzhou@hellochina.demo"
+    },
+    {
+      id: "hangzhou-zhou",
+      name: "Zhou Qing",
+      nationality: "china",
+      languages: ["zh", "en", "ja"],
+      years: 9,
+      startPrice: 460,
+      specialty: {
+        zh: "古街、博物馆与夜色西湖的半日陪游",
+        en: "Old streets, museums, and evening West Lake half-day tours",
+        ja: "古街、博物館、夜の西湖をめぐる半日案内",
+        ko: "옛 거리, 박물관, 야경 서호 반일 투어",
+        es: "Medio dia entre calles antiguas, museos y el Lago del Oeste al atardecer",
+        fr: "Demi-journee entre rues anciennes, musees et lac de l'Ouest en soiree",
+        ar: "جولات نصف يوم تشمل الشوارع القديمة والمتاحف وبحيرة الغرب مساءً"
+      },
+      contactChannel: "wechatEmail",
+      contactValue: "WeChat: qing_hzwalk · qing.hangzhou@hellochina.demo",
+      inquiryEmail: "qing.hangzhou@hellochina.demo"
+    }
+  ]
 };
 
 const foodLineTranslations = {
@@ -3375,6 +3731,30 @@ function currentFoodForumUi() {
 
 function foodForumText(key) {
   return currentFoodForumUi()[key] || foodForumUiContent.en[key] || "";
+}
+
+function guideLanguageLabel(languageCode) {
+  return guideLanguageNames[state.language]?.[languageCode] || guideLanguageNames.en[languageCode] || languageCode;
+}
+
+function guideNationalityLabel(nationalityCode) {
+  return guideNationalityNames[nationalityCode]?.[state.language] || guideNationalityNames[nationalityCode]?.en || nationalityCode;
+}
+
+function guideContactChannelLabel(channelCode) {
+  return guideContactChannelLabels[channelCode]?.[state.language] || guideContactChannelLabels[channelCode]?.en || "";
+}
+
+function formatGuideExperience(years) {
+  return fillTemplate(uiText("guideYears"), { years: String(years) });
+}
+
+function formatGuidePrice(price) {
+  return fillTemplate(uiText("guideFromPrice"), { price: String(price) });
+}
+
+function formatGuideLanguages(languages) {
+  return languages.map((languageCode) => guideLanguageLabel(languageCode)).join(" / ");
 }
 
 function escapeHtml(value) {
@@ -5189,6 +5569,61 @@ function renderWeatherSection() {
   `;
 }
 
+function renderGuideSection() {
+  const city = activeCity();
+  const profiles = cityGuideProfiles[city.id] || [];
+  const cityName = localize(city.names);
+
+  elements.guideTitle.textContent = fillTemplate(uiText("guideTitleTemplate"), { city: cityName });
+  elements.guideCopy.textContent = fillTemplate(uiText("guideTextTemplate"), { city: cityName });
+
+  elements.guideGrid.innerHTML = profiles
+    .map((profile) => {
+      const mailSubject = encodeURIComponent(`${cityName} guide inquiry - ${profile.name}`);
+      return `
+        <article class="guide-card">
+          <div class="guide-card-top">
+            <div>
+              <span class="fact-pill guide-city-pill" style="background:${city.soft};color:${city.accent};">${cityName}</span>
+              <h3>${escapeHtml(profile.name)}</h3>
+            </div>
+            <span class="mini-pill guide-price-pill">${escapeHtml(formatGuidePrice(profile.startPrice))}</span>
+          </div>
+          <p class="guide-specialty-copy">${escapeHtml(localize(profile.specialty))}</p>
+          <div class="guide-meta-grid">
+            <article class="guide-meta-card">
+              <span>${uiText("guideNationality")}</span>
+              <strong>${escapeHtml(guideNationalityLabel(profile.nationality))}</strong>
+            </article>
+            <article class="guide-meta-card">
+              <span>${uiText("guideLanguages")}</span>
+              <strong>${escapeHtml(formatGuideLanguages(profile.languages))}</strong>
+            </article>
+            <article class="guide-meta-card">
+              <span>${uiText("guideExperience")}</span>
+              <strong>${escapeHtml(formatGuideExperience(profile.years))}</strong>
+            </article>
+            <article class="guide-meta-card">
+              <span>${uiText("guideSpecialty")}</span>
+              <strong>${escapeHtml(localize(profile.specialty))}</strong>
+            </article>
+          </div>
+          <div class="guide-contact-row" style="background:${city.soft};border-color:${hexToRgba(city.accent, 0.16)};">
+            <div class="guide-contact-copy">
+              <span>${uiText("guideContact")}</span>
+              <strong>${escapeHtml(guideContactChannelLabel(profile.contactChannel))}</strong>
+              <small>${escapeHtml(profile.contactValue)}</small>
+            </div>
+            <a class="tiny-button guide-contact-button" href="mailto:${profile.inquiryEmail}?subject=${mailSubject}">
+              ${uiText("guideBookNow")}
+            </a>
+          </div>
+        </article>
+      `;
+    })
+    .join("");
+}
+
 function foodForumVenues(cityId) {
   return [...(cityFoodForumVenues[cityId] || []), ...(foodForumRuntime.userVenues[cityId] || [])];
 }
@@ -5599,6 +6034,7 @@ function renderAll() {
   renderSpotCards();
   renderWeatherSection();
   renderFoodSection();
+  renderGuideSection();
   prefetchActiveCityTranslations();
   renderAiContext();
   renderAiMessages();
@@ -5612,7 +6048,7 @@ function renderAll() {
 }
 
 function bindFloatEffects() {
-  const selector = ".hero-card, .map-card, .focus-card, .route-card, .spot-card, .panel-block, .city-chip, .food-card, .ai-card, .weather-card, .planner-card, .planner-note, .forecast-day";
+  const selector = ".hero-card, .map-card, .focus-card, .route-card, .spot-card, .panel-block, .city-chip, .food-card, .guide-card, .ai-card, .weather-card, .planner-card, .planner-note, .forecast-day";
   document.querySelectorAll(selector).forEach((element) => {
     if (element.dataset.floatBound === "true") return;
     element.dataset.floatBound = "true";

@@ -100,6 +100,7 @@ a {
 .city-workspace,
 .spot-section,
 .food-section,
+.guide-section,
 .ai-section,
 .feature-nav {
   position: relative;
@@ -161,7 +162,9 @@ a {
 #workspace-city-title,
 #active-city-title,
 #focus-spot-name,
-#city-map-title {
+#city-map-title,
+#guide-title,
+.guide-card h3 {
   font-family: var(--font-display);
 }
 
@@ -1249,6 +1252,95 @@ a {
   box-shadow: 0 10px 20px rgba(66, 133, 244, 0.1);
 }
 
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.guide-card {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border-radius: 30px;
+  border: 1px solid rgba(66, 133, 244, 0.12);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: var(--shadow);
+}
+
+.guide-card-top,
+.guide-contact-row {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.guide-card-top h3 {
+  margin: 12px 0 0;
+  font-size: 1.34rem;
+}
+
+.guide-price-pill {
+  max-width: 190px;
+  text-align: right;
+}
+
+.guide-specialty-copy {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+.guide-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.guide-meta-card {
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(66, 133, 244, 0.08);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.guide-meta-card span,
+.guide-contact-copy span,
+.guide-contact-copy small {
+  color: var(--muted);
+}
+
+.guide-meta-card span,
+.guide-contact-copy span {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.guide-meta-card strong,
+.guide-contact-copy strong {
+  display: block;
+  margin-top: 8px;
+  line-height: 1.55;
+}
+
+.guide-contact-row {
+  padding: 16px 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(66, 133, 244, 0.12);
+}
+
+.guide-contact-copy small {
+  display: block;
+  margin-top: 8px;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+.guide-contact-button {
+  align-self: center;
+}
+
 .ai-card {
   padding: 20px;
   border-radius: 30px;
@@ -1388,6 +1480,7 @@ a {
 .focus-card,
 .route-card,
 .spot-card,
+.guide-card,
 .weather-card,
 .planner-card,
 .panel-block {
@@ -1410,6 +1503,7 @@ a {
 .focus-card:hover,
 .route-card:hover,
 .spot-card:hover,
+.guide-card:hover,
 .weather-card:hover,
 .planner-card:hover,
 .planner-note:hover,
@@ -1485,6 +1579,7 @@ a {
   .weather-grid,
   .spot-grid,
   .food-grid,
+  .guide-grid,
   .food-forum-layout {
     grid-template-columns: 1fr;
   }
@@ -1557,6 +1652,8 @@ a {
   .food-forum-head,
   .food-forum-summary-head,
   .food-review-meta,
+  .guide-card-top,
+  .guide-contact-row,
   .weather-card-head,
   .planner-card-head,
   .forecast-head {
@@ -1580,14 +1677,16 @@ a {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .food-forum-chip-row {
+  .food-forum-chip-row,
+  .guide-meta-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
   .food-forum-chip-row,
-  .planner-day-switcher {
+  .planner-day-switcher,
+  .guide-meta-grid {
     grid-template-columns: 1fr;
   }
 }
