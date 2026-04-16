@@ -5217,9 +5217,19 @@ function foodForumReviewComment(review, city, venue) {
   const templates = foodForumCommentTemplates[state.language] || foodForumCommentTemplates.en;
   const template = templates[review.template] || foodForumCommentTemplates.en[review.template] || "";
   return fillTemplate(template, {
-    dish: localize(review.dish),
+    dish: localizeFoodForumRecord(review.dish, {
+      kind: "review",
+      cityId: city.id,
+      itemId: `${venue.id}:${review.createdAt}`,
+      field: "dish"
+    }),
     city: localize(city.names),
-    venue: localize(venue.names)
+    venue: localizeFoodForumRecord(venue.names, {
+      kind: "venue",
+      cityId: city.id,
+      itemId: venue.id,
+      field: "names"
+    })
   });
 }
 
