@@ -1932,6 +1932,7 @@ const foodForumRuntime = {
 
 const WEATHER_CACHE_TTL_MS = 10 * 60 * 1000;
 const WEATHER_AUTO_REFRESH_MS = 10 * 60 * 1000;
+const SPLASH_MIN_DURATION_MS = 1500;
 
 const SCRIPT_AI_CONFIG = Object.freeze({
   // DeepSeek official REST path for chat completions.
@@ -1944,6 +1945,7 @@ const SCRIPT_AI_CONFIG = Object.freeze({
 
 const elements = {
   body: document.body,
+  splashScreen: document.querySelector("#splash-screen"),
   statCityCount: document.querySelector("#stat-city-count"),
   statSpotCount: document.querySelector("#stat-spot-count"),
   statLanguageCount: document.querySelector("#stat-language-count"),
@@ -4504,6 +4506,24 @@ function setTicketLink(spot, city) {
   }
 }
 
+function wait(ms) {
+  return new Promise((resolve) => {
+    window.setTimeout(resolve, ms);
+  });
+}
+
+async function dismissSplashScreen(startedAt = performance.now()) {
+  const elapsed = performance.now() - startedAt;
+  if (elapsed < SPLASH_MIN_DURATION_MS) {
+    await wait(SPLASH_MIN_DURATION_MS - elapsed);
+  }
+
+  if (elements.splashScreen) {
+    elements.splashScreen.classList.add("is-hidden");
+  }
+  elements.body.classList.remove("is-loading");
+}
+
 function aiSeedMessage(language) {
   const seedMessage = {
     zh: "你好，我是你的景点地陪助手。选中景点后，你可以问我交通、时段、路线与注意事项。",
@@ -4565,6 +4585,16 @@ function openAiAssistantForSpot(spotId) {
   document.querySelector("#ai-assistant").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+function normalizeAiReply(content) {
+  return String(content || "")
+    .replace(/\r\n/g, "\n")
+    .replace(/^\s{0,3}#{1,6}\s*/gm, "")
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/__(.*?)__/g, "$1")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
 async function sendAiMessage() {
   if (state.aiBusy) return;
   const question = elements.aiInput.value.trim();
@@ -4606,7 +4636,7 @@ async function sendAiMessage() {
           {
             role: "system",
             content:
-              "You are a practical China travel guide. Use concise, concrete tips. If information is uncertain, say so clearly."
+              "You are a practical China travel guide. Reply in the same language as the user's latest message unless the user asks for another language. Use concise, concrete advice and a natural human tone. Use plain text only. Do not use Markdown headings, ###, bold markers, bullet lists, or numbered lists unless the user explicitly asks for them. Organize the reply into 2 to 4 short paragraphs with a blank line between paragraphs so it is easy to scan. Start with the direct answer, then add useful details. If information is uncertain, say so clearly."
           },
           {
             role: "system",
@@ -4630,7 +4660,7 @@ async function sendAiMessage() {
       payload?.output_text ||
       uiText("aiError");
     state.aiMessages.pop();
-    state.aiMessages.push({ role: "assistant", content: answer.trim() });
+    state.aiMessages.push({ role: "assistant", content: normalizeAiReply(answer) });
   } catch (error) {
     state.aiMessages.pop();
     state.aiMessages.push({ role: "assistant", content: uiText("aiError") });
@@ -6255,6 +6285,7 @@ elements.focusTicketLink.addEventListener("click", (event) => {
 });
 
 async function bootstrap() {
+  const splashStartedAt = performance.now();
   loadFoodForumReviewsFromStorage();
   loadFoodForumVenuesFromStorage();
   loadIntroTranslationsFromStorage();
@@ -6262,8 +6293,12 @@ async function bootstrap() {
   setupChinaMap();
   setupWeatherAutoRefresh();
   renderAll();
-  await loadExternalContent();
-  renderAll();
+  try {
+    await loadExternalContent();
+    renderAll();
+  } finally {
+    await dismissSplashScreen(splashStartedAt);
+  }
 }
 
 bootstrap();

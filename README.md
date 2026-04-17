@@ -69,6 +69,10 @@
   - 可直接查看导游的国籍、工作语言、导游年限、擅长线路与联系入口
   - 适合作为后续付费陪游、定制带看与旅行咨询的前端展示入口
 
+- 品牌图标与入场动画
+  - 页面左上角品牌图标、浏览器标签图标已替换为 `HelloChina图标.jpg`
+  - 页面初次进入时会先展示品牌图标的渐进式启动页，再平滑过渡到完整内容
+
 ## 目录结构
 
 - [index.html](/Users/chen/Desktop/JD%20Cup/index.html)：页面结构
@@ -98,9 +102,9 @@ http://localhost:8000
 
 ```js
 const SCRIPT_AI_CONFIG = Object.freeze({
-  endpoint: "https://api.openai.com/v1/chat/completions",
-  model: "gpt-4.1-mini",
-  apiKey: ""
+  endpoint: "https://api.deepseek.com/chat/completions",
+  model: "deepseek-chat",
+  apiKey: "你的 DeepSeek API Key"
 });
 ```
 
@@ -149,6 +153,8 @@ const SCRIPT_AI_CONFIG = Object.freeze({
 - 用户新增的店铺名、推荐菜与评论已接入跨语种翻译逻辑：不同界面语言下会优先显示对应译文，未命中时再回退原文
 - 顶部原先跳转到城市地图的“地陪”入口已更名为“景点探索”，避免与真实导游服务混淆
 - 页面新增真实“地陪”服务板块：可查看当前城市导游的国籍、语言能力、导游经历、擅长路线与联系入口
+- 页面品牌图标已改为 `HelloChina图标.jpg`，站点头部与浏览器标签页图标保持一致
+- 页面新增入场启动页：先展示品牌图标，再渐进过渡到完整页面内容
 
 ## 下一步的改进任务
 - 当前这一轮 README 中列出的改进任务已完成

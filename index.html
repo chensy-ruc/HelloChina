@@ -24,9 +24,20 @@
     rel="stylesheet"
     href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"
   >
+  <link rel="icon" type="image/jpeg" href="./HelloChina图标.jpg">
   <link rel="stylesheet" href="./styles.css">
 </head>
-<body>
+<body class="is-loading">
+  <div class="splash-screen" id="splash-screen" aria-hidden="true">
+    <div class="splash-screen-inner">
+      <div class="splash-logo-ring"></div>
+      <img class="splash-logo" src="./HelloChina图标.jpg" alt="HelloChina logo">
+      <div class="splash-copy">
+        <strong>HelloChina</strong>
+        <span>Maps, stories, and travel rhythm across China</span>
+      </div>
+    </div>
+  </div>
   <div class="page-shell">
     <div class="page-glow glow-a"></div>
     <div class="page-glow glow-b"></div>
@@ -35,8 +46,7 @@
     <header class="site-header">
       <a class="brand" href="#top">
         <span class="brand-mark">
-          <span class="brand-mark-h">H</span>
-          <span class="brand-mark-c">C</span>
+          <img src="./HelloChina图标.jpg" alt="HelloChina logo">
         </span>
         <span class="brand-copy">
           <strong>HelloChina</strong>
