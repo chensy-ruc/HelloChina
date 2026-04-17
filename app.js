@@ -1934,8 +1934,10 @@ const WEATHER_CACHE_TTL_MS = 10 * 60 * 1000;
 const WEATHER_AUTO_REFRESH_MS = 10 * 60 * 1000;
 
 const SCRIPT_AI_CONFIG = Object.freeze({
-  // Set these values manually before running deployment/demo.
-  endpoint: "https://api.deepseek.com",
+  // DeepSeek official REST path for chat completions.
+  // This project sends requests with fetch(endpoint), so endpoint must be a full request URL,
+  // not only the base_url shown in SDK examples.
+  endpoint: "https://api.deepseek.com/chat/completions",
   model: "deepseek-chat",
   apiKey: "sk-4429132adc594c559370d0beda72ef88"
 });
