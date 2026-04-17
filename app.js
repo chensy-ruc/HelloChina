@@ -1935,8 +1935,8 @@ const WEATHER_AUTO_REFRESH_MS = 10 * 60 * 1000;
 
 const SCRIPT_AI_CONFIG = Object.freeze({
   // Set these values manually before running deployment/demo.
-  endpoint: "https://api.openai.com/v1/chat/completions",
-  model: "gpt-4.1-mini",
+  endpoint: "https://api.deepseek.com",
+  model: "deepseek-chat",
   apiKey: "sk-4429132adc594c559370d0beda72ef88"
 });
 
