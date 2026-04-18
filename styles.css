@@ -819,6 +819,8 @@ body.is-loading .page-shell {
 .planner-card {
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   padding: 22px;
   border-radius: 30px;
   border: 1px solid rgba(66, 133, 244, 0.12);
@@ -839,7 +841,7 @@ body.is-loading .page-shell {
 
 .weather-hero {
   position: relative;
-  min-height: 252px;
+  min-height: 320px;
   overflow: hidden;
   border-radius: 28px;
   padding: 24px;
@@ -874,25 +876,31 @@ body.is-loading .page-shell {
   background: linear-gradient(180deg, #aec9ed 0%, #7da3d1 60%, #6789ba 100%);
 }
 
-.weather-scene,
-.weather-hero-layer {
+.weather-scene {
   position: absolute;
   inset: 0;
 }
 
 .weather-hero-layer {
+  position: relative;
   z-index: 2;
   display: flex;
-  align-items: start;
+  flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 18px;
-  padding: 24px;
+  width: 100%;
+  min-height: 264px;
 }
 
 .weather-hero-copy,
 .weather-card-tools {
   position: relative;
   z-index: 2;
+}
+
+.weather-hero-copy {
+  max-width: min(100%, 460px);
 }
 
 .weather-city-pill,
@@ -1233,7 +1241,11 @@ body.is-loading .page-shell {
 .weather-card-tools {
   display: grid;
   gap: 10px;
+  align-content: space-between;
   justify-items: end;
+  min-height: 100%;
+  margin-left: auto;
+  max-width: 280px;
 }
 
 .weather-card-actions {
@@ -2234,6 +2246,8 @@ body.is-loading .page-shell {
   .weather-card-tools,
   .weather-card-actions {
     width: 100%;
+    max-width: none;
+    margin-left: 0;
     justify-items: start;
     justify-content: start;
   }
@@ -2244,7 +2258,7 @@ body.is-loading .page-shell {
   }
 
   .weather-hero {
-    min-height: 320px;
+    min-height: 340px;
   }
 
   .weather-temperature {

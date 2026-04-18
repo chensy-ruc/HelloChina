@@ -5614,7 +5614,7 @@ function renderWeatherSection() {
     <div class="planner-day-meta">
       <span class="fact-pill">${weatherText("plannerChooseDay")}</span>
       <span class="mini-pill" style="background:${city.soft};color:${city.accent};">
-        ${plannerDayLabel(activePlannerDay, activeWeatherDayIndex)} · ${weatherConditionLabel(activePlannerDay.weatherCode)} · ${Math.round(activePlannerDay.maxTemp || 0)}° / ${Math.round(activePlannerDay.minTemp || 0)}°
+        ${plannerDayLabel(activePlannerDay, activeWeatherDayIndex)}
       </span>
     </div>
     <div class="planner-day-switcher">
@@ -5640,10 +5640,6 @@ function renderWeatherSection() {
         .join("")}
     </div>
     <div class="planner-grid">
-      <article class="planner-note">
-        <span class="fact-pill">${weatherText("adviceWeather")}</span>
-        <p>${planner.weatherLine}</p>
-      </article>
       <article class="planner-note">
         <span class="fact-pill">${weatherText("adviceCarry")}</span>
         <p>${planner.carryLine}</p>
