@@ -896,6 +896,7 @@ body.is-loading .page-shell {
 }
 
 .weather-city-pill,
+.weather-scene-pill,
 .weather-update-pill {
   display: inline-flex;
   align-items: center;
@@ -910,6 +911,17 @@ body.is-loading .page-shell {
 .weather-city-pill {
   margin-bottom: 16px;
   font-weight: 700;
+}
+
+.weather-hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.weather-scene-pill {
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .weather-temperature {
@@ -945,6 +957,61 @@ body.is-loading .page-shell {
 
 .weather-card-actions {
   justify-content: end;
+}
+
+.weather-forecast-strip {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(132px, 148px);
+  gap: 12px;
+  margin-top: 16px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scroll-snap-type: x proximity;
+}
+
+.weather-forecast-strip::-webkit-scrollbar {
+  height: 8px;
+}
+
+.weather-forecast-strip::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(66, 133, 244, 0.18);
+}
+
+.weather-forecast-button {
+  padding: 14px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+  scroll-snap-align: start;
+}
+
+.weather-forecast-button strong,
+.weather-forecast-button span,
+.weather-forecast-button small {
+  display: block;
+}
+
+.weather-forecast-button span,
+.weather-forecast-button small {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.weather-forecast-button.is-active {
+  background: rgba(255, 255, 255, 0.86);
+  border-color: rgba(66, 133, 244, 0.2);
+  box-shadow: 0 14px 28px rgba(66, 133, 244, 0.12);
+}
+
+.weather-forecast-button:hover {
+  transform: translateY(-3px);
 }
 
 .weather-refresh-button {
@@ -2182,6 +2249,10 @@ body.is-loading .page-shell {
 
   .weather-temperature {
     font-size: clamp(2.7rem, 12vw, 4rem);
+  }
+
+  .weather-forecast-strip {
+    grid-auto-columns: minmax(122px, 132px);
   }
 
   .weather-orb {

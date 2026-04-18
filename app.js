@@ -5503,18 +5503,31 @@ function renderWeatherSection() {
   const activePlannerDay = plannerDays[activeWeatherDayIndex] || plannerDays[0] || today;
   const route = planner.recommendedRoute;
   const routeIsActive = route?.id === state.activeRouteId;
-  const weatherTheme = weatherVisualTheme(weather.current.weatherCode, weather.current.isDay);
+  const selectedIsToday = activeWeatherDayIndex === 0;
+  const selectedWeatherCode = selectedIsToday ? weather.current.weatherCode : activePlannerDay.weatherCode;
+  const selectedTheme = weatherVisualTheme(selectedWeatherCode, selectedIsToday ? weather.current.isDay : 1);
+  const selectedTemperature = selectedIsToday ? weather.current.temperature : activePlannerDay.maxTemp;
+  const selectedFeelsLike = selectedIsToday
+    ? weather.current.feelsLike
+    : ((Number(activePlannerDay.maxTemp || 0) + Number(activePlannerDay.minTemp || 0)) / 2);
+  const selectedWind = selectedIsToday ? weather.current.windSpeed : activePlannerDay.windSpeed;
+  const selectedRainChance = selectedIsToday ? today.rainChance || 0 : activePlannerDay.rainChance || 0;
+  const selectedPrecipitation = selectedIsToday ? Number(weather.current.precipitation || 0) : 0;
+  const selectedLabel = selectedIsToday ? weatherText("now") : plannerDayLabel(activePlannerDay, activeWeatherDayIndex);
 
   elements.weatherCard.innerHTML = `
-    <div class="weather-hero weather-theme-${weatherTheme}">
-      ${weatherSceneMarkup(weatherTheme)}
+    <div class="weather-hero weather-theme-${selectedTheme}">
+      ${weatherSceneMarkup(selectedTheme)}
       <div class="weather-hero-layer">
         <div class="weather-hero-copy">
-          <span class="weather-city-pill">${localize(city.names)}</span>
-          <p class="weather-kicker">${weatherConditionLabel(weather.current.weatherCode)}</p>
-          <h3 class="weather-temperature">${Math.round(weather.current.temperature)}°C</h3>
-          <p class="weather-hero-summary">${weatherText("feelsLike")}: ${Math.round(weather.current.feelsLike)}°C · ${weatherText("wind")}: ${Math.round(weather.current.windSpeed)} km/h</p>
-          <p class="weather-hero-range">${weatherText("highLow")}: ${Math.round(today.maxTemp || 0)}° / ${Math.round(today.minTemp || 0)}°</p>
+          <div class="weather-hero-pills">
+            <span class="weather-city-pill">${localize(city.names)}</span>
+            <span class="weather-scene-pill">${selectedLabel}</span>
+          </div>
+          <p class="weather-kicker">${weatherConditionLabel(selectedWeatherCode)}</p>
+          <h3 class="weather-temperature">${Math.round(selectedTemperature)}°C</h3>
+          <p class="weather-hero-summary">${weatherText("feelsLike")}: ${Math.round(selectedFeelsLike)}°C · ${weatherText("wind")}: ${Math.round(selectedWind || 0)} km/h</p>
+          <p class="weather-hero-range">${weatherText("highLow")}: ${Math.round(activePlannerDay.maxTemp || 0)}° / ${Math.round(activePlannerDay.minTemp || 0)}°</p>
         </div>
         <div class="weather-card-tools">
           <p class="weather-sync-note">${weatherText("liveSync")}</p>
@@ -5534,24 +5547,41 @@ function renderWeatherSection() {
         </div>
       </div>
     </div>
+    <div class="weather-forecast-strip" role="tablist" aria-label="${weatherText("nextDays")}">
+      ${plannerDays
+        .map(
+          (day, index) => `
+            <button
+              class="weather-forecast-button ${index === activeWeatherDayIndex ? "is-active" : ""}"
+              type="button"
+              data-weather-day="${index}"
+            >
+              <strong>${plannerDayLabel(day, index)}</strong>
+              <span>${weatherConditionLabel(day.weatherCode)}</span>
+              <small>${Math.round(day.maxTemp || 0)}° / ${Math.round(day.minTemp || 0)}°</small>
+            </button>
+          `
+        )
+        .join("")}
+    </div>
     <div class="weather-metrics">
-      <span class="fact-pill">${weatherText("feelsLike")}: ${Math.round(weather.current.feelsLike)}°C</span>
-      <span class="fact-pill">${weatherText("wind")}: ${Math.round(weather.current.windSpeed)} km/h</span>
-      <span class="fact-pill">${weatherText("rainChance")}: ${Math.round(today.rainChance || 0)}%</span>
-      <span class="fact-pill">${weatherText("precipitation")}: ${Number(weather.current.precipitation || 0).toFixed(1)} mm</span>
+      <span class="fact-pill">${weatherText("feelsLike")}: ${Math.round(selectedFeelsLike)}°C</span>
+      <span class="fact-pill">${weatherText("wind")}: ${Math.round(selectedWind || 0)} km/h</span>
+      <span class="fact-pill">${weatherText("rainChance")}: ${Math.round(selectedRainChance)}%</span>
+      <span class="fact-pill">${weatherText("precipitation")}: ${Number(selectedPrecipitation || 0).toFixed(1)} mm</span>
     </div>
     <div class="weather-overview-grid">
       <article class="weather-overview-card">
         <span>${weatherText("highLow")}</span>
-        <strong>${Math.round(today.maxTemp || 0)}° / ${Math.round(today.minTemp || 0)}°</strong>
+        <strong>${Math.round(activePlannerDay.maxTemp || 0)}° / ${Math.round(activePlannerDay.minTemp || 0)}°</strong>
       </article>
       <article class="weather-overview-card">
         <span>${weatherText("sunrise")}</span>
-        <strong>${formatWeatherClock(today.sunrise)}</strong>
+        <strong>${formatWeatherClock(activePlannerDay.sunrise)}</strong>
       </article>
       <article class="weather-overview-card">
         <span>${weatherText("sunset")}</span>
-        <strong>${formatWeatherClock(today.sunset)}</strong>
+        <strong>${formatWeatherClock(activePlannerDay.sunset)}</strong>
       </article>
     </div>
     <div class="forecast-head">
