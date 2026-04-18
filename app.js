@@ -5080,6 +5080,41 @@ function weatherConditionLabel(code, language = state.language) {
   return weatherConditionText[language]?.[key] || weatherConditionText.en[key] || "";
 }
 
+function weatherVisualTheme(code, isDay = 1) {
+  const key = weatherConditionKey(code);
+  if (key === "storm") return "storm";
+  if (key === "snow") return "snow";
+  if (key === "rain" || key === "drizzle") return "rain";
+  if (key === "fog") return isDay ? "mist" : "night-mist";
+  if (key === "clear") return isDay ? "sunny" : "night";
+  if (key === "partly") return isDay ? "partly" : "night-cloud";
+  return isDay ? "cloudy" : "night-cloud";
+}
+
+function weatherSceneMarkup(theme) {
+  const stars = ["a", "b", "c", "d", "e", "f"]
+    .map((name) => `<span class="weather-star star-${name}"></span>`)
+    .join("");
+  const rain = Array.from({ length: 9 }, (_, index) => `<span class="weather-rain-drop rain-${index + 1}"></span>`).join("");
+  const snow = Array.from({ length: 8 }, (_, index) => `<span class="weather-snowflake snow-${index + 1}"></span>`).join("");
+
+  return `
+    <div class="weather-scene weather-theme-${theme}" aria-hidden="true">
+      <span class="weather-orb"></span>
+      ${theme.includes("night") ? `<div class="weather-stars">${stars}</div>` : ""}
+      <div class="weather-clouds">
+        <span class="weather-cloud cloud-a"></span>
+        <span class="weather-cloud cloud-b"></span>
+        <span class="weather-cloud cloud-c"></span>
+      </div>
+      ${theme === "rain" || theme === "storm" ? `<div class="weather-rain">${rain}</div>` : ""}
+      ${theme === "snow" ? `<div class="weather-snow">${snow}</div>` : ""}
+      ${theme === "storm" ? '<span class="weather-lightning bolt-a"></span><span class="weather-lightning bolt-b"></span>' : ""}
+      ${theme === "mist" || theme === "night-mist" ? '<div class="weather-haze"></div>' : ""}
+    </div>
+  `;
+}
+
 function formatWeatherDay(dateString) {
   if (!dateString) return "";
   return new Intl.DateTimeFormat(localeForLanguage(), {
@@ -5468,28 +5503,34 @@ function renderWeatherSection() {
   const activePlannerDay = plannerDays[activeWeatherDayIndex] || plannerDays[0] || today;
   const route = planner.recommendedRoute;
   const routeIsActive = route?.id === state.activeRouteId;
+  const weatherTheme = weatherVisualTheme(weather.current.weatherCode, weather.current.isDay);
 
   elements.weatherCard.innerHTML = `
-    <div class="weather-card-head">
-      <div>
-        <p class="weather-kicker">${weatherConditionLabel(weather.current.weatherCode)}</p>
-        <h3>${weatherText("now")} · ${Math.round(weather.current.temperature)}°C</h3>
-      </div>
-      <div class="weather-card-tools">
-        <p class="weather-sync-note">${weatherText("liveSync")}</p>
-        <div class="weather-card-actions">
-          <span class="mini-pill" style="background:${city.soft};color:${city.accent};">
-            ${weatherText("updated")} ${formatWeatherUpdatedTime(entry.fetchedAt)}
-          </span>
-          <button
-            class="route-tab weather-refresh-button"
-            type="button"
-            data-weather-refresh="true"
-            ${isRefreshing ? "disabled" : ""}
-            style="background:#fff;color:${city.accent};border-color:${hexToRgba(city.accent, 0.18)};"
-          >
-            ${isRefreshing ? weatherText("refreshing") : weatherText("refreshNow")}
-          </button>
+    <div class="weather-hero weather-theme-${weatherTheme}">
+      ${weatherSceneMarkup(weatherTheme)}
+      <div class="weather-hero-layer">
+        <div class="weather-hero-copy">
+          <span class="weather-city-pill">${localize(city.names)}</span>
+          <p class="weather-kicker">${weatherConditionLabel(weather.current.weatherCode)}</p>
+          <h3 class="weather-temperature">${Math.round(weather.current.temperature)}°C</h3>
+          <p class="weather-hero-summary">${weatherText("feelsLike")}: ${Math.round(weather.current.feelsLike)}°C · ${weatherText("wind")}: ${Math.round(weather.current.windSpeed)} km/h</p>
+          <p class="weather-hero-range">${weatherText("highLow")}: ${Math.round(today.maxTemp || 0)}° / ${Math.round(today.minTemp || 0)}°</p>
+        </div>
+        <div class="weather-card-tools">
+          <p class="weather-sync-note">${weatherText("liveSync")}</p>
+          <div class="weather-card-actions">
+            <span class="mini-pill weather-update-pill">
+              ${weatherText("updated")} ${formatWeatherUpdatedTime(entry.fetchedAt)}
+            </span>
+            <button
+              class="route-tab weather-refresh-button"
+              type="button"
+              data-weather-refresh="true"
+              ${isRefreshing ? "disabled" : ""}
+            >
+              ${isRefreshing ? weatherText("refreshing") : weatherText("refreshNow")}
+            </button>
+          </div>
         </div>
       </div>
     </div>
