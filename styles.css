@@ -384,12 +384,18 @@ body.is-loading .page-shell {
   padding: clamp(28px, 4vw, 48px);
 }
 
+.hero-copy > :not(.hero-ink-scene) {
+  position: relative;
+  z-index: 2;
+}
+
 .hero-copy::before {
   content: "山水";
   position: absolute;
   right: clamp(20px, 4vw, 48px);
   top: 24px;
-  color: rgba(234, 67, 53, 0.1);
+  z-index: 0;
+  color: rgba(157, 47, 36, 0.16);
   font-family: "Noto Sans SC", var(--font-display);
   font-size: clamp(3.8rem, 8vw, 7rem);
   font-weight: 700;
@@ -403,15 +409,92 @@ body.is-loading .page-shell {
   position: absolute;
   right: 28px;
   bottom: -28px;
+  z-index: 0;
   width: min(360px, 54vw);
   height: 150px;
   background:
     radial-gradient(ellipse at 20% 100%, rgba(31, 41, 55, 0.16) 0 32%, transparent 33%),
     radial-gradient(ellipse at 52% 100%, rgba(31, 41, 55, 0.12) 0 38%, transparent 39%),
     radial-gradient(ellipse at 82% 100%, rgba(31, 41, 55, 0.1) 0 30%, transparent 31%);
-  opacity: 0.48;
+  opacity: 0.72;
   pointer-events: none;
 }
+
+.hero-ink-scene {
+  position: absolute;
+  inset: auto 18px 12px auto;
+  z-index: 1;
+  width: min(430px, 70%);
+  height: 210px;
+  pointer-events: none;
+}
+
+.ink-cloud {
+  position: absolute;
+  height: 30px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 18% 50%, rgba(96, 112, 137, 0.16) 0 18px, transparent 19px),
+    radial-gradient(circle at 44% 45%, rgba(96, 112, 137, 0.14) 0 24px, transparent 25px),
+    radial-gradient(circle at 72% 52%, rgba(96, 112, 137, 0.12) 0 16px, transparent 17px);
+  filter: blur(0.2px);
+  opacity: 0.86;
+  animation: inkCloudDrift 8s ease-in-out infinite;
+}
+
+.cloud-left {
+  top: 34px;
+  left: 16px;
+  width: 142px;
+}
+
+.cloud-right {
+  top: 72px;
+  right: 34px;
+  width: 118px;
+  animation-delay: -3s;
+}
+
+.ink-mountain {
+  position: absolute;
+  bottom: 0;
+  width: 230px;
+  height: 118px;
+  background: linear-gradient(180deg, rgba(31, 41, 55, 0.2), rgba(31, 41, 55, 0.06));
+  clip-path: polygon(0 100%, 18% 64%, 30% 76%, 48% 32%, 65% 72%, 78% 54%, 100% 100%);
+  filter: blur(0.1px);
+}
+
+.mountain-left {
+  left: 10px;
+}
+
+.mountain-right {
+  right: 0;
+  bottom: 8px;
+  transform: scale(0.78);
+  opacity: 0.72;
+}
+
+.ink-plant {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  color: #9d2f24;
+  background: rgba(255, 248, 232, 0.78);
+  border: 1px solid rgba(157, 47, 36, 0.18);
+  font-family: "Noto Sans SC", var(--font-display);
+  font-weight: 700;
+  box-shadow: 0 10px 18px rgba(157, 47, 36, 0.08);
+}
+
+.ink-plum { right: 150px; bottom: 88px; }
+.ink-orchid { right: 104px; bottom: 50px; }
+.ink-bamboo { right: 58px; bottom: 86px; }
+.ink-chrysanthemum { right: 14px; bottom: 46px; }
 
 .eyebrow,
 .panel-kicker {
@@ -741,6 +824,30 @@ body.is-loading .page-shell {
   margin: 14px 0 0;
   color: var(--muted);
   line-height: 1.7;
+}
+
+.tradition-token-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.tradition-token-row span {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  color: #9d2f24;
+  background:
+    radial-gradient(circle at 30% 24%, rgba(251, 188, 4, 0.28), transparent 32%),
+    rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(157, 47, 36, 0.14);
+  font-family: "Noto Sans SC", var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 700;
+  box-shadow: 0 12px 24px rgba(157, 47, 36, 0.08);
 }
 
 .showcase-link-row {
@@ -2365,6 +2472,16 @@ body.is-loading .page-shell {
   }
 }
 
+@keyframes inkCloudDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(12px, -4px, 0);
+  }
+}
+
 @keyframes lanternSway {
   0%,
   100% {
@@ -2439,6 +2556,11 @@ body.is-loading .page-shell {
     font-size: clamp(2.45rem, 14vw, 3.8rem);
   }
 
+  .hero-ink-scene {
+    width: min(360px, 96%);
+    opacity: 0.72;
+  }
+
   .stat-grid,
   .thumbnail-grid,
   .weather-metrics,
@@ -2471,6 +2593,10 @@ body.is-loading .page-shell {
   .showcase-qr-card img {
     width: min(180px, 62vw);
     height: min(180px, 62vw);
+  }
+
+  .tradition-token-row {
+    justify-content: center;
   }
 
   .ai-composer {
