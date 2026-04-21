@@ -1,6 +1,8 @@
-# Traditional Visual Assets
+# Traditional Visual References
 
-本目录存放 HelloChina 首页中国风装饰元素，均为本地化 SVG 文件，避免运行时依赖外部热链。
+本目录存放曾用于 HelloChina 首页中国风装饰的公开 SVG 参考素材，均已本地化，避免运行时依赖外部热链。
+
+当前页面的正式装饰已经改为 CSS 绘制的折扇、如意云、中国结、玉璧与青花水波元素，视觉上更接近页面现有灯笼的统一风格。下列 SVG 保留为公开素材来源记录和后续设计参考。
 
 ## 素材来源
 
@@ -11,7 +13,9 @@
 - `orchid.svg`：SVG Repo，CC0，源页面：`https://www.svgrepo.com/svg/136382/orchid`
 - `chrysanthemum.svg`：SVG Repo，CC0，源页面：`https://www.svgrepo.com/svg/20223/chrysanthemum`
 
-## 使用位置
+## 当前状态
 
-- 首页 Hero 区：水墨山形、云纹、梅、兰、竹、菊装饰
-- 二维码入口区：梅兰竹菊四个图标卡片
+- README 中提出的“山水云纹以及梅兰竹菊显示不美观”问题已完成处理
+- 页面已不再直接展示这些 SVG 中的山水云纹与梅兰竹菊
+- 首页 Hero 区改为折扇、如意云、中国结、玉璧、青花水波等 CSS 装饰组件
+- 二维码入口区改为同一视觉体系的小型传统图形按钮
