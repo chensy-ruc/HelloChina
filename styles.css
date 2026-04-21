@@ -428,71 +428,88 @@ body.is-loading .page-shell {
   position: absolute;
   inset: auto 18px 12px auto;
   z-index: 1;
-  width: min(430px, 70%);
-  height: 210px;
+  width: min(500px, 76%);
+  height: 236px;
   pointer-events: none;
 }
 
 .ink-cloud {
   position: absolute;
-  height: 30px;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 18% 50%, rgba(96, 112, 137, 0.16) 0 18px, transparent 19px),
-    radial-gradient(circle at 44% 45%, rgba(96, 112, 137, 0.14) 0 24px, transparent 25px),
-    radial-gradient(circle at 72% 52%, rgba(96, 112, 137, 0.12) 0 16px, transparent 17px);
-  filter: blur(0.2px);
-  opacity: 0.86;
+  height: auto;
+  filter: sepia(0.1) saturate(0.45) hue-rotate(162deg);
+  opacity: 0.34;
   animation: inkCloudDrift 8s ease-in-out infinite;
 }
 
 .cloud-left {
-  top: 34px;
-  left: 16px;
-  width: 142px;
+  top: 20px;
+  left: 8px;
+  width: 180px;
 }
 
 .cloud-right {
-  top: 72px;
-  right: 34px;
-  width: 118px;
+  top: 58px;
+  right: 22px;
+  width: 148px;
   animation-delay: -3s;
 }
 
 .ink-mountain {
   position: absolute;
-  bottom: 0;
-  width: 230px;
-  height: 118px;
-  background:
-    linear-gradient(180deg, rgba(31, 41, 55, 0.24), rgba(31, 41, 55, 0.07)),
-    radial-gradient(circle at 48% 30%, rgba(255, 255, 255, 0.26), transparent 22%);
-  clip-path: polygon(0 100%, 18% 64%, 30% 76%, 48% 32%, 65% 72%, 78% 54%, 100% 100%);
-  filter: blur(0.1px);
+  bottom: -4px;
+  width: 270px;
+  height: auto;
+  filter: grayscale(1) sepia(0.18) saturate(0.38) hue-rotate(154deg);
+  opacity: 0.32;
 }
 
 .mountain-left {
-  left: 10px;
+  left: 2px;
 }
 
 .mountain-right {
   right: 0;
-  bottom: 8px;
-  transform: scale(0.78);
-  opacity: 0.72;
+  bottom: 20px;
+  transform: scale(0.72) rotateY(180deg);
+  opacity: 0.22;
 }
 
 .ink-plant {
   position: absolute;
-  width: 52px;
-  height: 52px;
-  opacity: 0.92;
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  opacity: 0.78;
+  filter: drop-shadow(0 12px 18px rgba(31, 41, 55, 0.12));
 }
 
-.ink-plum { right: 150px; bottom: 88px; }
-.ink-orchid { right: 104px; bottom: 50px; }
-.ink-bamboo { right: 58px; bottom: 86px; }
-.ink-chrysanthemum { right: 14px; bottom: 46px; }
+.ink-plum {
+  right: 166px;
+  bottom: 92px;
+  width: 86px;
+  height: 86px;
+  filter: drop-shadow(0 14px 20px rgba(234, 67, 53, 0.14));
+}
+
+.ink-orchid {
+  right: 110px;
+  bottom: 38px;
+  filter: sepia(0.2) saturate(0.82) hue-rotate(172deg) drop-shadow(0 14px 18px rgba(66, 133, 244, 0.12));
+}
+
+.ink-bamboo {
+  right: 50px;
+  bottom: 86px;
+  width: 82px;
+  height: 104px;
+  filter: saturate(0.8) drop-shadow(0 14px 18px rgba(52, 168, 83, 0.14));
+}
+
+.ink-chrysanthemum {
+  right: 0;
+  bottom: 36px;
+  filter: sepia(0.1) saturate(0.82) drop-shadow(0 14px 18px rgba(251, 188, 4, 0.14));
+}
 
 .ink-river {
   position: absolute;
@@ -523,91 +540,6 @@ body.is-loading .page-shell {
 .ink-river::after {
   bottom: -9px;
   left: 54px;
-}
-
-.ink-plant::before,
-.ink-plant::after {
-  content: "";
-  position: absolute;
-}
-
-.ink-plum {
-  background:
-    radial-gradient(circle at 50% 18%, rgba(234, 67, 53, 0.72) 0 8px, transparent 9px),
-    radial-gradient(circle at 78% 42%, rgba(234, 67, 53, 0.62) 0 8px, transparent 9px),
-    radial-gradient(circle at 64% 74%, rgba(234, 67, 53, 0.6) 0 8px, transparent 9px),
-    radial-gradient(circle at 34% 74%, rgba(234, 67, 53, 0.58) 0 8px, transparent 9px),
-    radial-gradient(circle at 22% 42%, rgba(234, 67, 53, 0.64) 0 8px, transparent 9px);
-}
-
-.ink-plum::before {
-  inset: 24px auto auto 24px;
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: rgba(251, 188, 4, 0.9);
-}
-
-.ink-orchid::before {
-  left: 24px;
-  bottom: 4px;
-  width: 3px;
-  height: 46px;
-  border-radius: 999px;
-  background: rgba(52, 168, 83, 0.7);
-  transform: rotate(10deg);
-}
-
-.ink-orchid::after {
-  left: 12px;
-  top: 4px;
-  width: 34px;
-  height: 34px;
-  background:
-    radial-gradient(ellipse at 42% 22%, rgba(66, 133, 244, 0.42) 0 7px, transparent 8px),
-    radial-gradient(ellipse at 68% 46%, rgba(66, 133, 244, 0.38) 0 9px, transparent 10px),
-    radial-gradient(ellipse at 30% 58%, rgba(66, 133, 244, 0.34) 0 9px, transparent 10px);
-  transform: rotate(-14deg);
-}
-
-.ink-bamboo {
-  width: 42px;
-  height: 72px;
-}
-
-.ink-bamboo::before {
-  left: 20px;
-  bottom: 0;
-  width: 5px;
-  height: 70px;
-  border-radius: 999px;
-  background:
-    linear-gradient(180deg, rgba(52, 168, 83, 0.72), rgba(52, 168, 83, 0.5)),
-    repeating-linear-gradient(180deg, transparent 0 14px, rgba(31, 41, 55, 0.22) 15px 17px);
-}
-
-.ink-bamboo::after {
-  left: 2px;
-  top: 16px;
-  width: 48px;
-  height: 44px;
-  background:
-    radial-gradient(ellipse at 18% 34%, rgba(52, 168, 83, 0.46) 0 14px, transparent 15px),
-    radial-gradient(ellipse at 72% 22%, rgba(52, 168, 83, 0.4) 0 15px, transparent 16px),
-    radial-gradient(ellipse at 70% 78%, rgba(52, 168, 83, 0.34) 0 12px, transparent 13px);
-}
-
-.ink-chrysanthemum {
-  background:
-    conic-gradient(from 8deg, rgba(251, 188, 4, 0.72), rgba(255, 243, 215, 0.18), rgba(251, 188, 4, 0.68), rgba(255, 243, 215, 0.2), rgba(251, 188, 4, 0.72));
-  border-radius: 999px;
-  mask-image: radial-gradient(circle, transparent 0 8px, #000 9px 23px, transparent 24px);
-}
-
-.ink-chrysanthemum::before {
-  inset: 20px;
-  border-radius: 999px;
-  background: #9d2f24;
 }
 
 .eyebrow,
@@ -949,9 +881,10 @@ body.is-loading .page-shell {
 
 .tradition-token-row span {
   position: relative;
-  display: block;
-  width: 42px;
-  height: 42px;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
   border-radius: 16px;
   background:
     radial-gradient(circle at 30% 24%, rgba(251, 188, 4, 0.28), transparent 32%),
@@ -961,87 +894,21 @@ body.is-loading .page-shell {
   overflow: hidden;
 }
 
-.tradition-token-row span::before,
-.tradition-token-row span::after {
-  content: "";
-  position: absolute;
+.tradition-token-row img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 12px rgba(31, 41, 55, 0.08));
 }
 
-.token-plum::before {
-  inset: 9px;
-  background:
-    radial-gradient(circle at 50% 8%, rgba(234, 67, 53, 0.78) 0 5px, transparent 6px),
-    radial-gradient(circle at 82% 42%, rgba(234, 67, 53, 0.66) 0 5px, transparent 6px),
-    radial-gradient(circle at 66% 82%, rgba(234, 67, 53, 0.6) 0 5px, transparent 6px),
-    radial-gradient(circle at 34% 82%, rgba(234, 67, 53, 0.58) 0 5px, transparent 6px),
-    radial-gradient(circle at 18% 42%, rgba(234, 67, 53, 0.66) 0 5px, transparent 6px);
+.token-plum img {
+  width: 48px;
+  height: 48px;
 }
 
-.token-plum::after {
-  left: 19px;
-  top: 19px;
-  width: 5px;
-  height: 5px;
-  border-radius: 999px;
-  background: var(--yellow);
-}
-
-.token-orchid::before {
-  left: 20px;
-  top: 8px;
-  width: 3px;
-  height: 30px;
-  background: rgba(52, 168, 83, 0.62);
-  border-radius: 999px;
-  transform: rotate(10deg);
-}
-
-.token-orchid::after {
-  left: 10px;
-  top: 8px;
-  width: 24px;
-  height: 24px;
-  background:
-    radial-gradient(ellipse at 42% 22%, rgba(66, 133, 244, 0.44) 0 5px, transparent 6px),
-    radial-gradient(ellipse at 72% 50%, rgba(66, 133, 244, 0.36) 0 6px, transparent 7px),
-    radial-gradient(ellipse at 26% 62%, rgba(66, 133, 244, 0.34) 0 6px, transparent 7px);
-}
-
-.token-bamboo::before {
-  left: 20px;
-  top: 5px;
-  width: 4px;
-  height: 32px;
-  border-radius: 999px;
-  background:
-    linear-gradient(180deg, rgba(52, 168, 83, 0.75), rgba(52, 168, 83, 0.5)),
-    repeating-linear-gradient(180deg, transparent 0 8px, rgba(31, 41, 55, 0.24) 9px 10px);
-}
-
-.token-bamboo::after {
-  left: 7px;
-  top: 9px;
-  width: 30px;
-  height: 25px;
-  background:
-    radial-gradient(ellipse at 18% 34%, rgba(52, 168, 83, 0.46) 0 8px, transparent 9px),
-    radial-gradient(ellipse at 80% 22%, rgba(52, 168, 83, 0.42) 0 8px, transparent 9px),
-    radial-gradient(ellipse at 78% 82%, rgba(52, 168, 83, 0.34) 0 7px, transparent 8px);
-}
-
-.token-chrysanthemum::before {
-  inset: 9px;
-  border-radius: 999px;
-  background: conic-gradient(from 8deg, rgba(251, 188, 4, 0.82), rgba(255, 243, 215, 0.12), rgba(251, 188, 4, 0.72), rgba(255, 243, 215, 0.16), rgba(251, 188, 4, 0.82));
-}
-
-.token-chrysanthemum::after {
-  left: 19px;
-  top: 19px;
-  width: 5px;
-  height: 5px;
-  border-radius: 999px;
-  background: #9d2f24;
+.token-bamboo img {
+  width: 38px;
+  height: 48px;
 }
 
 .showcase-link-row {

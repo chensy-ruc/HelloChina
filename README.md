@@ -79,6 +79,7 @@
   - 二维码板块文案已改为游客端表达，引导用户扫码后直接用手机查看地图、天气、美食和 AI 地陪
   - 页面新增水墨山形、云纹动效与梅兰竹菊传统元素，并明确设置层级以保证正常显示
   - 梅兰竹菊已改为 CSS 图形装饰，不再依赖单个中文字符展示
+  - 山水云纹与梅兰竹菊已替换为本地化公开 SVG 资源，素材来源与许可记录在 `assets/traditional/README.md`
 
 - 天气板块视觉升级
   - 天气模块已改为更具沉浸感的玻璃拟态天气界面，整体风格更接近 iPhone 内置天气的层次感
@@ -92,6 +93,7 @@
 - [app.js](/Users/chen/Desktop/JD%20Cup/app.js)：数据、地图逻辑、语言切换、AI 对话逻辑
 - [商业计划书-技术方案.md](/Users/chen/Desktop/JD%20Cup/%E5%95%86%E4%B8%9A%E8%AE%A1%E5%88%92%E4%B9%A6-%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88.md)：可直接用于商业计划书的技术方案章节
 - [hellochina-qr.png](/Users/chen/Desktop/JD%20Cup/hellochina-qr.png)：展示扫码进入网站的二维码
+- [assets/traditional/](/Users/chen/Desktop/JD%20Cup/assets/traditional)：中国风公开 SVG 装饰素材及来源说明
 - `景点图片/`：景点图片素材
 - `景点/`：景点介绍文本、城市介绍文本、购票链接文本
 - [vercel.json](/Users/chen/Desktop/JD%20Cup/vercel.json)：Vercel 配置
@@ -179,6 +181,8 @@ const SCRIPT_AI_CONFIG = Object.freeze({
 - 山水云纹显示问题已处理：新增明确的水墨山形、云纹漂浮和梅兰竹菊元素，并调整层级保证装饰正常显示
 - 二维码默认文案已进一步改为“手机旅行导览”视角，彻底去除展示方或开发方语境
 - 梅兰竹菊元素已从文字标签改为 CSS 绘制的花瓣、兰叶、竹节与菊瓣图形；水墨山水也补充了河流与可见云纹
+- 山水云纹与梅兰竹菊已升级为公开来源的本地 SVG 素材：使用 OpenClipart public domain 与 SVG Repo CC0 资源替换临时 CSS 图形
+- 新增 `assets/traditional/README.md`，记录各 SVG 素材的来源、许可与页面使用位置
 
 ## 下一步的改进任务
 - 当前这一轮 README 中列出的改进任务已完成
