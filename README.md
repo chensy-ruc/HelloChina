@@ -95,7 +95,7 @@
 - [styles.css](/Users/chen/Desktop/JD%20Cup/styles.css)：视觉样式、响应式布局、动画
 - [app.js](/Users/chen/Desktop/JD%20Cup/app.js)：数据、地图逻辑、语言切换、AI 对话逻辑
 - [商业计划书-技术方案.md](/Users/chen/Desktop/JD%20Cup/%E5%95%86%E4%B8%9A%E8%AE%A1%E5%88%92%E4%B9%A6-%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88.md)：可直接用于商业计划书的技术方案章节
-- [hellochina-qr.png](/Users/chen/Desktop/JD%20Cup/hellochina-qr.png)：展示扫码进入网站的二维码
+- [hellochina-qr.jpg](/Users/chen/Desktop/JD%20Cup/hellochina-qr.jpg)：展示扫码进入网站的二维码
 - [assets/traditional/](/Users/chen/Desktop/JD%20Cup/assets/traditional)：中国风公开 SVG 装饰素材及来源说明
 - `景点图片/`：景点图片素材
 - `景点/`：景点介绍文本、城市介绍文本、购票链接文本
@@ -179,7 +179,7 @@ const SCRIPT_AI_CONFIG = Object.freeze({
 - 动态天气主卡已调整为更稳定的自适应高度，底部内容不会再被卡片内部遮挡
 - 智能建议板块已移除重复的天气概况项，保留携带建议、时段建议与路线推荐，信息更紧凑
 - 首页已补充中国主题视觉元素：山水字样、山形剪影、灯笼和长城/茶馆/高铁旅行标签，让页面主题更贴近“中国旅行”
-- 页面已新增展示用二维码模块，并生成 `hellochina-qr.png`，用于扫码打开 `https://chensy-ruc.github.io/HelloChina/`
+- 页面已新增展示用二维码模块，并使用 `hellochina-qr.jpg`，用于扫码打开 `https://chensy-ruc.github.io/HelloChina/`
 - 二维码展示入口文案已改为面向游客的手机导览说明，不再使用偏展示方或开发方的说明口吻
 - 山水云纹显示问题已处理：新增明确的水墨山形、云纹漂浮和梅兰竹菊元素，并调整层级保证装饰正常显示
 - 二维码默认文案已进一步改为“手机旅行导览”视角，彻底去除展示方或开发方语境
