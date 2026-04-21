@@ -27,6 +27,7 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   min-height: 100vh;
   color: var(--text);
@@ -36,6 +37,19 @@ body {
     radial-gradient(circle at 70% 100%, rgba(52, 168, 83, 0.14), transparent 30%),
     linear-gradient(180deg, #f7fbff 0%, #eef4ff 100%);
   font-family: var(--font-body);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(234, 67, 53, 0.08) 0 1px, transparent 1px 18px),
+    radial-gradient(circle at 12% 18%, rgba(234, 67, 53, 0.08), transparent 22%),
+    radial-gradient(circle at 88% 78%, rgba(251, 188, 4, 0.1), transparent 24%);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 82%);
 }
 
 body.is-loading {
@@ -179,6 +193,7 @@ body.is-loading .page-shell {
 .city-switchboard,
 .city-workspace,
 .spot-section,
+.showcase-access,
 .food-section,
 .guide-section,
 .ai-section,
@@ -269,6 +284,8 @@ body.is-loading .page-shell {
 
 .language-switcher,
 .hero-card,
+.showcase-access,
+.showcase-qr-card,
 .stat-card,
 .city-panel,
 .map-card,
@@ -362,7 +379,38 @@ body.is-loading .page-shell {
 }
 
 .hero-copy {
+  position: relative;
+  overflow: hidden;
   padding: clamp(28px, 4vw, 48px);
+}
+
+.hero-copy::before {
+  content: "山水";
+  position: absolute;
+  right: clamp(20px, 4vw, 48px);
+  top: 24px;
+  color: rgba(234, 67, 53, 0.1);
+  font-family: "Noto Sans SC", var(--font-display);
+  font-size: clamp(3.8rem, 8vw, 7rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+
+.hero-copy::after {
+  content: "";
+  position: absolute;
+  right: 28px;
+  bottom: -28px;
+  width: min(360px, 54vw);
+  height: 150px;
+  background:
+    radial-gradient(ellipse at 20% 100%, rgba(31, 41, 55, 0.16) 0 32%, transparent 33%),
+    radial-gradient(ellipse at 52% 100%, rgba(31, 41, 55, 0.12) 0 38%, transparent 39%),
+    radial-gradient(ellipse at 82% 100%, rgba(31, 41, 55, 0.1) 0 30%, transparent 31%);
+  opacity: 0.48;
+  pointer-events: none;
 }
 
 .eyebrow,
@@ -401,13 +449,46 @@ body.is-loading .page-shell {
 }
 
 .hero-text {
+  position: relative;
+  z-index: 1;
   max-width: 58ch;
   margin: 20px 0 0;
   line-height: 1.75;
   font-size: 1.04rem;
 }
 
+.china-symbol-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.china-symbol-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  border-radius: 999px;
+  color: #9d2f24;
+  background: rgba(255, 248, 232, 0.82);
+  border: 1px solid rgba(234, 67, 53, 0.16);
+  box-shadow: 0 10px 22px rgba(234, 67, 53, 0.08);
+}
+
+.china-symbol-row span::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--red), var(--yellow));
+}
+
 .hero-actions {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -434,6 +515,8 @@ body.is-loading .page-shell {
 }
 
 .stat-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
@@ -457,6 +540,55 @@ body.is-loading .page-shell {
 .hero-visual {
   position: relative;
   min-height: 100%;
+}
+
+.hero-lantern {
+  --lantern-scale: 1;
+  position: absolute;
+  z-index: 4;
+  width: 36px;
+  height: 48px;
+  border-radius: 18px 18px 22px 22px;
+  background:
+    linear-gradient(90deg, transparent 18%, rgba(255, 255, 255, 0.2) 19% 22%, transparent 23% 78%, rgba(255, 255, 255, 0.18) 79% 82%, transparent 83%),
+    linear-gradient(180deg, #ff7b61, #d72f27);
+  box-shadow: 0 14px 24px rgba(234, 67, 53, 0.24);
+  animation: lanternSway 5.4s ease-in-out infinite;
+}
+
+.hero-lantern::before,
+.hero-lantern::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hero-lantern::before {
+  top: -14px;
+  width: 2px;
+  height: 16px;
+  background: rgba(157, 47, 36, 0.45);
+}
+
+.hero-lantern::after {
+  bottom: -12px;
+  width: 12px;
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--yellow), transparent);
+}
+
+.lantern-a {
+  top: -16px;
+  right: 18%;
+}
+
+.lantern-b {
+  bottom: 18px;
+  left: 6%;
+  --lantern-scale: 0.78;
+  animation-delay: -2.2s;
 }
 
 .hero-card {
@@ -562,9 +694,113 @@ body.is-loading .page-shell {
   inset: 52px 24px -6px 60px;
 }
 
+.showcase-access {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 22px;
+  align-items: center;
+  margin-bottom: 36px;
+  padding: clamp(20px, 3vw, 30px);
+  border-radius: 32px;
+  border: 1px solid rgba(234, 67, 53, 0.14);
+  background:
+    linear-gradient(135deg, rgba(255, 248, 232, 0.9), rgba(255, 255, 255, 0.82)),
+    radial-gradient(circle at 92% 16%, rgba(234, 67, 53, 0.16), transparent 28%);
+  box-shadow: 0 24px 56px rgba(234, 67, 53, 0.1);
+}
+
+.showcase-access::before {
+  content: "游";
+  position: absolute;
+  right: 164px;
+  top: 18px;
+  color: rgba(234, 67, 53, 0.1);
+  font-family: "Noto Sans SC", var(--font-display);
+  font-size: clamp(4rem, 10vw, 7rem);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.showcase-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.showcase-copy h2 {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.showcase-copy p:not(.eyebrow) {
+  max-width: 68ch;
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.showcase-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.showcase-link-row span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: #9d2f24;
+  background: rgba(255, 248, 232, 0.82);
+  border: 1px solid rgba(234, 67, 53, 0.14);
+  font-weight: 700;
+}
+
+.showcase-link-row a {
+  color: var(--blue);
+  word-break: break-all;
+}
+
+.showcase-qr-card {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  min-width: 178px;
+  padding: 14px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(234, 67, 53, 0.12);
+  box-shadow: 0 18px 34px rgba(31, 41, 55, 0.1);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.showcase-qr-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 18px;
+}
+
+.showcase-qr-card span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.showcase-qr-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 44px rgba(234, 67, 53, 0.16);
+}
+
 .city-switchboard,
 .city-workspace,
 .spot-section,
+.showcase-access,
 .food-section,
 .ai-section {
   margin-bottom: 36px;
@@ -1966,6 +2202,7 @@ body.is-loading .page-shell {
 .guide-card,
 .weather-card,
 .planner-card,
+.showcase-access,
 .panel-block {
   animation: riseUp 0.7s ease both;
   transform-style: preserve-3d;
@@ -1987,6 +2224,7 @@ body.is-loading .page-shell {
 .route-card:hover,
 .spot-card:hover,
 .guide-card:hover,
+.showcase-access:hover,
 .weather-card:hover,
 .planner-card:hover,
 .planner-note:hover,
@@ -2127,6 +2365,16 @@ body.is-loading .page-shell {
   }
 }
 
+@keyframes lanternSway {
+  0%,
+  100% {
+    transform: rotate(-2deg) scale(var(--lantern-scale));
+  }
+  50% {
+    transform: rotate(3deg) scale(var(--lantern-scale));
+  }
+}
+
 @keyframes riseUp {
   from {
     opacity: 0;
@@ -2155,6 +2403,7 @@ body.is-loading .page-shell {
 @media (max-width: 1180px) {
   .hero,
   .feature-nav,
+  .showcase-access,
   .switchboard-grid,
   .workspace-grid,
   .weather-grid,
@@ -2174,6 +2423,10 @@ body.is-loading .page-shell {
   .header-tools {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .showcase-qr-card {
+    justify-self: start;
   }
 }
 
@@ -2197,6 +2450,7 @@ body.is-loading .page-shell {
   .language-switcher,
   .header-tools,
   .hero-actions,
+  .showcase-qr-card,
   .ai-composer {
     width: 100%;
   }
@@ -2208,9 +2462,15 @@ body.is-loading .page-shell {
   .hero-actions a,
   .hero-actions button,
   .ghost-button,
+  .showcase-link-row a,
   .feature-nav-link {
     width: 100%;
     text-align: center;
+  }
+
+  .showcase-qr-card img {
+    width: min(180px, 62vw);
+    height: min(180px, 62vw);
   }
 
   .ai-composer {

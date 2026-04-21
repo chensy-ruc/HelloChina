@@ -85,6 +85,11 @@
           <p class="hero-text" data-ui="heroText">
             Click a city on the China map, jump straight into its city map, and browse every included attraction with local images, quick facts, and multilingual interface support.
           </p>
+          <div class="china-symbol-row" aria-label="China travel themes">
+            <span data-ui="chinaSymbol1">Great Wall rhythm</span>
+            <span data-ui="chinaSymbol2">Tea house pause</span>
+            <span data-ui="chinaSymbol3">High-speed rail routes</span>
+          </div>
           <div class="hero-actions">
             <a class="primary-button" href="#city-switchboard" data-ui="startExploring">Start Exploring</a>
             <button class="secondary-button" id="jump-random-city" type="button" data-ui="randomCity">Random City</button>
@@ -106,6 +111,8 @@
         </div>
 
         <div class="hero-visual">
+          <span class="hero-lantern lantern-a" aria-hidden="true"></span>
+          <span class="hero-lantern lantern-b" aria-hidden="true"></span>
           <article class="hero-card">
             <div class="hero-card-row">
               <span class="hero-pill hero-pill-primary" data-ui="heroPill">Map + gallery</span>
@@ -119,6 +126,26 @@
           <article class="hero-stack hero-stack-a"></article>
           <article class="hero-stack hero-stack-b"></article>
         </div>
+      </section>
+
+      <section class="showcase-access" id="showcase-access">
+        <div class="showcase-copy">
+          <p class="eyebrow" data-ui="showcaseEyebrow">Showcase access</p>
+          <h2 data-ui="showcaseTitle">Scan to open HelloChina on your phone.</h2>
+          <p data-ui="showcaseText">
+            Use this QR code in presentations, booth displays, or class demos. It points to the public GitHub Pages address for the project.
+          </p>
+          <div class="showcase-link-row">
+            <span data-ui="showcaseUrlLabel">Public page</span>
+            <a href="https://chensy-ruc.github.io/HelloChina/" target="_blank" rel="noopener noreferrer">
+              https://chensy-ruc.github.io/HelloChina/
+            </a>
+          </div>
+        </div>
+        <a class="showcase-qr-card" href="https://chensy-ruc.github.io/HelloChina/" target="_blank" rel="noopener noreferrer">
+          <img src="./hellochina-qr.png" alt="QR code for HelloChina public page">
+          <span data-ui="showcaseQrCaption">Scan for the live guide</span>
+        </a>
       </section>
 
       <section class="city-switchboard" id="city-switchboard">
