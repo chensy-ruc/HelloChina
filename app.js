@@ -11,9 +11,6 @@ const uiContent = {
     heroTitle: "Hello China: a map-style travel gateway designed for international friends.",
     heroText:
       "Pick a city on the national map, switch to the city map instantly, and explore every included attraction with local images, practical tips, and multilingual support.",
-    chinaSymbol1: "Great Wall rhythm",
-    chinaSymbol2: "Tea house pause",
-    chinaSymbol3: "High-speed rail routes",
     startExploring: "Start Exploring",
     randomCity: "Random City",
     statCities: "featured cities",
@@ -102,9 +99,6 @@ const uiContent = {
     heroTitle: "你好中国：为国际友人设计的地图式旅行入口。",
     heroText:
       "点击中国地图上的城市后，页面会直接切换到对应城市地图，并展示该城市全部景点、本地图片、购票信息与多语言内容。",
-    chinaSymbol1: "长城节奏",
-    chinaSymbol2: "茶馆停留",
-    chinaSymbol3: "高铁路线",
     startExploring: "开始探索",
     randomCity: "随机城市",
     statCities: "精选城市",
@@ -193,9 +187,6 @@ const uiContent = {
     heroTitle: "こんにちは中国：国際的な友人のために設計された、地図型の旅行入口。",
     heroText:
       "中国地図で都市を選ぶと、その都市の地図、全観光スポット、ローカル画像、基本情報、多言語UIがまとめて切り替わります。",
-    chinaSymbol1: "万里の長城のリズム",
-    chinaSymbol2: "茶館でひと休み",
-    chinaSymbol3: "高速鉄道ルート",
     startExploring: "探索を始める",
     randomCity: "ランダム都市",
     statCities: "注目都市",
@@ -286,9 +277,6 @@ const uiContent = {
     heroTitle: "안녕하세요 중국: 국제 친구를 위해 설계된 지도형 여행 입구입니다.",
     heroText:
       "중국 지도에서 도시를 클릭하면 해당 도시 지도, 전체 관광지, 로컬 이미지, 핵심 정보, 다국어 UI가 함께 바뀝니다.",
-    chinaSymbol1: "만리장성 리듬",
-    chinaSymbol2: "찻집에서 쉬기",
-    chinaSymbol3: "고속철도 루트",
     startExploring: "탐색 시작",
     randomCity: "랜덤 도시",
     statCities: "추천 도시",
@@ -379,9 +367,6 @@ const uiContent = {
     heroTitle: "Hola China: una puerta de viaje basada en mapas, diseñada para amigos internacionales.",
     heroText:
       "Haz clic en una ciudad del mapa de China y la página cambiará al mapa urbano, la lista completa de lugares, las imágenes locales y la información clave.",
-    chinaSymbol1: "Ritmo de la Gran Muralla",
-    chinaSymbol2: "Pausa en casa de té",
-    chinaSymbol3: "Rutas en tren rápido",
     startExploring: "Empezar",
     randomCity: "Ciudad aleatoria",
     statCities: "ciudades destacadas",
@@ -472,9 +457,6 @@ const uiContent = {
     heroTitle: "Bonjour la Chine : une porte d'entrée de voyage fondée sur la carte, conçue pour les amis internationaux.",
     heroText:
       "Cliquez sur une ville de la carte de Chine et la page basculera vers sa carte locale, sa liste complète de sites, ses images locales et ses informations clés.",
-    chinaSymbol1: "Rythme de la Grande Muraille",
-    chinaSymbol2: "Pause dans une maison de thé",
-    chinaSymbol3: "Routes en train rapide",
     startExploring: "Explorer",
     randomCity: "Ville aléatoire",
     statCities: "villes en vedette",
@@ -565,9 +547,6 @@ const uiContent = {
     heroTitle: "مرحباً بالصين: بوابة سفر قائمة على الخريطة ومصممة للأصدقاء الدوليين.",
     heroText:
       "اضغط على مدينة في خريطة الصين لتنتقل الصفحة مباشرة إلى خريطة المدينة وقائمة المعالم الكاملة والصور المحلية والمعلومات الأساسية.",
-    chinaSymbol1: "إيقاع سور الصين العظيم",
-    chinaSymbol2: "استراحة في بيت الشاي",
-    chinaSymbol3: "مسارات القطار السريع",
     startExploring: "ابدأ الاستكشاف",
     randomCity: "مدينة عشوائية",
     statCities: "مدن مميزة",
@@ -969,6 +948,15 @@ const cityMeta = [
       zh: ["皇城中轴", "园林湖景", "长城一日游"],
       en: ["Imperial axis", "Lakefront parks", "Great Wall day trip"]
     },
+    heroSymbols: {
+      zh: ["皇城中轴", "胡同慢行", "长城远眺"],
+      en: ["Imperial axis", "Hutong slow walk", "Great Wall outlook"],
+      ja: ["皇城中軸", "胡同をゆっくり散策", "長城を望む"],
+      ko: ["황성 중심축", "후퉁 느린 산책", "만리장성 조망"],
+      es: ["Eje imperial", "Paseo lento por hutongs", "Mirada a la Gran Muralla"],
+      fr: ["Axe impérial", "Balade lente dans les hutongs", "Vue vers la Grande Muraille"],
+      ar: ["المحور الإمبراطوري", "نزهة هادئة في الهوتونغ", "إطلالة على سور الصين"]
+    },
     itinerary: {
       zh: [
         "上午先走故宫和景山公园，中午转向什刹海或南锣鼓巷休息。",
@@ -1036,6 +1024,15 @@ const cityMeta = [
       zh: ["摩登夜景", "老街古镇", "街区漫步"],
       en: ["Modern skyline", "Old-town lanes", "Neighborhood walks"]
     },
+    heroSymbols: {
+      zh: ["外滩天际线", "梧桐街区", "水乡半日"],
+      en: ["Bund skyline", "Plane-tree streets", "Water-town half day"],
+      ja: ["外灘スカイライン", "プラタナスの街区", "水郷半日旅"],
+      ko: ["와이탄 스카이라인", "플라타너스 거리", "수향 반나절"],
+      es: ["Skyline del Bund", "Calles de plátanos", "Medio día en pueblo de agua"],
+      fr: ["Skyline du Bund", "Rues aux platanes", "Demi-journée en bourg d'eau"],
+      ar: ["أفق البوند", "شوارع الأشجار", "نصف يوم في بلدة مائية"]
+    },
     itinerary: {
       zh: [
         "上午先走武康路、静安寺一线，中午切到豫园和城隍庙附近补餐饮。",
@@ -1099,6 +1096,15 @@ const cityMeta = [
     highlights: {
       zh: ["古都遗址", "博物馆密集", "夜游气氛"],
       en: ["Ancient capital", "Museum-rich", "Night atmosphere"]
+    },
+    heroSymbols: {
+      zh: ["古都城墙", "博物馆连线", "大唐夜色"],
+      en: ["Ancient city walls", "Museum route", "Tang-style night lights"],
+      ja: ["古都の城壁", "博物館ルート", "唐風の夜景"],
+      ko: ["고도 성벽", "박물관 루트", "당풍 야경"],
+      es: ["Murallas de la antigua capital", "Ruta de museos", "Noche de estilo Tang"],
+      fr: ["Remparts de l'ancienne capitale", "Parcours des musées", "Nuit au style Tang"],
+      ar: ["أسوار العاصمة القديمة", "مسار المتاحف", "ليلة بطراز تانغ"]
     },
     itinerary: {
       zh: [
@@ -1168,6 +1174,15 @@ const cityMeta = [
       zh: ["熊猫城市", "川味街区", "山水外延"],
       en: ["Panda city", "Street-food lanes", "Mountain escape"]
     },
+    heroSymbols: {
+      zh: ["熊猫清晨", "茶馆街巷", "青城山水"],
+      en: ["Panda morning", "Teahouse lanes", "Qingcheng mountain air"],
+      ja: ["パンダの朝", "茶館の路地", "青城の山水"],
+      ko: ["판다의 아침", "찻집 골목", "칭청 산수"],
+      es: ["Mañana de pandas", "Callejones de casas de té", "Aire de montaña Qingcheng"],
+      fr: ["Matin des pandas", "Ruelles de maisons de thé", "Air de montagne à Qingcheng"],
+      ar: ["صباح الباندا", "أزقة بيوت الشاي", "هواء جبل تشينغتشنغ"]
+    },
     itinerary: {
       zh: [
         "上午优先去大熊猫基地，回城后再安排武侯祠、锦里古街或宽窄巷子。",
@@ -1233,6 +1248,15 @@ const cityMeta = [
     highlights: {
       zh: ["西湖主线", "寺塔茶村", "湿地古城"],
       en: ["West Lake core", "Temples and tea", "Wetland escape"]
+    },
+    heroSymbols: {
+      zh: ["西湖晨光", "灵隐茶香", "江南湿地"],
+      en: ["West Lake morning light", "Lingyin and tea aroma", "Jiangnan wetlands"],
+      ja: ["西湖の朝光", "霊隠と茶の香り", "江南の湿地"],
+      ko: ["서호의 아침빛", "영은과 차 향기", "강남 습지"],
+      es: ["Luz matinal del Lago del Oeste", "Lingyin y aroma de té", "Humedales de Jiangnan"],
+      fr: ["Lumière du matin sur le lac de l'Ouest", "Lingyin et parfum du thé", "Zones humides de Jiangnan"],
+      ar: ["ضوء الصباح على البحيرة الغربية", "لينغيين ورائحة الشاي", "أراضي جيانغنان الرطبة"]
     },
     itinerary: {
       zh: [
@@ -2012,6 +2036,7 @@ const elements = {
   statCityCount: document.querySelector("#stat-city-count"),
   statSpotCount: document.querySelector("#stat-spot-count"),
   statLanguageCount: document.querySelector("#stat-language-count"),
+  heroSymbols: Array.from(document.querySelectorAll(".china-symbol-row span")),
   heroCityName: document.querySelector("#hero-city-name"),
   heroCardTitle: document.querySelector("#hero-card-title"),
   heroCardSummary: document.querySelector("#hero-card-summary"),
@@ -4769,6 +4794,7 @@ function buildLocalizedCityMeta() {
       subtitle: { ...city.subtitle, ...(localized.subtitle || {}) },
       summary: { ...city.summary, ...(localized.summary || {}) },
       highlights: { ...city.highlights, ...(localized.highlights || {}) },
+      heroSymbols: { ...city.heroSymbols, ...(localized.heroSymbols || {}) },
       routeTemplates: (city.routeTemplates || []).map((route) => ({
         ...route,
         names: { ...route.names, ...(routeLookup[route.id]?.names || {}) },
@@ -4968,9 +4994,16 @@ function refreshUiText() {
 
 function renderHero() {
   const city = activeCity();
+  const heroSymbols = localize(city.heroSymbols || city.highlights || []);
   elements.statCityCount.textContent = cities.length;
   elements.statSpotCount.textContent = cities.reduce((sum, item) => sum + item.spots.length, 0);
   elements.statLanguageCount.textContent = Object.keys(uiContent).length;
+  elements.heroSymbols.forEach((symbol, index) => {
+    symbol.textContent = heroSymbols[index] || localize(city.highlights)[index] || "";
+    symbol.style.setProperty("--symbol-accent", city.accent);
+    symbol.style.setProperty("--symbol-soft", city.soft);
+    symbol.hidden = !symbol.textContent;
+  });
   elements.heroCityName.textContent = localize(city.names);
   elements.heroCardTitle.textContent = localize(city.names);
   elements.heroCardSummary.textContent = localize(city.subtitle);
