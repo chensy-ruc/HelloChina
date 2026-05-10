@@ -2430,7 +2430,8 @@ body.is-loading .page-shell {
   z-index: 1;
   margin: 0;
   color: var(--muted);
-  line-height: 1.72;
+  font-size: 0.94rem;
+  line-height: 1.64;
 }
 
 .volunteer-cta {
