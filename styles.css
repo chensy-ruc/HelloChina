@@ -197,6 +197,7 @@ body.is-loading .page-shell {
 .food-section,
 .guide-section,
 .ai-section,
+.site-footer,
 .feature-nav {
   position: relative;
   z-index: 1;
@@ -286,6 +287,9 @@ body.is-loading .page-shell {
 .hero-card,
 .showcase-access,
 .showcase-qr-card,
+.site-footer,
+.contact-link,
+.wechat-qr,
 .stat-card,
 .city-panel,
 .map-card,
@@ -2341,6 +2345,100 @@ body.is-loading .page-shell {
   background: rgba(255, 255, 255, 0.9);
 }
 
+.site-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+  gap: 18px;
+  margin-top: 34px;
+  padding: clamp(18px, 3vw, 28px);
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 30px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(232, 240, 254, 0.78)),
+    radial-gradient(circle at 8% 8%, rgba(251, 188, 4, 0.18), transparent 28%),
+    radial-gradient(circle at 94% 22%, rgba(52, 168, 83, 0.16), transparent 30%);
+  box-shadow: var(--shadow);
+}
+
+.footer-copy {
+  display: grid;
+  align-content: center;
+  gap: 10px;
+}
+
+.footer-copy h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.35rem);
+  line-height: 1.18;
+}
+
+.footer-copy p:last-child {
+  max-width: 620px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.footer-contact-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+  gap: 14px;
+}
+
+.contact-links {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-link {
+  display: grid;
+  gap: 5px;
+  padding: 16px 18px;
+  border: 1px solid rgba(66, 133, 244, 0.12);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 14px 30px rgba(66, 133, 244, 0.08);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.contact-link span,
+.wechat-qr figcaption {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.contact-link strong {
+  color: var(--text);
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  word-break: break-word;
+}
+
+.wechat-qr {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 10px;
+  min-width: 172px;
+  margin: 0;
+  padding: 14px;
+  border: 1px solid rgba(66, 133, 244, 0.12);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 14px 30px rgba(66, 133, 244, 0.08);
+}
+
+.wechat-qr img {
+  width: 132px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center 65%;
+  border-radius: 18px;
+  border: 1px solid rgba(66, 133, 244, 0.1);
+}
+
 .leaflet-container {
   width: 100%;
   height: 100%;
@@ -2453,7 +2551,8 @@ body.is-loading .page-shell {
 .weather-card:hover,
 .planner-card:hover,
 .planner-note:hover,
-.forecast-day:hover {
+.forecast-day:hover,
+.contact-link:hover {
   transform: translateY(-4px);
 }
 
@@ -2665,6 +2764,7 @@ body.is-loading .page-shell {
   .spot-grid,
   .food-grid,
   .guide-grid,
+  .site-footer,
   .food-forum-layout {
     grid-template-columns: 1fr;
   }
@@ -2712,6 +2812,7 @@ body.is-loading .page-shell {
   .header-tools,
   .hero-actions,
   .showcase-qr-card,
+  .footer-contact-panel,
   .ai-composer {
     width: 100%;
   }
@@ -2736,6 +2837,14 @@ body.is-loading .page-shell {
 
   .ai-composer {
     grid-template-columns: 1fr;
+  }
+
+  .footer-contact-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .wechat-qr {
+    justify-self: stretch;
   }
 
   .map-canvas {
